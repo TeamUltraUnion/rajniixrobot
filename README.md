@@ -21,7 +21,7 @@ My Developers : [Yash Virmani](https://telegram.me/itzzzyashu),[ Yash Rajput](ht
 ## How to setup/deploy.
   <summary>STEPS TO DEPLOY TO HEROKU</summary>
   <details>
->  Step 1 Read [`config1.py`](https://github.com/TeamUltraUnion/rajniixrobot/blob/rajniixrobot/RajniiRobot/config1.py) in [`Rajniirobot`](https://github.com/TeamUltraUnion/rajniixrobot/tree/rajniixrobot/RajniiRobot) folder.
+>  Step 1 Read `config1.py` in `Rajniirobot` folder.
 
 >  Step 2 Enter a Name for your Heroku App (In Heroku Website).
   
