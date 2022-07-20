@@ -4,6 +4,33 @@
 [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html) [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/itzzzyashu/rajniixobot/?ref=repository-badge) [![Join Support!](https://img.shields.io/badge/Support%20Chat-!-red)](https://telegram.dog/rajniixsupport) [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) [![GitHub contributors](https://img.shields.io/github/contributors/Naereen/StrapDown.js.svg)](https://GitHub.com/TeamUltraUnion/rajniixrobot/graphs/contributors/)
 
 
+
+<p align="center">
+
+<p align="center">
+<a href="https://github.com/TeamUltraUnion/rajniixrobot" alt="GitHub closed issues"> <img src="https://img.shields.io/github/issues-closed-raw/TeamUltraUnion/rajniixrobot?style=flat&logo=github&color=success" /> </a>
+<a href="https://github.com/TeamUltraUnion/rajniixrobot" alt="GitHub commit activity"> <img src="https://img.shields.io/github/commit-activity/m/TeamUltraUnion/rajniixrobot" /> </a>
+<a href="https://github.com/TeamUltraUnion/rajniixrobot/graphs/contributors" alt="GitHub contributors"> <img src="https://img.shields.io/github/contributors/TeamUltraUnion/rajniixrobot?style=flat&logo=github" /> </a>
+<a href="https://github.com/TeamUltraUnion/rajniixrobot/network/members" alt="GitHub forks"> <img src="https://img.shields.io/github/forks/TeamUltraUnion/rajniixrobot?label=Forks&logo=github" /> </a>
+<a href="https://github.com/TeamUltraUnion/rajniixrobot" alt="GitHub closed pull requests"> <img src="https://img.shields.io/github/issues-pr-closed-raw/TeamUltraUnion/rajniixrobot?color=success" /> </a>
+<a href="https://github.com/TeamUltraUnion/rajniixrobot" alt="GitHub issues"> <img src="https://img.shields.io/github/issues-raw/TeamUltraUnion/rajniixrobot?style=flat&logo=github&color=yellow" /> </a>
+</p>
+<p align="center">
+<a href="https://github.com/TeamUltraUnion/rajniixrobot" alt="GitHub release (latest by date including pre-releases)"> <img src="https://img.shields.io/github/v/release/TeamUltraUnion/rajniixrobot?include_prereleases?style=flat&logo=github" /> </a>
+<a href="https://www.python.org/" alt="made-with-python"> <img src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg?style=flat&logo=python&color=blue" /> </a>
+<a href="https://github.com/TeamUltraUnion/rajniixrobot" alt="Docker!"> <img src="https://aleen42.github.io/badges/src/docker.svg" /> </a>
+<a href="https://github.com/TeamUltraUnion/rajniixrobot" alt="GitHub repo size"> <img src="https://img.shields.io/github/repo-size/TeamUltraUnion/rajniixrobot" /> </a>
+<a href="https://github.com/TeamUltraUnion/rajniixrobot/blob/master/LICENSE" alt="GPLv3 license"> <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" /> </a>
+</p>
+<p align="center">
+<a href="https://telegram.me/rajniixrobot" alt="Updates"> <img src="https://aleen42.github.io/badges/src/telegram.svg" /> </a>
+<a href="https://discord.animekaizoku.com" alt="Discord"> <img src="https://img.shields.io/discord/465068856692441090?style=flat&logo=discord&color=blue" /> </a>
+<a href="" alt="TeamUltraUnion"> <img src="https://img.shields.io/badge/Built%20by-Team-UltraUnion" /> </a>
+<a href="https://makeapullrequest.com" alt="PRs Welcome"> <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" /> </a>
+</p>
+
+
+
 ###  ╔═━「 Status 」
 
 + [x] Maintained
