@@ -24,13 +24,13 @@ My Developers : [Yash Virmani](https://telegram.me/itzzzyashu),[ Yash Rajput](ht
   
 >  Step 1 Read [`config1.py`](https://github.com/TeamUltraUnion/rajniixrobot/blob/rajniixrobot/RajniiRobot/config1.py) in [`RajniiRobot`](https://github.com/TeamUltraUnion/rajniixrobot/tree/rajniixrobot/RajniiRobot) folder.
 
->  Step 2 Enter a Name for your Heroku App (In Heroku Website).
+>  Step 2 Get all required values by given urls and hit `Deploy to Heroku` button.
   
->  Step 3 Get These Values By Clicking Details button & Given Methods below(You Can see Details by Clicking Details Button).
+>  Step 3 Enter all values in message feilds and hit `Deploy` button.
 
->  Step 4 Get Required Values Those are compulsory also can get Non-Required Values.
+>  Step 4 Wait for deployment to finish, after that click `Manage App` button just below the logs area.
 
->  Step 5 Click Deploy Button.
+>  Step 5 Go to `resources` tab and turn off web dyno. turn on worker dyno, wait for sometime, bot will notify in support chat.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamUltraUnion/rajniixrobot.git)
    </details>
