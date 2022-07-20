@@ -22,7 +22,7 @@ My Developers : [Yash Virmani](https://telegram.me/itzzzyashu),[ Yash Rajput](ht
   <summary>STEPS TO DEPLOY TO HEROKU</summary>
   <details>
   
->  Step 1 Read config1.py in RajniiRobot folder.
+>  Step 1 Read config1.py in [`RajniiRobot`](https://github.com/TeamUltraUnion/rajniixrobot/tree/rajniixrobot/RajniiRobot) folder.
 
 >  Step 2 Enter a Name for your Heroku App (In Heroku Website).
   
