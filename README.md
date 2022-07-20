@@ -31,81 +31,13 @@ My Developers : [Yash Virmani](https://telegram.me/itzzzyashu),[ Yash Rajput](ht
 
 >  Step 5 Click Deploy Button.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamSanatanRakshaNetwork/RajniiRoboActive.git)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamUltraUnion/rajniixrobot/tree/rajniixrobot.git)
 
 <details>
-  
-<code>AI_API_KEY</code> - Enter you AI API KEY from ARQ BOT or Intellivoid.
-  
-<code>ALLOW_EXCL</code> - Leave it to True
-  
-<code>API_HASH</code> - Get it from https://my.telegram.org By Web Login Then Click Api Development Tools.
-  
-<code>API_ID</code> - Get it from https://my.telegram.org By Web Login Then Click Api Development Tools.
-  
-<code>BAN_STICKER</code> - Go to [NidhiRobot](https://telegram.me/Nidhirobot) & send a sticker that you want to set Reply that sticker by /id .
-                           Nidhi will show you that sticker ID.....
-  
-<code>BL_CHATS</code> - Go to that Group Where you don't wan't to let your Bot Exist. then send /id (without replying to someone.
-                        Make Sure Nidhi or Rose is Added To that group They'll send you  the Group ID.......)
-  
-<code>CASH_API_KEY</code> - Get Your Cash Api Key By Login into https://www.alphavantage.co/support/#api-key.
-  
-<code>DEL_CMDS</code> - Set this to True if you want to delete command messages from users who don't have the perms to run that command.
-  
-<code>DEMONS</code> - A space separated list of user IDs who you wanna assign as support users/Gban Admins(Gban perms only)(Leave it as it as if you don't know anyone).
-  
-<code>DEV_USERS</code> - ID of users who are Devs of your bot (can use /py etc.) Leave this if you don't know Programming(Leave it as it as if you don't know anyone).
-  
-<code>DONATION_LINK</code> - Link of platform, Where you would like to receive donations. If you don't have any, Leave it to Yash.
-  
-<code>DRAGONS</code> - A space separated list of user IDs who you want to assign as sudo users.
-  
-<code>ENV</code> - Setting this to ANYTHING will enable environment variables. Leave it as it is...
-  
-<code>EVENT_LOGS</code> - Event logs/Global Log channel to note down important bot level events or Global Events, Recommend to make this Chat Public. ex: '-123456'.
-  
-<code>JOIN_LOGGER</code> - A channel ID where bot will print who added it to what group, useful during debugging or spam handling. Get it by [NidhiRobot](https://telegram.me/Nidhirobot).
-  
-<code>No_LOAD</code> - Dont load these modules cause they shit, space separation.
-  
-<code>OWNER_ID</code> - Your Telegram User ID as an integer.
-  
-<code>OWNER_USERNAME</code> - Your Telegram Username without @.
-  
-<code>PORT</code> - Port to use for your webhooks. Better leave this as it is on heroku.
-  
-<code>SQLALCHEMY_DATABASE_URI</code> - Your postgres sql db, empty this field if you dont have any.
-  
-<code>STRICT_GBAN</code> - Enforce Gbans across new groups as well as old groups. When a gbanned user talks, he will be banned.(True or False)
-  
-<code>SUPPORT_CHAT</code> - Your Telegram Support Group Chat Username without @ where your users will go and ask you about modules, features, bugs ,appeals.. etc For Support Regarding your bot.
-  
-<code>sw_api</code> - Spamwatch API Token, Get one from @SpamWatchBot.
-  
-<code>TIGERS</code> - A space separated list of user IDs who you wanna assign as tiger users(Leave it as it as if you don't know anyone).
-  
-<code>TIME_API_KEY</code> - Required for timezone information. Get yours from https://timezonedb.com/api
-  
-<code>TOKEN</code> - Enter Your bot token here. Get it from @BotFather in Telegram after creating a bot.
-  
-<code>URL</code> - The Heroku App URL :- https://<appname>.herokuapp.com/ replace the <appname> with your app name you filled Above
-  
-<code>WALL_API</code> - Required for wallpaper. Get your's from https://wall.alphacoders.com/
-  
-<code>WEBHOOK</code> - Setting this to ANYTHING will enable webhooks. If you dont know how this works leave it as it is
-  
-<code>WOLVES</code> - A space separated list of user IDs who you want to assign as whitelisted - can't be banned with your bot(Leave it as it as if you don't know anyone).
-  
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamSanatanRakshaNetwork/rajniiroboactive.git)
+Read [config1.py](https://github.com/TeamUltraUnion/rajniixrobot/blob/rajniixrobot/RajniiRobot/config1.py) in `[Rajniirobot](https://github.com/TeamUltraUnion/rajniixrobot/tree/rajniixrobot/RajniiRobot)` folder.
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamUltraUnion/rajniixrobot/tree/rajniixrobot.git)
     
 </details>
-
-
-
-
-
-
 
   <summary>SEE THIS(IMPORTANT!)!!</summary>
   <details>
