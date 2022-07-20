@@ -18,9 +18,6 @@ You can Join Our OT Chat at [![Telegram](https://img.shields.io/badge/telegram-1
 
 My Developers : [Yash Virmani](https://telegram.me/itzzzyashu),[ Yash Rajput](https://telegram.me/Flasho_gacha),[ Sawada](https://telegram.me/sawada),[ Paul Larson](https://telegram.me/SonOfLars),[ Awesome-RJ](https://telegram.me/Black_Knights_Union_Support).
 
-## POWERED BY [✵ ꜱᴀɴᴀᴛᴀɴ ʀᴀᴋꜱʜᴀ ɴᴇᴛᴡᴏʀᴋ™ ✵](https://telegram.me/SanatanRakshaNetwork)
-
-
 ## How to setup/deploy.
   <summary>STEPS TO DEPLOY TO HEROKU</summary>
   
