@@ -30,7 +30,7 @@ class Config(object):
     - `Required [V-IAK]` for required Values related to IDs, APIs and KEYs.
     - `Required [V-P/D]` for required Values related to Paths and Directories.
     + Values with '+' in comments are Important for bot to run.
-
+    
     =========================================================\n
     [Team Sanatan Raksha Network™](https://www.github.com/TeamSanatanRakshaNetwork), All rights reserved.\n
     Project [rajniiroboactive](https://www.github.com/TeamSanatanRakshaNetwork/rajniiroboactive) have © Copyright of [@itzzzyashu](https://www.github.com/itzzzyashu).
