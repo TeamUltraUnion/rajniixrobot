@@ -1,12 +1,7 @@
-![RAJNI](https://telegra.ph/file/cdddd4bdbd05f9d5bc441.jpg)
-
-# [ʀᴀᴊɴɪ]
-
+[![ʀᴀᴊɴɪ](https://telegra.ph/file/cdddd4bdbd05f9d5bc441.jpg)](https://telegram.me/rajniirobot)
 
 # [ʀᴀᴊɴɪ](https://telegram.me/rajniirobot)
 [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html) [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/itzzzyashu/rajniixobot/?ref=repository-badge) [![Join Support!](https://img.shields.io/badge/Support%20Chat-!-red)](https://telegram.dog/rajniixsupport) [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) [![GitHub contributors](https://img.shields.io/github/contributors/Naereen/StrapDown.js.svg)](https://GitHub.com/TeamUltraUnion/rajniixrobot/graphs/contributors/)
-
-A modular telegram Python bot running on python3 with an sqlalchemy, Redis, mongodb database.
 
 ###  ╔═━「 Status 」
 
