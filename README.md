@@ -1,6 +1,23 @@
 ![RAJNI](https://telegra.ph/file/cdddd4bdbd05f9d5bc441.jpg)
 
-# [ʀᴀᴊɴɪ](https://telegram.me/rajniirobot) 5.0
+# [ʀᴀᴊɴɪ]
+
+
+# [ʀᴀᴊɴɪ](https://telegram.me/rajniirobot)
+[![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html) [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/itzzzyashu/rajniixobot/?ref=repository-badge) [![Join Support!](https://img.shields.io/badge/Support%20Chat-!-red)](https://telegram.dog/rajniixsupport) [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) [![GitHub contributors](https://img.shields.io/github/contributors/Naereen/StrapDown.js.svg)](https://GitHub.com/TeamUltraUnion/rajniixrobot/graphs/contributors/)
+
+A modular telegram Python bot running on python3 with an sqlalchemy, Redis, mongodb database.
+
+###  ╔═━「 Status 」
+
++ [x] Maintained
++ [x] Support Group Included
++ [x] Free
++ [x] OpenSourced
++ [x] Working Instance Available
++ [x] Clean Code
++ [x] Heroku Deploy
++ [x] Docker/Local Machine
 
 An Advanced Modular Telegram Python Group Management bot running on python3.8.6.
 Build For Mainly Group Maintaining & Help Admins With Amazing Advanced Modules.
