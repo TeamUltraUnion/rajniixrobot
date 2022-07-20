@@ -33,7 +33,8 @@ My Developers : [Yash Virmani](https://telegram.me/itzzzyashu),[ Yash Rajput](ht
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamUltraUnion/rajniixrobot/tree/rajniixrobot.git)
 
-Read [config1.py](https://github.com/TeamUltraUnion/rajniixrobot/blob/rajniixrobot/RajniiRobot/config1.py) in `[Rajniirobot](https://github.com/TeamUltraUnion/rajniixrobot/tree/rajniixrobot/RajniiRobot)` folder.
+Read [config1.py](https://github.com/TeamUltraUnion/rajniixrobot/blob/rajniixrobot/RajniiRobot/config1.py) in [`Rajniirobot`](https://github.com/TeamUltraUnion/rajniixrobot/tree/rajniixrobot/RajniiRobot) folder.
+
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamUltraUnion/rajniixrobot/tree/rajniixrobot.git)
 
   <summary>SEE THIS(IMPORTANT!)!!</summary>
