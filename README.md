@@ -20,8 +20,8 @@ My Developers : [Yash Virmani](https://telegram.me/itzzzyashu),[ Yash Rajput](ht
 
 ## How to setup/deploy.
   <summary>STEPS TO DEPLOY TO HEROKU</summary>
-  
->  Step 1 Click Detail Text below (DETAILS to Deploy on Heroku).
+  <details>
+>  Step 1 Read [`config1.py`](https://github.com/TeamUltraUnion/rajniixrobot/blob/rajniixrobot/RajniiRobot/config1.py) in [`Rajniirobot`](https://github.com/TeamUltraUnion/rajniixrobot/tree/rajniixrobot/RajniiRobot) folder.
 
 >  Step 2 Enter a Name for your Heroku App (In Heroku Website).
   
@@ -32,11 +32,8 @@ My Developers : [Yash Virmani](https://telegram.me/itzzzyashu),[ Yash Rajput](ht
 >  Step 5 Click Deploy Button.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamUltraUnion/rajniixrobot.git)
-
-Read [`config1.py`](https://github.com/TeamUltraUnion/rajniixrobot/blob/rajniixrobot/RajniiRobot/config1.py) in [`Rajniirobot`](https://github.com/TeamUltraUnion/rajniixrobot/tree/rajniixrobot/RajniiRobot) folder.
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamUltraUnion/rajniixrobot.git)
-
+   </details>
+ 
   <summary>SEE THIS(IMPORTANT!)!!</summary>
   <details>
 Pls don't Ask Us about Console errors! We will Ban you Permanently If We Found anyone asking in DM/Support Chat.😶😶
