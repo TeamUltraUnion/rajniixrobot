@@ -5,7 +5,6 @@
 An Advanced Modular Telegram Python Group Management bot running on python3.8.6.
 Build For Mainly Group Maintaining & Help Admins With Amazing Advanced Modules.
 
-
 You Can Find rajniirobot at [![Telegram](https://img.shields.io/badge/telegram-1b77FF.svg?style=for-the-badge&logo=telegram)](https://telegram.me/RajniiRobot)
 
 The Support Chat can be reached out to at [![Telegram](https://img.shields.io/badge/telegram-1b77FF.svg?style=for-the-badge&logo=telegram)](https://telegram.me/RajniSupportChat)
