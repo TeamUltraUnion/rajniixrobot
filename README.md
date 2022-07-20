@@ -1,6 +1,6 @@
 ![RAJNI](https://telegra.ph/file/cdddd4bdbd05f9d5bc441.jpg)
 
-# [ʀᴀᴊɴɪ](https://telegram.me/rajniirobot) 4.0
+# [ʀᴀᴊɴɪ](https://telegram.me/rajniirobot) 5.0
 
 An Advanced Modular Telegram Python Group Management bot running on python3.8.6.
 Build For Mainly Group Maintaining & Help Admins With Amazing Advanced Modules.
