@@ -34,11 +34,6 @@ My Developers : [Yash Virmani](https://telegram.me/itzzzyashu),[ Yash Rajput](ht
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamUltraUnion/rajniixrobot.git)
    </details>
- 
-  <summary>SEE THIS(IMPORTANT!)!!</summary>
-  <details>
-Pls don't Ask Us about Console errors! We will Ban you Permanently If We Found anyone asking in DM/Support Chat.😶😶
-    </details>
   
 ## Credits goes to
   
