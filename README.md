@@ -97,8 +97,8 @@ Now send the bot /start, If it doesn't respond go to https://dashboard.heroku.co
 <details>
 	<summary>Deploy using Heroku CLI.</summary>
 
-### Install the requirement applications.
 #
+### Install the requirement applications.
 
 > Install Heroku CLI
 	
@@ -106,13 +106,13 @@ Now send the bot /start, If it doesn't respond go to https://dashboard.heroku.co
 	
 > Install NodeJS
 
-### Initialising Accounts.
 #
+### Initialising Accounts.
 
 > Create a Account on Heroku website ([Click here to SignUp](https://signup.heroku.com/))
 
-### Open terminal
 #
+### Open terminal
 
 * Download Repo by using git.
 
