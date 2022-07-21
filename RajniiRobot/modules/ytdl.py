@@ -118,5 +118,5 @@ async def ytdlCallback(_, cq):
 
 
 
-        
+
 __mod_name__ = "YoutubeDL"

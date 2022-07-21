@@ -38,7 +38,7 @@ def pinned(update: Update, context: CallbackContext) -> str:
         elif (str(msg.chat.id)).startswith("-100"):
             link_chat_id = (str(msg.chat.id)).replace("-100", "")
             message_link = (f"https://t.me/c/{link_chat_id}/{pinned_id}")
-            
+
         msg.reply_text(f'The pinned message of {html.escape(chat.title)} is <a href="{message_link}">here</a>.', reply_to_message_id=msg_id, parse_mode=ParseMode.HTML, disable_web_page_preview=True,)
     else:
         msg.reply_text(f'There is no pinned message in {html.escape(chat.title)}!')
@@ -71,7 +71,7 @@ def set_sticker(update: Update, context: CallbackContext):
             msg.reply_text(f"Error! {excp.message}.")
     else:
         msg.reply_text("You need to reply to some sticker to set chat sticker set!")
-       
+
 @run_async
 @bot_admin
 @user_admin
@@ -107,8 +107,8 @@ def setchatpic(update: Update, context: CallbackContext):
                 os.remove("gpic.png")
     else:
         msg.reply_text("Reply to some photo or file to set new chat pic!")
-        
-        
+
+
 @run_async
 @bot_admin
 @user_admin
@@ -126,7 +126,7 @@ def rmchatpic(update: Update, context: CallbackContext):
     except BadRequest as excp:
         msg.reply_text(f"Error! {excp.message}.")
         return
-    
+
 @run_async
 @bot_admin
 @user_admin
@@ -150,7 +150,7 @@ def set_desc(update: Update, context: CallbackContext):
         msg.reply_text(f"Successfully updated chat description in {chat.title}!")
     except BadRequest as excp:
         msg.reply_text(f"Error! {excp.message}.")        
-        
+
 @bot_admin
 @user_admin
 @run_async
@@ -178,7 +178,7 @@ def setchat_title(update: Update, context: CallbackContext):
     except BadRequest as excp:
         msg.reply_text(f"Error! {excp.message}.")
         return
-      
+
 
 
 @run_async

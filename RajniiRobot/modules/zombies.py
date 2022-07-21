@@ -38,7 +38,7 @@ async def zombies(event):
                     delmsg = await msg.edit("No deleted accounts found. Group is clean")
                 else:
                     delmsg = await msg.edit(f"Found **{count}** zombies in this group\nClean them by using - `/zombies clean`")
-        
+
         elif arg == "clean":
             msg = "**Cleaning zombies...**\n"
             msg = await event.reply(msg)
@@ -51,7 +51,7 @@ async def zombies(event):
                 delmsg = await msg.edit("No deleted accounts found. Group is clean")
             else:
                 delmsg = await msg.edit(f"Cleaned `{count}` zombies")
-      
+
         else:
             delmsg = await event.reply("Wrong parameter. You can use only `/zombies clean`")
 

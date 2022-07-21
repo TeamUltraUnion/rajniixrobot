@@ -241,7 +241,7 @@ else:
     except:
         sw = None
         LOGGER.warning(f"[{BOT_NAME} ERROR] Can't connect to SpamWatch!")
-        
+
 
 print("=========================================================================================================")
 # Credits Logger

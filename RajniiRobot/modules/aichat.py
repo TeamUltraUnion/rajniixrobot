@@ -21,7 +21,7 @@ from RajniiRobot.modules.helper_funcs.chat_status import user_admin, user_admin_
 from RajniiRobot import dispatcher, updater, SUPPORT_CHAT
 from RajniiRobot.modules.log_channel import gloggable
 
- 
+
 @user_admin_no_reply
 @gloggable
 @run_async
@@ -104,7 +104,7 @@ def get_message(context: CallbackContext, message):
             return True
     else:
         return False
-        
+
 @run_async
 def ai_reply(update: Update, context: CallbackContext):
     message = update.effective_message
@@ -113,7 +113,7 @@ def ai_reply(update: Update, context: CallbackContext):
     is_kuki = sql.is_kuki(chat_id)
     if not is_kuki:
         return
-	
+
     if message.text and not message.document:
         if not get_message(context, message):
             return

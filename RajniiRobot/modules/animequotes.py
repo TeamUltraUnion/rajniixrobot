@@ -51,7 +51,7 @@ def change_quote(update: Update, context: CallbackContext):
             callback_data="quote_change")]])
     message.edit_text(msg, reply_markup=keyboard,
                       parse_mode=ParseMode.HTML)
-    
+
 @run_async
 def animequotes(update: Update, context: CallbackContext):
     message = update.effective_message
@@ -125,7 +125,7 @@ QUOTES_IMG = (
       "https://i.imgur.com/FO7bApW.jpg", 
       "https://i.imgur.com/KK06gwg.jpg", 
       "https://i.imgur.com/6lG4tsO.jpg"
-      
+
       )    
 
 ANIMEQUOTES_HANDLER = DisableAbleCommandHandler("animequotes", animequotes)

@@ -80,9 +80,9 @@ async def arq_stats(_, message):
 """
     await message.reply_text(
         statistics, disable_web_page_preview=True)
-    
+
 """
-    
+
 # HEROKU
 # HEROKU
 
@@ -648,7 +648,7 @@ def set_about_me(update: Update, context: CallbackContext):
                     MAX_MESSAGE_LENGTH // 4, len(info[1]),
                 ),
             )
-    
+
 
 """
     data = await arq.stats()
@@ -663,9 +663,9 @@ def set_about_me(update: Update, context: CallbackContext):
     python_version = data.python
     users = data.users
     bot = data.bot
-    
-    
-    
+
+
+
 <b>Uptime:</b> <code>{uptime}</code>
 <b>Requests Since Uptime:</b> <code>{requests}</code>
 <b>CPU:</b> <code>{cpu}</code>
@@ -706,7 +706,7 @@ def nstats(update: Update, context: CallbackContext): #  (_, message)
        """ + "\n".join([mod.__stats__() for mod in STATS])
     result = re.sub(r"(\d+)", r"<code>\1</code>", stats)
     update.effective_message.reply_text(result+"""
-    
+
 <a href="https://t.me/RajniSupport">✦ Support</a> | <a href="https://t.me/RajniUpdates">✦ Updates</a>
 ╘══「 <b>By <a href="https://github.com/itzzzzyashu">itzzzyashu</a></b> 」""", parse_mode=ParseMode.HTML)
 
