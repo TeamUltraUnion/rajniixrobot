@@ -5,7 +5,6 @@ import random
 import time
 import glob
 import requests
-import requests as r
 import urllib.request
 import os
 import RajniiRobot.modules.fun_strings as fun_strings
