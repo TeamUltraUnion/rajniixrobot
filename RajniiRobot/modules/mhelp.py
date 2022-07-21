@@ -20,7 +20,7 @@ async def awake(event):
   RAJNI += "◇ /lyric - ** (song name) lyrics scrapper** \n\n"
 
   RAJNI += "** ──「 Admin CMD 」── ** \n\n"
-  
+
   RAJNI += "◇ /pause - **To Pause Song playback** \n"
   RAJNI += "◇ /resume - **To resume playback of the paused Song** \n"
   RAJNI += "◇ /skip - **To Skip playback of the song to the next Song** \n"

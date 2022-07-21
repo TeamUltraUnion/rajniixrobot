@@ -82,7 +82,7 @@ __help__ = """
 *Paste:*
  ◇ `/paste`*:* Saves replied content to `nekobin.com` and replies with a url
 *React:*
- ◇ `/react`*:* Reacts with a random reaction 
+ ◇ `/react`*:* Reacts with a random reaction
 *Urban Dictonary:*
  ◇ `/ud <word>`*:* Type the word or expression you want to search use
 *Wikipedia:*
@@ -101,12 +101,12 @@ __help__ = """
  ◇ `/imdb <query>`*:* get movie's infoformation.
   *Movie*
  ◇ `/imdb <query>`*:* get movie's infoformation.
- 
- 
-*Currency converter:* 
+
+
+*Currency converter:*
  ◇ `/cash`*:* currency converter
 Example:
- `/cash 1 USD INR`  
+ `/cash 1 USD INR`
       _OR_
  `/cash 1 usd inr`
 Output: `1.0 USD = 75.505 INR`

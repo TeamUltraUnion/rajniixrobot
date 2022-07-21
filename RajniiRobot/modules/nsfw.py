@@ -483,7 +483,7 @@ This Module is for only +18 guys, kids & teenagers Stay Away please!
 this module is not made for public groups.
 Module credits: [Dank-del](https://github.com/Dank-del/Chizuru/),
 Also thanks to [EverythingSuckz](https://t.me/EverythingSuckz) for NSFW filter.
-    
+
 *Enable or Disable NSFW Mode*:
  ◇ `/addnsfw` *:* Enable NSFW mode
  ◇ `/rmnsfw` *:* Disable NSFW mode
@@ -493,7 +493,7 @@ Also thanks to [EverythingSuckz](https://t.me/EverythingSuckz) for NSFW filter.
  and delete that media automatically,
  It'll work surely if NSFW Media was clearly seenable.
  ◇ `/nsfwscan` *:* Scan a file/Media and tell about it's NSFW Information.
- 
+
 *Commands*
  ◇ `/neko`: Sends Random SFW Neko source Images.
  ◇ `/feet`: Sends Random Anime Feet Images.

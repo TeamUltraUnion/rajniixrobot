@@ -76,7 +76,7 @@ async def _(event):
         sed1 = img
         sedm = f"**Title : {titles}** \n{sedlyf} \nDate : {dateis} \nAuthor : {writter} \nReadMore : {readthis}"
         await pgram.send_photo(event.chat_id, sed1, caption=sedm)
-        
+
 
 @register(pattern="^/ball(?: |$)(.*)")
 async def _(event):
@@ -87,7 +87,7 @@ async def _(event):
     input_int = int(input_str)
     if input_int > 5:
         await event.reply("hey nigga use number 1 to 6 only")
-    
+
     else:
         try:
             required_number = input_int
@@ -126,7 +126,7 @@ async def chika(event):
     except Exception:
         await event.reply(f"Error Report @{SUPPORT_CHAT}")
 
-        
+
 @register(pattern="^/truth ?(.*)")
 async def _(td):
     try:
@@ -364,7 +364,7 @@ async def msg(event):
     reply_text += " 😭"
     await event.reply(reply_text)
 
-    
+
 @pgram.on_message(filters.command("carbon"))
 @capture_err
 async def carbon_func(_, message):
@@ -616,7 +616,7 @@ async def _(event):
     input_int = int(input_str)
     if input_int > 6:
         await event.reply("hey nigga use number 1 to 6 only")
-    
+
     else:
         try:
             required_number = input_int
@@ -690,7 +690,7 @@ async def _(event):
     input_int = int(input_str)
     if input_int > 6:
         await event.reply("hey nigga use number 1 to 6 only")
-    
+
     else:
         try:
             required_number = input_int

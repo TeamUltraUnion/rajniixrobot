@@ -138,7 +138,7 @@ def song(client, message):
         os.remove(thumb_name)
     except Exception as e:
         print(e)
-        
+
 @pgram.on_message(filters.command("lyrics"))
 async def lyrics_func(_, message):
     if len(message.command) < 2:
@@ -151,4 +151,3 @@ async def lyrics_func(_, message):
         return await m.edit(f"__{lyrics}__")
     lyrics = await paste(lyrics)
     await m.edit(f"**LYRICS_TOO_LONG:** [URL]({lyrics})")
-   

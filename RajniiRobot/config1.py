@@ -17,7 +17,7 @@ class Config(object):
     - Should know python basics
     - Should know about telegram APIs
     - A device to save all the files for backup.
-    
+
     Now edit the config.py file as it wants, Read the comments for perfect guide to get all necessary values.\n
     Please read the manual for more information.\n
     You can also get deploying tutorials there. [[Read Manual](https://www.itzzzyashu-cf.tk/projects#rajniiroboactive)].\n
@@ -30,11 +30,11 @@ class Config(object):
     - `Required [V-IAK]` for required Values related to IDs, APIs and KEYs.
     - `Required [V-P/D]` for required Values related to Paths and Directories.
     + Values with '+' in comments are Important for bot to run.
-    
+
     =========================================================\n
     [Team Sanatan Raksha Network™](https://www.github.com/TeamSanatanRakshaNetwork), All rights reserved.\n
     Project [rajniiroboactive](https://www.github.com/TeamSanatanRakshaNetwork/rajniiroboactive) have © Copyright of [@itzzzyashu](https://www.github.com/itzzzyashu).
-    
+
     =========================================================\n
     """
     LOGGER = True
@@ -77,7 +77,7 @@ class Config(object):
     "Required - [V-D/C]"
     WORKERS = 8 # + There's no need to change it.
     DB_URL = "" # + postgresql or elephantsql database link.
-    
+
     HEROKU_APP_NAME = '' # Heroku App Name, if you're using Heroku.com for deployment of this bot.
     HEROKU_API_KEY = "" # True or False, if you are using Heroku.com for deployment, get it from heroku account info; otherwise leave it empty.
     URL = f"https://{HEROKU_APP_NAME}.herokuapp.com/" # If you're using heroku.com, fill it with "https://your-app-name.herokuapp.com"; otherwise leave it empty.
