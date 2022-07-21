@@ -102,25 +102,41 @@ Now send the bot /start, If it doesn't respond go to https://dashboard.heroku.co
 > Install GIT
 	
 > Install NodeJS
-	
+
+### Initialising Accounts.
+
+> Create a Account on Heroku website ([Click here to SignUp](https://signup.heroku.com/))
+
 ### Open terminal
-	
+
+* Download Repo by using git.
+
 $ `git clone https://github.com/TeamUltraUnion/rajniixrobot.git`
-	
+
+* Login in CLI by entering the following command.
+
 $ `heroku login`
-	
-> Enter
-	
+
+> Hit Enter.
+
 > Click Login in webpage(browser will open login page automatically)
-	
-$ `cd repository-path(where repo has been cloned)`
-	
+
+* Navigate to Downloaded Reposiratory.
+
+$ `cd repository-path`
+
+* Initialise Reposiratory as git reposiratory by following command.
+
 $ `git init`
-	
+
+* Make a Git Initial Commit in Repo by entering the following commands respectively.
+
 $ `git add .`
 	
 $ `git commit -m "Initial commit"`
-	
+
+* Push changes to your heroku app by following command.
+
 $ `git push heroku rajniixrobot`
 
 </details>
