@@ -105,7 +105,7 @@ Now send the bot /start, If it doesn't respond go to https://dashboard.heroku.co
 	
 ### Open terminal
 	
-> git clone https://github.com/TeamUltraUnion/rajniixrobot.git
+$ ```git clone https://github.com/TeamUltraUnion/rajniixrobot.git```
 	
 > heroku login
 	
