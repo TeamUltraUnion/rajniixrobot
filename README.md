@@ -62,9 +62,9 @@ You can Join Our OT Chat at [![Telegram](https://img.shields.io/badge/telegram-1
 My Developers : [Yash Virmani](https://telegram.me/itzzzyashu),[ Yash Rajput](https://telegram.me/Flasho_gacha),[ Sawada](https://telegram.me/sawada),[ Paul Larson](https://telegram.me/SonOfLars),[ Awesome-RJ](https://telegram.me/Black_Knights_Union_Support).
 
 ## How to setup/deploy.
-  <summary>STEPS TO DEPLOY TO HEROKU</summary>
-  <details>
-  
+<details>
+	<summary>Heroku Deploy</summary>
+
 >  Step 1 Read [`config1.py`](https://github.com/TeamUltraUnion/rajniixrobot/blob/rajniixrobot/RajniiRobot/config1.py) in [`RajniiRobot`](https://github.com/TeamUltraUnion/rajniixrobot/tree/rajniixrobot/RajniiRobot) folder.
 
 >  Step 2 Get all required values by given urls and hit `Deploy to Heroku` button.
@@ -77,18 +77,21 @@ My Developers : [Yash Virmani](https://telegram.me/itzzzyashu),[ Yash Rajput](ht
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamUltraUnion/rajniixrobot.git)
    </details>
+</details>
   
-## Credits goes to
+## ╔═━「 Creator Info/Credits 」
   
-* [itzzzzyashu](https://https://telegram.me/RajniSupportChat)
+* ➢ [itzzzzyashu](https://github.com/itzzzyashu)
   
-* [Yash Rajput](https://https://telegram.me/noha_support)
+* ➢ [Yash Rajput](https://github.com/flashokillerify)
   
-* [Paul Larson](https://https://telegram.me/RoseSupportChat)
+* ➢ [Paul Larson](https://github.com/PaulSonOfLars)
   
-* [Sawada](https://telegram.me/OnePunchSupport)
+* ➢ [Sawada](https://github.com/Sawada)
   
-* [Awesome-RJ](https://telegram.me/Black_Knights_Union_Support)
+* ➢ [Awesome-RJ](https://github.com/Awesome-RJ)
+
+╘═━「 Any other authorship/credits can be seen through the commits. 」
 
 ![Github Stats](https://github-readme-stats.vercel.app/api?username=itzzzyashu&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
