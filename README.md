@@ -142,7 +142,8 @@ $ `git commit -m "Initial commit"`
 
 * Push changes to your heroku app by following command.
 
-$ `git push heroku rajniixrobot`
+$ ```git push heroku rajniixrobot
+	```
 
 </details>
 	
