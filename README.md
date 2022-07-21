@@ -73,17 +73,23 @@ The bot is based of on the original work done by [PaulSonOfLars](https://github.
 <details>
 	<summary>Deploy using Heroku Website</summary>
 		
-	>  Step 1 - Read [`config1.py`](https://github.com/TeamUltraUnion/rajniixrobot/blob/rajniixrobot/RajniiRobot/config1.py) in [`RajniiRobot`](https://github.com/TeamUltraUnion/rajniixrobot/tree/rajniixrobot/RajniiRobot) folder.
+```
+Fill in all the details, Deploy!
+Now go to https://dashboard.heroku.com/apps/(app-name)/resources ( Replace (app-name) with your app name )
+Now send the bot /start, If it doesn't respond go to https://dashboard.heroku.com/apps/(app-name)/settings and remove webhook and port.
+```
+
+>  Step 1 - Read [`config1.py`](https://github.com/TeamUltraUnion/rajniixrobot/blob/rajniixrobot/RajniiRobot/config1.py) in [`RajniiRobot`](https://github.com/TeamUltraUnion/rajniixrobot/tree/rajniixrobot/RajniiRobot) folder.
 		
-	>  Step 2 - Get all required values by given urls and hit `Deploy to Heroku` button.
+>  Step 2 - Get all required values by given urls and hit `Deploy to Heroku` button.
 		
-	>  Step 3 - Enter all values in message feilds and hit `Deploy` button.
+>  Step 3 - Enter all values in message feilds and hit `Deploy` button.
 		
-	>  Step 4 - Wait for deployment to finish, after that click `Manage App` button just below the logs area.
+>  Step 4 - Wait for deployment to finish, after that click `Manage App` button just below the logs area.
 		
-	>  Step 5 - Go to `resources` tab and turn off web dyno. turn on worker dyno, wait for sometime, bot will notify in support chat.
+>  Step 5 - Go to `resources` tab and turn off web dyno. turn on worker dyno, wait for sometime, bot will notify in support chat.
 		
-	[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamUltraUnion/rajniixrobot.git)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamUltraUnion/rajniixrobot.git)
 		
 </details>
 
