@@ -78,9 +78,9 @@ Now send the bot `/start`, If it doesn't respond go to `https://dashboard.heroku
 
 >  Step 1 - Read [`config1.py`](https://github.com/TeamUltraUnion/rajniixrobot/blob/rajniixrobot/RajniiRobot/config1.py) in [`RajniiRobot`](https://github.com/TeamUltraUnion/rajniixrobot/tree/rajniixrobot/RajniiRobot) folder.
 		
->  Step 2 - Get all required values by given urls and hit `Deploy to Heroku` button.
+>  Step 2 - Get all required values by given urls and hit `Deploy to Heroku` button, Heroku website will open.
 		
->  Step 3 - Enter all values in message feilds and hit `Deploy` button.
+>  Step 3 - Enter all *required* values and can fill other values as well if you have, in input feilds and hit `Deploy` button.
 		
 >  Step 4 - Wait for deployment to finish, after that click `Manage App` button just below the logs area.
 		
