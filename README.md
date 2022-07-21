@@ -48,26 +48,8 @@ Build For Mainly Group Maintaining & Help Admins With Amazing Advanced Modules.
 + [x] Docker/Local Machine
 
 ### ╘═━「 Can be found on telegram as [𝔯𝔞𝔧𝔫𝔦𝔦 × 𝔯𝔬𝔟𝔬𝔱](https://telegram.me/rajniixrobot) 」
-
-## How to setup/deploy.
-<details>
-	<summary>Heroku Deploy</summary>
-
->  Step 1 Read [`config1.py`](https://github.com/TeamUltraUnion/rajniixrobot/blob/rajniixrobot/RajniiRobot/config1.py) in [`RajniiRobot`](https://github.com/TeamUltraUnion/rajniixrobot/tree/rajniixrobot/RajniiRobot) folder.
-
->  Step 2 Get all required values by given urls and hit `Deploy to Heroku` button.
   
->  Step 3 Enter all values in message feilds and hit `Deploy` button.
-
->  Step 4 Wait for deployment to finish, after that click `Manage App` button just below the logs area.
-
->  Step 5 Go to `resources` tab and turn off web dyno. turn on worker dyno, wait for sometime, bot will notify in support chat.
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamUltraUnion/rajniixrobot.git)
-   </details>
-</details>
-  
-## ╔═━「 Creator Info/Credits 」
+### ╔═━「 Creator Info/Credits 」
 The bot is based of on the original work done by [PaulSonOfLars](https://github.com/PaulSonOfLars) This repo was just reamped to suit an Anime-centric community. All original credits go to Paul and his dedication, Without his efforts, this fork would not have been possible!
   
 * ➢ [itzzzzyashu](https://github.com/itzzzyashu)
@@ -84,4 +66,20 @@ The bot is based of on the original work done by [PaulSonOfLars](https://github.
 
 ![Github Stats](https://github-readme-stats.vercel.app/api?username=itzzzyashu&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
+### How to deploy code.
+<details>
+	<summary>Steps to deploy on Heroku</summary>
+
+>  Step 1 Read [`config1.py`](https://github.com/TeamUltraUnion/rajniixrobot/blob/rajniixrobot/RajniiRobot/config1.py) in [`RajniiRobot`](https://github.com/TeamUltraUnion/rajniixrobot/tree/rajniixrobot/RajniiRobot) folder.
+
+>  Step 2 Get all required values by given urls and hit `Deploy to Heroku` button.
   
+>  Step 3 Enter all values in message feilds and hit `Deploy` button.
+
+>  Step 4 Wait for deployment to finish, after that click `Manage App` button just below the logs area.
+
+>  Step 5 Go to `resources` tab and turn off web dyno. turn on worker dyno, wait for sometime, bot will notify in support chat.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamUltraUnion/rajniixrobot.git)
+
+</details>
