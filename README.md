@@ -155,7 +155,7 @@ heroku git:remote -a rajniixrobot-v5
 
 * Push changes to your heroku app by following command.
 ```
-git push heroku rajniixrobot
+git push heroku master
 ```
 
 </details>
