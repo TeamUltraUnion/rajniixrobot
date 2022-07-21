@@ -48,7 +48,9 @@ Build For Mainly Group Maintaining & Help Admins With Amazing Advanced Modules.
 + [x] Docker/Local Machine
 
 ### ╘═━「 Can be found on telegram as [𝔯𝔞𝔧𝔫𝔦𝔦 × 𝔯𝔬𝔟𝔬𝔱](https://telegram.me/rajniixrobot) 」
-  
+
+#
+
 ### ╔═━「 Creator Info/Credits 」
 The bot is based of on the original work done by [PaulSonOfLars](https://github.com/PaulSonOfLars) This repo was just reamped to suit an Anime-centric community. All original credits go to Paul and his dedication, Without his efforts, this fork would not have been possible!
   
@@ -58,12 +60,13 @@ The bot is based of on the original work done by [PaulSonOfLars](https://github.
   
 * ➢ [Paul Larson](https://github.com/PaulSonOfLars) • Main Base Code forked from [PaulSonOfLars/tgbot](https://github.com/PaulSonOfLars/tgbot).
   
-* ➢ [TsunayoshiSawada](https://github.com/TsunayoshiSawada) • Useful Module copied from [AnimeKaizoku/SaitamaRobot](https://github.com/AnimeKaizoku/SaitamaRobot)
+* ➢ [TsunayoshiSawada](https://github.com/TsunayoshiSawada) • Useful Module copied from [AnimeKaizoku/SaitamaRobot](https://github.com/AnimeKaizoku/SaitamaRobot).
   
-* ➢ [Rajkumar](https://github.com/Awesome-RJ) • Advanced module copied from [Awesome-RJ/CutiepiiRobot](https://github.com/Awesome-RJ/CutiepiiRobot)
+* ➢ [Rajkumar](https://github.com/Awesome-RJ) • Advanced module copied from [Awesome-RJ/CutiepiiRobot](https://github.com/Awesome-RJ/CutiepiiRobot).
 
 ### ╘═━「 Any other authorship/credits can be seen through the commits. 」
 
+#
 
 ### How to deploy code.
 <details>
