@@ -97,11 +97,11 @@ Now send the bot `/start`, If it doesn't respond go to `https://dashboard.heroku
 #
 ### Install the requirement applications.
 
-> Install Heroku CLI
+> Install [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli).
 	
-> Install GIT
+> Install [GIT](https://git-scm.com/downloads)
 	
-> Install NodeJS
+> Install [NodeJS](https://nodejs.org/en/download)
 
 #
 ### Initialising Accounts.
