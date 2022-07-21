@@ -192,7 +192,7 @@ class Development(Config):
 If you can't have a config.py file (EG on Heroku), it is also possible to use environment variables.
 So just go and read the config sample file. 
 
-  ### Python dependencies
+### Python dependencies
 
 Install the necessary Python dependencies by moving to the project directory and running:
 ```
@@ -201,7 +201,7 @@ pip3 install -r requirements.txt
 
 This will install all the necessary python packages.
 
-  ### Database
+### Database
 
 If you wish to use a database-dependent module (eg: locks, notes, userinfo, users, filters, welcomes),
 you'll need to have a database installed on your system. I use Postgres, so I recommend using it for optimal compatibility.
@@ -297,6 +297,6 @@ You can use [nssm](https://nssm.cc/usage) to install the bot as service on windo
 Make sure to edit the start and restart bats to your needs. 
 Note: the restart bat requires that User account control be disabled.
 
-For queries or any issues regarding the bot please open an issue ticket or visit us at [Rajnii × Support](https://telegram.me/rajniixsupport)
+For queries or any issues regarding the bot please open an issue ticket or visit us at [Rajnii × Support](https://telegram.me/rajniixsupport).
 
 </details>
