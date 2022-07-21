@@ -215,8 +215,6 @@ def send_help(chat_id, text, keyboard=None):
 
 @run_async
 def test(update: Update, context: CallbackContext):
-    # print(eval(str(update)))
-    # update.effective_message.reply_text("Hola tester! _I_ *have* `markdown`", parse_mode=ParseMode.MARKDOWN)
     update.effective_message.reply_text("This person edited a message")
     print(update.effective_message)
 
@@ -275,7 +273,6 @@ def help_button(update, context):
 
         # ensure no spinny white circle
         context.bot.answer_callback_query(query.id)
-        # query.message.delete()
 
     except BadRequest:
         pass
@@ -959,7 +956,6 @@ except BaseException:
     sys.exit(1)
 
 if __name__ == '__main__':
-    # LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
     telethn.start(bot_token=TOKEN)
     pgram.start()
     main()

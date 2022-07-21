@@ -54,23 +54,6 @@ UNGBAN_ERRORS = {
     "User not found",
 }
 
-# from sylviorus import SYL
-# x = SYL()
-# syl = x.get_info(user)
-# print(x)
-# print(x.reason)
-# try:
-#        sylban = SYL()
-#        spammer = sylban.get_info(int(user.id))
-#        if spamer.blacklisted != False:
-#            text=''
-#            text += "\n\n<b>This user is banned on Sylviorus!</b>"
-#            text += f"\nReason: <pre>{spammer.reason}</pre>"
-#            text += "\nAppeal at @Sylviorus_Support"
-#        else:
-#            pass
-# except:
-#        pass
 
 
 @run_async

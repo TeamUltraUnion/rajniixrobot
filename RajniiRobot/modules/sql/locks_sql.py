@@ -76,7 +76,6 @@ class Restrictions(BASE):
 # line below and run bot for 1 time & remove that line!
 
 Permissions.__table__.create(checkfirst=True)
-# Permissions.__table__.drop()
 Restrictions.__table__.create(checkfirst=True)
 
 PERM_LOCK = threading.RLock()

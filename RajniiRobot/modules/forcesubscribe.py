@@ -15,7 +15,6 @@ from pyrogram.types import ChatPermissions, InlineKeyboardButton, InlineKeyboard
 
 from RajniiRobot import BOT_ID, BOT_USERNAME, BOT_NAME
 
-# from RajniiRpbot import OWNER_ID as DRAGONS
 from RajniiRobot import pgram
 from RajniiRobot.modules.sql import forceSubscribe_sql as sql
 
@@ -46,8 +45,6 @@ def _onUnMuteRequest(client, cb):
                     client.get_chat_member(channel, user_id)
                     client.unban_chat_member(chat_id, user_id)
                     cb.message.delete()
-                    # if cb.message.reply_to_message.from_user.id == user_id:
-                    # cb.message.delete()
                 except UserNotParticipant:
                     client.answer_callback_query(
                         cb.id,

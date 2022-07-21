@@ -47,7 +47,6 @@ from pyrogram.types import (
 from search_engine_parser import GoogleSearch
 from tswift import Song
 from youtubesearchpython import VideosSearch
-# from telegram.ext import CommandHandler
 from RajniiRobot.utils.inlinehelper import *
 from RajniiRobot.utils.pluginhelpers import fetch, json_prettify
 from RajniiRobot import pgram, OPENWEATHERMAP_ID, TIME_API_KEY, BOT_USERNAME, SUPPORT_CHAT #, dispatcher
@@ -800,7 +799,6 @@ async def inline_query_handler(client, query):
                     response_api["main"]["humidity"],
                     response_api["wind"]["speed"],
                     response_api["clouds"]["all"],
-                    # response_api["main"]["pressure"],
                     time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(sun_rise_time)),
                     country_code,
                     time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(sun_set_time)),
@@ -1024,5 +1022,3 @@ def generate_time(to_find: str, findtype: List[str]) -> str:
 
     return result
 
-# INLINE_HELP = CommandHandler("inline", inline_help)
-# dispatcher.add_handler(INLINE_HELP)

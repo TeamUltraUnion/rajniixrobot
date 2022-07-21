@@ -232,14 +232,9 @@ def lessrights(update: Update, context: CallbackContext) -> str:
         bot.promoteChatMember(
             chat.id,
             user_id,
-            # can_change_info=bot_member.can_change_info,
             can_post_messages=bot_member.can_post_messages,
             can_edit_messages=bot_member.can_edit_messages,
-            # can_delete_messages=bot_member.can_delete_messages,
             can_invite_users=bot_member.can_invite_users,
-            # can_promote_members=bot_member.can_promote_members,
-            # can_restrict_members=bot_member.can_restrict_members,
-            # # can_manage_voice_chats=bot_member.can_manage_voice_chats,
             can_pin_messages=bot_member.can_pin_messages)
     except BadRequest as err:
         if err.message == "User_not_mutual_contact":
@@ -403,14 +398,10 @@ def promote(update: Update, context: CallbackContext) -> str:
         bot.promoteChatMember(
             chat.id,
             user_id,
-            # can_change_info=bot_member.can_change_info,
             can_post_messages=bot_member.can_post_messages,
             can_edit_messages=bot_member.can_edit_messages,
             can_delete_messages=bot_member.can_delete_messages,
             can_invite_users=bot_member.can_invite_users,
-            # can_promote_members=bot_member.can_promote_members,
-            # can_restrict_members=bot_member.can_restrict_members,
-            # # can_manage_voice_chats=bot_member.can_manage_voice_chats,
             can_pin_messages=bot_member.can_pin_messages)
     except BadRequest as err:
         if err.message == "User_not_mutual_contact":
@@ -486,7 +477,6 @@ def demote(update: Update, context: CallbackContext) -> str:
             can_invite_users=False,
             can_restrict_members=False,
             can_pin_messages=False,
-            # can_manage_voice_chats=False,
             can_promote_members=False)
 
         bot.sendMessage(
@@ -722,8 +712,6 @@ def adminlist(update, context):
             administrators.remove(admin)
             continue
 
-        # if user.username:
-        # name = escape_markdown("@" + user.username)
         if status == "creator":
             text += "\n ⚡️ *Owner:*"
             text += "\n<code> ◇ </code>{}\n".format(name)
@@ -749,8 +737,6 @@ def adminlist(update, context):
                     user.id,
                     html.escape(user.first_name + " " +
                                 (user.last_name or ""))))
-        #if user.username:
-        #    name = escape_markdown("@" + user.username)
         if status == "administrator":
             if custom_title:
                 try:

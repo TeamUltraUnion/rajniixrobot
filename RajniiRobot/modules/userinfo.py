@@ -42,7 +42,6 @@ from RajniiRobot.modules.helper_funcs.chat_status import sudo_plus
 from RajniiRobot.modules.helper_funcs.extraction import extract_user
 from RajniiRobot import telethn as SaitamaTelethonClient
 from RajniiRobot.modules.arq import arq_stats
-# from RajniiRobot.modules.heroku.dyno_usage import AppHours, AppMinutes, AppPercentage, hours, minutes, percentage
 
 
 # ARQ INFO
@@ -388,7 +387,6 @@ def get_id(update: Update, context: CallbackContext):
 
         else:
             msg.reply_text(
-                # f"Your ID is <code>{user1.id}</code>"
                 f"This group's id is <code>{chat.id}</code>.", parse_mode=ParseMode.HTML,
             )
 

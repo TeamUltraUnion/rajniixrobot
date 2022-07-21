@@ -654,7 +654,6 @@ __help__ = """
   ◇ `/truth`*:* sends random truth
 """
 
-# SANITIZE_HANDLER = DisableAbleCommandHandler("sanitize", sanitize)
 RUNS_HANDLER = DisableAbleCommandHandler("runs", runs)
 SLAP_HANDLER = DisableAbleCommandHandler("slap", slap)
 PAT_HANDLER = DisableAbleCommandHandler("pat", pat)
