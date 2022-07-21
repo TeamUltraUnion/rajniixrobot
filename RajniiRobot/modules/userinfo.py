@@ -30,7 +30,7 @@ from RajniiRobot import (
     dispatcher,
     sw,
 )
-from RajniiRobot import telethn as borg, HEROKU_APP_NAME, HEROKU_API_KEY, OWNER_ID
+from RajniiRobot import telethn as borg, HEROKU_API_KEY, 
 from RajniiRobot.events import register
 from RajniiRobot.__main__ import STATS, TOKEN, USER_INFO
 import RajniiRobot.modules.sql.userinfo_sql as sql
@@ -40,7 +40,6 @@ from RajniiRobot.modules.sql.afk_sql import is_afk, check_afk_status
 from RajniiRobot.modules.sql.users_sql import get_user_num_chats
 from RajniiRobot.modules.helper_funcs.chat_status import sudo_plus
 from RajniiRobot.modules.helper_funcs.extraction import extract_user
-from RajniiRobot import telethn as SaitamaTelethonClient
 from RajniiRobot.modules.arq import arq_stats
 # from RajniiRobot.modules.heroku.dyno_usage import AppHours, AppMinutes, AppPercentage, hours, minutes, percentage
 
