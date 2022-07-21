@@ -52,15 +52,15 @@ Build For Mainly Group Maintaining & Help Admins With Amazing Advanced Modules.
 ### ╔═━「 Creator Info/Credits 」
 The bot is based of on the original work done by [PaulSonOfLars](https://github.com/PaulSonOfLars) This repo was just reamped to suit an Anime-centric community. All original credits go to Paul and his dedication, Without his efforts, this fork would not have been possible!
   
-* ➢ [itzzzzyashu](https://github.com/itzzzyashu)
+* ➢ [itzzzyashu](https://github.com/itzzzyashu) • Main Developer and code owned from [itzzzyashu/rajniixrobot](https://github.com/itzzzyashu/rajniixrobot).
   
-* ➢ [Yash Rajput](https://github.com/flashokillerify)
+* ➢ [Yash Rajput](https://github.com/flashokillerify) • Edited Modules and some module copied from [flashokillerify/nohaX](https://github.com/flashokillerify/nohaX).
   
-* ➢ [Paul Larson](https://github.com/PaulSonOfLars)
+* ➢ [Paul Larson](https://github.com/PaulSonOfLars) • Main Base Code forked from [PaulSonOfLars/tgbot](https://github.com/PaulSonOfLars/tgbot).
   
-* ➢ [Sawada](https://github.com/Sawada)
+* ➢ [TsunayoshiSawada](https://github.com/TsunayoshiSawada) • Useful Module copied from [AnimeKaizoku/SaitamaRobot](https://github.com/AnimeKaizoku/SaitamaRobot)
   
-* ➢ [Awesome-RJ](https://github.com/Awesome-RJ)
+* ➢ [Rajkumar](https://github.com/Awesome-RJ) • Advanced module copied from [Awesome-RJ/CutiepiiRobot](https://github.com/Awesome-RJ/CutiepiiRobot)
 
 ### ╘═━「 Any other authorship/credits can be seen through the commits. 」
 
