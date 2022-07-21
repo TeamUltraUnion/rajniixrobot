@@ -155,7 +155,7 @@ git push heroku rajniixrobot
 	
 
 <details>
-	<summary>Steps to deploy on local machine or irtual private server.</summary>
+	<summary>Steps to deploy on local machine or virtual private server (vps).</summary>
 
   ## Setting up the bot (Read this before trying to use!):
 Please make sure to use python 3.6, as I cannot guarantee everything will work as expected on older Python versions!
