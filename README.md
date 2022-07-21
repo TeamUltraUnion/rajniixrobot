@@ -143,6 +143,16 @@ git add .
 git commit -m "Initial commit"
 ```
 
+* Create an app on heroku by [this page](https://dashboard.heroku.com/new-app) or by following command (Should be Unique, can use hyphen/numbers).
+```
+heroku create rajniixrobot-v5
+```
+
+Set Git remote to your Heroku app (if you have created heroku app by heroku website, you need to initialise it like this).
+```
+heroku git:remote -a rajniixrobot-v5
+```
+
 * Push changes to your heroku app by following command.
 ```
 git push heroku rajniixrobot
