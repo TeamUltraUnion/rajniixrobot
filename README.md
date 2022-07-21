@@ -33,7 +33,8 @@
 <a href="https://makeapullrequest.com" alt="PRs Welcome"> <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" /> </a>
 </p>
 
-
+An Advanced Modular Telegram Python Group Management bot running on python3.8.6.
+Build For Mainly Group Maintaining & Help Admins With Amazing Advanced Modules.
 
 ###  ╔═━「 Status 」
 
@@ -46,20 +47,7 @@
 + [x] Heroku Deploy
 + [x] Docker/Local Machine
 
-An Advanced Modular Telegram Python Group Management bot running on python3.8.6.
-Build For Mainly Group Maintaining & Help Admins With Amazing Advanced Modules.
-
-You Can Find rajniirobot at [![Telegram](https://img.shields.io/badge/telegram-1b77FF.svg?style=for-the-badge&logo=telegram)](https://telegram.me/RajniiRobot)
-
-The Support Chat can be reached out to at [![Telegram](https://img.shields.io/badge/telegram-1b77FF.svg?style=for-the-badge&logo=telegram)](https://telegram.me/RajniSupportChat)
-
-You can get All Updates at [![Telegram](https://img.shields.io/badge/telegram-1b77FF.svg?style=for-the-badge&logo=telegram)](https://telegram.me/RajniUpdates)
-
-All Global Bans By RajniiRobot can be Found at [![Telegram](https://img.shields.io/badge/telegram-1b77FF.svg?style=for-the-badge&logo=telegram)](https://telegram.me/RajniGlobal)
-
-You can Join Our OT Chat at [![Telegram](https://img.shields.io/badge/telegram-1b77FF.svg?style=for-the-badge&logo=telegram)](https://telegram.me/RajniSpam)
-
-My Developers : [Yash Virmani](https://telegram.me/itzzzyashu),[ Yash Rajput](https://telegram.me/Flasho_gacha),[ Sawada](https://telegram.me/sawada),[ Paul Larson](https://telegram.me/SonOfLars),[ Awesome-RJ](https://telegram.me/Black_Knights_Union_Support).
+╘═━「 Can be found on telegram as [𝔯𝔞𝔧𝔫𝔦𝔦 × 𝔯𝔬𝔟𝔬𝔱](https://telegram.me/rajniixrobot) 」
 
 ## How to setup/deploy.
 <details>
@@ -80,6 +68,7 @@ My Developers : [Yash Virmani](https://telegram.me/itzzzyashu),[ Yash Rajput](ht
 </details>
   
 ## ╔═━「 Creator Info/Credits 」
+The bot is based of on the original work done by [PaulSonOfLars](https://github.com/PaulSonOfLars) This repo was just reamped to suit an Anime-centric community. All original credits go to Paul and his dedication, Without his efforts, this fork would not have been possible!
   
 * ➢ [itzzzzyashu](https://github.com/itzzzyashu)
   
