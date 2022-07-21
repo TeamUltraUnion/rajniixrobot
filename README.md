@@ -96,20 +96,34 @@ Now send the bot /start, If it doesn't respond go to https://dashboard.heroku.co
 	
 <details>
 	<summary>Deploy using Heroku CLI.</summary>
+	
 - Install heroku cli
+	
 - Install git
+	
 - Install nodejs
-Open terminal
+	
+### Open terminal
+	
 > git clone https://github.com/TeamUltraUnion/rajniixrobot.git
+	
 > heroku login
+	
 - Enter
+	
 - Click Login in webpage(browser will open login page automatically)
+	
 > cd repository-path
+	
 > git init
+	
 > git add .
+	
 > git commit -m "commit message"
+	
 > git push heroku rajniixrobot
 	
+
 </details>
 	
 
