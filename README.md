@@ -47,7 +47,7 @@ Build For Mainly Group Maintaining & Help Admins With Amazing Advanced Modules.
 + [x] Heroku Deploy
 + [x] Docker/Local Machine
 
-╘═━「 Can be found on telegram as [𝔯𝔞𝔧𝔫𝔦𝔦 × 𝔯𝔬𝔟𝔬𝔱](https://telegram.me/rajniixrobot) 」
+## ╘═━「 Can be found on telegram as [𝔯𝔞𝔧𝔫𝔦𝔦 × 𝔯𝔬𝔟𝔬𝔱](https://telegram.me/rajniixrobot) 」
 
 ## How to setup/deploy.
 <details>
@@ -80,7 +80,7 @@ The bot is based of on the original work done by [PaulSonOfLars](https://github.
   
 * ➢ [Awesome-RJ](https://github.com/Awesome-RJ)
 
-╘═━「 Any other authorship/credits can be seen through the commits. 」
+## ╘═━「 Any other authorship/credits can be seen through the commits. 」
 
 ![Github Stats](https://github-readme-stats.vercel.app/api?username=itzzzyashu&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
