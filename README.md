@@ -1,4 +1,4 @@
-[![ʀᴀᴊɴɪ](https://telegra.ph/file/cdddd4bdbd05f9d5bc441.jpg)](https://telegram.me/rajniirobot)
+[![ʀᴀᴊɴɪ](https://telegra.ph/file/59036da914a6411640989.jpg)](https://telegram.me/rajniirobot)
 
 # [ʀᴀᴊɴɪ](https://telegram.me/rajniirobot)
 
