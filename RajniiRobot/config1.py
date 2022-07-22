@@ -31,12 +31,16 @@ class Config(object):
     - `Required [V-P/D]` for required Values related to Paths and Directories.
     + Values with '+' in comments are Important for bot to run.
 
-    =========================================================\n
-    [Team Sanatan Raksha Network™](https://www.github.com/TeamSanatanRakshaNetwork), All rights reserved.\n
-    Project [rajniiroboactive](https://www.github.com/TeamSanatanRakshaNetwork/rajniiroboactive) have © Copyright of [@itzzzyashu](https://www.github.com/itzzzyashu).
+=========================================================\n
 
-    =========================================================\n
-    """
+© [TeamUltraUnion/rajniixrobot](https://www.github.com/TeamUltraUnion) \n
+© [itzzzyashu/rajniixrobot](https://www.github.com/itzzzyashu/rajniixrobot) \n
+© [AnimeKaizoku/SaitamaRobot](https://www.github.com/AnimeKaizoku/SaitamaRobot) \n
+© [PaulSonOfLars/tgbot](https://www.github.com/PaulSonOfLars/tgbot) \n
+All rights reserved.
+
+=========================================================\n
+"""
     LOGGER = True
 
     "Required [V-PTB]"
