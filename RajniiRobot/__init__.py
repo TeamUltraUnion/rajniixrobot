@@ -3,8 +3,13 @@ This __init__.py file takes input from config.py file and changes variables.
 It also creates other different instances which are needed by bot to run all modules correctly.
 
 =========================================================\n
-[Team Sanatan Raksha Network](https://www.github.com/SanatanRakshaNetwork), All rights reserved.\n
-Project [rajniiroboactive](https://www.github.com/SanatanRakshaNetwork/rajniiroboactive) have copyright of [@itzzzyashu](https://www.github.com/itzzzyashu).
+
+© [TeamUltraUnion/rajniixrobot](https://www.github.com/TeamUltraUnion) \n
+© [itzzzyashu/rajniixrobot](https://www.github.com/itzzzyashu/rajniixrobot) \n
+© [AnimeKaizoku/SaitamaRobot](https://www.github.com/AnimeKaizoku/SaitamaRobot) \n
+© [PaulSonOfLars/tgbot](https://www.github.com/PaulSonOfLars/tgbot) \n
+All rights reserved.
+
 =========================================================\n
 """
 
@@ -249,7 +254,7 @@ print(f"[{BOT_NAME}] Activating {BOT_NAME}. | SRN • Project C437 | Licensed Un
 
 print(f"[{BOT_NAME}] [C437 ACTIVATING: Initializing Required Clients]")
 
-print(f"[{BOT_NAME}] Project Maintained By: [github.com/itzzzyashu] (tellegram.me/itzzzyashu)")
+print(f"[{BOT_NAME}] Project Maintained By: [github.com/TeamUltraUnion] (telegram.me/TeamUltraUnion)")
 
 from RajniiRobot.modules.sql import SESSION
 
@@ -267,13 +272,13 @@ print(f"[{BOT_NAME}] PYROGRAM CLIENT STARTING")
 session_name = TOKEN.split(":")[0]
 pgram = Client(session_name, api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 
-print(f"[{BOT_NAME}] Connecting To SRN • Data Center • Mumbai • MongoDB Database")
+print(f"[{BOT_NAME}] Connecting To TUU • Data Center • Mumbai • MongoDB Database")
 mongodb = MongoClient(MONGO_DB_URL, MONGO_PORT)[MONGO_DB]
 motor = motor_asyncio.AsyncIOMotorClient(MONGO_DB_URL)
 db = motor[MONGO_DB]
 engine = AIOEngine(motor, MONGO_DB)
 
-print(f"[{BOT_NAME}] Connecting To SRN • Data Center • Mumbai • PostgreSQL Database")
+print(f"[{BOT_NAME}] Connecting To TUU • Data Center • Mumbai • PostgreSQL Database")
 
 print(f"[{BOT_NAME}] INITIALZING AIOHTTP SESSION")
 aiohttpsession = ClientSession()
@@ -282,7 +287,7 @@ aiohttpsession = ClientSession()
 print(f"[{BOT_NAME}] INITIALIZATION ARQ CLIENT")
 arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
 
-print(f"[{BOT_NAME}] Connecting To SRN • {BOT_NAME}'s Userbot (telegram.me/itzzzyashu)")
+print(f"[{BOT_NAME}] Connecting To TUU • {BOT_NAME}'s Userbot. (telegram.me/itzzzyashu)")
 ubot = TelegramClient(StringSession(STRING_SESSION), API_ID, API_HASH)
 print("\n=========================================================================================================")
 
