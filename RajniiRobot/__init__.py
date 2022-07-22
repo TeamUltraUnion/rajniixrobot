@@ -284,10 +284,10 @@ print(f"[{BOT_NAME}] | Initializing aiohttp session")
 aiohttpsession = ClientSession()
 
 # ARQ Client
-print(f"[{BOT_NAME}] INITIALIZATION ARQ Client")
+print(f"[{BOT_NAME}] | Initializing ARQ Client")
 arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
 
-print(f"[{BOT_NAME}] Connecting To TUU • {BOT_NAME}'s Userbot. (telegram.me/itzzzyashu)")
+print(f"[{BOT_NAME}] | Connecting To TUU • {BOT_NAME}'s Userbot. (telegram.me/itzzzyashu)")
 ubot = TelegramClient(StringSession(STRING_SESSION), API_ID, API_HASH)
 print("\n=========================================================================================================")
 
