@@ -250,41 +250,41 @@ else:
 
 print("=========================================================================================================")
 # Credits Logger
-print(f"[{BOT_NAME}] Activating {BOT_NAME}. | SRN • Project C437 | Licensed Under GPLv3.")
+print(f"[{BOT_NAME}] | Activating TUU • Project #C437 | Licensed Under GPLv3.")
 
-print(f"[{BOT_NAME}] [C437 ACTIVATING: Initializing Required Clients]")
+print(f"[{BOT_NAME}] | [#C437 ACTIVATING: Initializing Required Clients]")
 
-print(f"[{BOT_NAME}] Project Maintained By: [github.com/TeamUltraUnion] (telegram.me/TeamUltraUnion)")
+print(f"[{BOT_NAME}] | Project Maintained By: [github.com/TeamUltraUnion] (telegram.me/TeamUltraUnion)")
 
 from RajniiRobot.modules.sql import SESSION
 
-print(f"[{BOT_NAME}] Installing Telegraph")
+print(f"[{BOT_NAME}] | Installing Telegraph")
 telegraph = Telegraph()
 
-print(f"[{BOT_NAME}] Creating Updater, Dispatcher")
+print(f"[{BOT_NAME}] | Creating Updater, Dispatcher")
 updater = tg.Updater(TOKEN, workers=WORKERS, request_kwargs={"read_timeout": 10, "connect_timeout": 10}, use_context=True)
 dispatcher = updater.dispatcher
 
-print(f"[{BOT_NAME}] TELETHON CLIENT STARTING")
+print(f"[{BOT_NAME}] | TELETHON CLIENT STARTING")
 telethn = TelegramClient(f"{BOT_NAME}", API_ID, API_HASH)
 
-print(f"[{BOT_NAME}] PYROGRAM CLIENT STARTING")
+print(f"[{BOT_NAME}] | PYROGRAM CLIENT STARTING")
 session_name = TOKEN.split(":")[0]
 pgram = Client(session_name, api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 
-print(f"[{BOT_NAME}] Connecting To TUU • Data Center • Mumbai • MongoDB Database")
+print(f"[{BOT_NAME}] | Connecting To TUU • Data Center • Mumbai • MongoDB Database")
 mongodb = MongoClient(MONGO_DB_URL, MONGO_PORT)[MONGO_DB]
 motor = motor_asyncio.AsyncIOMotorClient(MONGO_DB_URL)
 db = motor[MONGO_DB]
 engine = AIOEngine(motor, MONGO_DB)
 
-print(f"[{BOT_NAME}] Connecting To TUU • Data Center • Mumbai • PostgreSQL Database")
+print(f"[{BOT_NAME}] | Connecting To TUU • Data Center • Mumbai • PostgreSQL Database")
 
-print(f"[{BOT_NAME}] INITIALZING AIOHTTP SESSION")
+print(f"[{BOT_NAME}] | Initializing aiohttp session")
 aiohttpsession = ClientSession()
 
 # ARQ Client
-print(f"[{BOT_NAME}] INITIALIZATION ARQ CLIENT")
+print(f"[{BOT_NAME}] INITIALIZATION ARQ Client")
 arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
 
 print(f"[{BOT_NAME}] Connecting To TUU • {BOT_NAME}'s Userbot. (telegram.me/itzzzyashu)")
