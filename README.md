@@ -164,7 +164,7 @@ git push heroku master
 <details>
 	<summary>Steps to deploy on local machine or virtual private server (vps).</summary>
 
-  ## Setting up the bot (Read this before trying to use!):
+  ### Setting up the bot (Read this before trying to use!):
 Please make sure to use python 3.6, as I cannot guarantee everything will work as expected on older Python versions!
 This is because markdown parsing is done by iterating through a dict, which is ordered by default in 3.6.
 
@@ -255,7 +255,7 @@ sqldbtype://username:pw@hostname:port/db_name
 Replace sqldbtype with whichever DB you're using (eg Postgres, MySQL, SQLite, etc)
 repeat for your username, password, hostname (localhost?), port (5432?), and DB name.
 
-## Modules
+### Modules
 ### Setting load order.
 
 The module load order can be changed via the `LOAD` and `NO_LOAD` configuration settings.
