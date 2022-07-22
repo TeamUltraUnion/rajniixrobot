@@ -93,7 +93,7 @@ Hii, I'm {dispatcher.bot.first_name} [✨]({RAJNII_IMG})
 _I am an Anime themed group management bot with some awesome features,_
 _Make sure to read my_ *ᴀʙᴏᴜᴛ ᴍᴇ* _section to know how you can use me effectively._
 Checkout full help menu by sending /help or click help button to know about me, modules, setup and usage.
-• Please join @{UPDATES_LOGS} for updates.
+• A @TeamUltraUnion Project.
 """
 
 buttons = [
