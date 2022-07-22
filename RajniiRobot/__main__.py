@@ -1,3 +1,15 @@
+"""
+=========================================================\n
+
+© [TeamUltraUnion/rajniixrobot](https://www.github.com/TeamUltraUnion) \n
+© [itzzzyashu/rajniixrobot](https://www.github.com/itzzzyashu/rajniixrobot) \n
+© [AnimeKaizoku/SaitamaRobot](https://www.github.com/AnimeKaizoku/SaitamaRobot) \n
+© [PaulSonOfLars/tgbot](https://www.github.com/PaulSonOfLars/tgbot) \n
+All rights reserved.
+
+=========================================================\n
+"""
+
 import importlib
 import time
 import re
