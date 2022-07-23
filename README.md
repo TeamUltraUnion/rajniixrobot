@@ -307,6 +307,3 @@ Note: the restart bat requires that User account control be disabled.
 For queries or any issues regarding the bot please open an issue ticket or visit us at [Rajnii × Support](https://telegram.me/rajniixsupport).
 
 </details>
-
-#
-## ╘═━「 Made with love by [TeamUltraUnion](https://github.com/TeamUltraUnion) ❤️ 」
