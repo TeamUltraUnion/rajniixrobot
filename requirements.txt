@@ -104,7 +104,7 @@ wikipedia==1.4.0
 ujson==5.2.0
 spamwatch==0.3.0
 alphabet-detector==0.0.7
-cachetools==5.0.0
+cachetools==5.2.0
 nekos.py
 selenium
 pendulum
