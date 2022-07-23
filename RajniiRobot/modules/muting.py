@@ -3,12 +3,12 @@ from typing import Optional
 
 from RajniiRobot import LOGGER, TIGERS, dispatcher
 from RajniiRobot.modules.helper_funcs.chat_status import (bot_admin,
-                                                           can_restrict,
-                                                           connection_status,
-                                                           is_user_admin,
-                                                           user_admin)
+                                                          can_restrict,
+                                                          connection_status,
+                                                          is_user_admin,
+                                                          user_admin)
 from RajniiRobot.modules.helper_funcs.extraction import (extract_user,
-                                                          extract_user_and_text)
+                                                         extract_user_and_text)
 from RajniiRobot.modules.helper_funcs.string_handling import extract_time
 from RajniiRobot.modules.log_channel import loggable
 from telegram import Bot, Chat, ChatPermissions, ParseMode, Update
@@ -109,20 +109,19 @@ def unmute(update: Update, context: CallbackContext) -> str:
     member = chat.get_member(int(user_id))
 
     if member.status != 'kicked' and member.status != 'left':
-        if (member.can_send_messages and member.can_send_media_messages and
-                member.can_send_other_messages and
-                member.can_add_web_page_previews):
+        if (member.can_send_messages and member.can_send_media_messages
+                and member.can_send_other_messages
+                and member.can_add_web_page_previews):
             message.reply_text("This user already has the right to speak.")
         else:
-            chat_permissions = ChatPermissions(
-                can_send_messages=True,
-                can_invite_users=True,
-                can_pin_messages=True,
-                can_send_polls=True,
-                can_change_info=True,
-                can_send_media_messages=True,
-                can_send_other_messages=True,
-                can_add_web_page_previews=True)
+            chat_permissions = ChatPermissions(can_send_messages=True,
+                                               can_invite_users=True,
+                                               can_pin_messages=True,
+                                               can_send_polls=True,
+                                               can_change_info=True,
+                                               can_send_media_messages=True,
+                                               can_send_other_messages=True,
+                                               can_add_web_page_previews=True)
             try:
                 bot.restrict_chat_member(chat.id, int(user_id),
                                          chat_permissions)
@@ -197,8 +196,10 @@ def temp_mute(update: Update, context: CallbackContext) -> str:
     try:
         if member.can_send_messages is None or member.can_send_messages:
             chat_permissions = ChatPermissions(can_send_messages=False)
-            bot.restrict_chat_member(
-                chat.id, user_id, chat_permissions, until_date=mutetime)
+            bot.restrict_chat_member(chat.id,
+                                     user_id,
+                                     chat_permissions,
+                                     until_date=mutetime)
             bot.sendMessage(
                 chat.id,
                 f"Muted <b>{html.escape(member.user.first_name)}</b> for {time_val}!",

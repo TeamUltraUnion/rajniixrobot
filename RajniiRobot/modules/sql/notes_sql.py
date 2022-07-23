@@ -3,8 +3,8 @@ import threading
 from sqlalchemy import BIGINT
 from RajniiRobot.modules.helper_funcs.msg_types import Types
 from RajniiRobot.modules.sql import BASE, SESSION
-from sqlalchemy import (Boolean, Column, Integer, String, UnicodeText, distinct,
-                        func)
+from sqlalchemy import (Boolean, Column, Integer, String, UnicodeText,
+                        distinct, func)
 
 
 class Notes(BASE):
@@ -71,12 +71,11 @@ def add_note_to_db(chat_id,
                 for btn in prev_buttons:
                     SESSION.delete(btn)
             SESSION.delete(prev)
-        note = Notes(
-            str(chat_id),
-            note_name,
-            note_data or "",
-            msgtype=msgtype.value,
-            file=file)
+        note = Notes(str(chat_id),
+                     note_name,
+                     note_data or "",
+                     msgtype=msgtype.value,
+                     file=file)
         SESSION.add(note)
         SESSION.commit()
 

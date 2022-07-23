@@ -1,4 +1,3 @@
-
 import html
 import io
 import random
@@ -11,6 +10,7 @@ from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CallbackContext, CommandHandler
 
 from RajniiRobot import dispatcher, DEV_USERS, ERROR_LOGS
+
 pretty_errors.mono()
 
 
@@ -23,7 +23,8 @@ class ErrorsDict(dict):
 
     def __contains__(self, error):
         self.raw.append(error)
-        error.identifier = "".join(random.choices("ABCDEFGHIJKLMNOPQRSTUVWXYZ", k=5))
+        error.identifier = "".join(
+            random.choices("ABCDEFGHIJKLMNOPQRSTUVWXYZ", k=5))
         for e in self:
             if type(e) is type(error) and e.args == error.args:
                 self[e] += 1
@@ -47,7 +48,9 @@ async def error_callback(update: Update, context: CallbackContext):
         stringio = io.StringIO()
         pretty_errors.output_stderr = stringio
         output = pretty_errors.excepthook(
-            type(context.error), context.error, context.error.__traceback__,
+            type(context.error),
+            context.error,
+            context.error.__traceback__,
         )
         pretty_errors.output_stderr = sys.stderr
         pretty_error = stringio.getvalue()
@@ -55,7 +58,9 @@ async def error_callback(update: Update, context: CallbackContext):
     except:
         pretty_error = "Failed to create pretty error."
     tb_list = traceback.format_exception(
-        None, context.error, context.error.__traceback__,
+        None,
+        context.error,
+        context.error.__traceback__,
     )
     tb = "".join(tb_list)
     pretty_message = (
@@ -66,18 +71,18 @@ async def error_callback(update: Update, context: CallbackContext):
         "Chat: {} {}\n"
         "Callback data: {}\n"
         "Message: {}\n\n"
-        "Full Traceback: {}"
-    ).format(
+        "Full Traceback: {}").format(
             pretty_error,
-        update.effective_user.id if update.effective_user else 
-        update.effective_message.sender_chat.id if update.effective_message and update.effective_message.sender_chat 
-       else None,
-        update.effective_chat.title if update.effective_chat else "",
-        update.effective_chat.id if update.effective_chat else "",
-        update.callback_query.data if update.callback_query else "None",
-        update.effective_message.text if update.effective_message else "No message",
-        tb,
-    )
+            update.effective_user.id if update.effective_user else
+            update.effective_message.sender_chat.id if update.effective_message
+            and update.effective_message.sender_chat else None,
+            update.effective_chat.title if update.effective_chat else "",
+            update.effective_chat.id if update.effective_chat else "",
+            update.callback_query.data if update.callback_query else "None",
+            update.effective_message.text
+            if update.effective_message else "No message",
+            tb,
+        )
     key = requests.post(
         "https://www.toptal.com/developers/hastebin/documents",
         data=pretty_message.encode("UTF-8"),
@@ -88,19 +93,20 @@ async def error_callback(update: Update, context: CallbackContext):
             f.write(pretty_message)
         context.bot.send_document(
             ERROR_LOGS,
-                open("error.txt", "rb"),
-                caption=f"#{context.error.identifier}\n<b>An unknown error occured:</b>\n<code>{e}</code>",
-                parse_mode="html",
+            open("error.txt", "rb"),
+            caption=
+            f"#{context.error.identifier}\n<b>An unknown error occured:</b>\n<code>{e}</code>",
+            parse_mode="html",
         )
         return
     key = key.get("key")
     url = f"https://www.toptal.com/developers/hastebin/{key}"
     await context.bot.send_message(
         ERROR_LOGS,
-            text=f"#{context.error.identifier}\n<b>An unknown error occured:</b>\n<code>{e}</code>",
-            reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton("Show ERROR", url=url)]],
-            ),
+        text=
+        f"#{context.error.identifier}\n<b>An unknown error occured:</b>\n<code>{e}</code>",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("Show ERROR", url=url)]], ),
         parse_mode="html",
     )
 

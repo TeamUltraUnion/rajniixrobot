@@ -4,6 +4,7 @@ from RajniiRobot.modules.sql import BASE, SESSION
 from sqlalchemy import Column, UnicodeText
 from sqlalchemy import BIGINT
 
+
 class UserInfo(BASE):
     __tablename__ = "userinfo"
     user_id = Column(BIGINT, primary_key=True)

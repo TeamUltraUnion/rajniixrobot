@@ -9,15 +9,15 @@ from RajniiRobot.modules.disable import DisableAbleCommandHandler
 from RajniiRobot.modules.helper_funcs.handlers import MessageHandlerChecker
 from RajniiRobot.modules.helper_funcs.chat_status import user_admin, connection_status
 from RajniiRobot.modules.helper_funcs.misc import (build_keyboard,
-                                                    revert_buttons)
+                                                   revert_buttons)
 from RajniiRobot.modules.helper_funcs.msg_types import get_note_type
 from RajniiRobot.modules.helper_funcs.string_handling import escape_invalid_curly_brackets
 from telegram import (MAX_MESSAGE_LENGTH, InlineKeyboardMarkup, Message,
                       ParseMode, Update, InlineKeyboardButton)
 from telegram.error import BadRequest
 from telegram.utils.helpers import escape_markdown, mention_markdown
-from telegram.ext import (CallbackContext, CommandHandler, CallbackQueryHandler,
-                          Filters, MessageHandler)
+from telegram.ext import (CallbackContext, CommandHandler,
+                          CallbackQueryHandler, Filters, MessageHandler)
 from telegram.ext.dispatcher import run_async
 
 FILE_MATCHER = re.compile(r"^###file_id(!photo)?###:(.*?)(?:\s|$)")
@@ -61,10 +61,9 @@ def get(update, context, notename, show_none=True, no_format=False):
         if note.is_reply:
             if JOIN_LOGGER:
                 try:
-                    bot.forward_message(
-                        chat_id=chat_id,
-                        from_chat_id=JOIN_LOGGER,
-                        message_id=note.value)
+                    bot.forward_message(chat_id=chat_id,
+                                        from_chat_id=JOIN_LOGGER,
+                                        message_id=note.value)
                 except BadRequest as excp:
                     if excp.message == "Message to forward not found":
                         message.reply_text(
@@ -75,10 +74,9 @@ def get(update, context, notename, show_none=True, no_format=False):
                         raise
             else:
                 try:
-                    bot.forward_message(
-                        chat_id=chat_id,
-                        from_chat_id=chat_id,
-                        message_id=note.value)
+                    bot.forward_message(chat_id=chat_id,
+                                        from_chat_id=chat_id,
+                                        message_id=note.value)
                 except BadRequest as excp:
                     if excp.message == "Message to forward not found":
                         message.reply_text(
@@ -110,12 +108,12 @@ def get(update, context, notename, show_none=True, no_format=False):
                     text = valid_format
                 text = text.format(
                     first=escape_markdown(message.from_user.first_name),
-                    last=escape_markdown(message.from_user.last_name or
-                                         message.from_user.first_name),
+                    last=escape_markdown(message.from_user.last_name
+                                         or message.from_user.first_name),
                     fullname=escape_markdown(
                         " ".join([
-                            message.from_user.first_name, message.from_user
-                            .last_name
+                            message.from_user.first_name, message.from_user.
+                            last_name
                         ] if message.from_user.last_name else
                                  [message.from_user.first_name])),
                     username="@" + message.from_user.username
@@ -143,22 +141,20 @@ def get(update, context, notename, show_none=True, no_format=False):
 
             try:
                 if note.msgtype in (sql.Types.BUTTON_TEXT, sql.Types.TEXT):
-                    bot.send_message(
-                        chat_id,
-                        text,
-                        reply_to_message_id=reply_id,
-                        parse_mode=parseMode,
-                        disable_web_page_preview=True,
-                        reply_markup=keyboard)
+                    bot.send_message(chat_id,
+                                     text,
+                                     reply_to_message_id=reply_id,
+                                     parse_mode=parseMode,
+                                     disable_web_page_preview=True,
+                                     reply_markup=keyboard)
                 else:
-                    ENUM_FUNC_MAP[note.msgtype](
-                        chat_id,
-                        note.file,
-                        caption=text,
-                        reply_to_message_id=reply_id,
-                        parse_mode=parseMode,
-                        disable_web_page_preview=True,
-                        reply_markup=keyboard)
+                    ENUM_FUNC_MAP[note.msgtype](chat_id,
+                                                note.file,
+                                                caption=text,
+                                                reply_to_message_id=reply_id,
+                                                parse_mode=parseMode,
+                                                disable_web_page_preview=True,
+                                                reply_markup=keyboard)
 
             except BadRequest as excp:
                 if excp.message == "Entity_mention_user_invalid":
@@ -233,8 +229,12 @@ def save(update: Update, context: CallbackContext):
         msg.reply_text("Dude, there's no note")
         return
 
-    sql.add_note_to_db(
-        chat_id, note_name, text, data_type, buttons=buttons, file=content)
+    sql.add_note_to_db(chat_id,
+                       note_name,
+                       text,
+                       data_type,
+                       buttons=buttons,
+                       file=content)
 
     msg.reply_text(
         f"Yas! Added `{note_name}`.\nGet it with /get `{note_name}`, or `#{note_name}`",
@@ -282,9 +282,10 @@ def clearall(update: Update, context: CallbackContext):
             "Only the chat owner can clear all notes at once.")
     else:
         buttons = InlineKeyboardMarkup([[
-            InlineKeyboardButton(
-                text="Delete all notes", callback_data="notes_rmall")
-        ], [InlineKeyboardButton(text="Cancel", callback_data="notes_cancel")]])
+            InlineKeyboardButton(text="Delete all notes",
+                                 callback_data="notes_rmall")
+        ], [InlineKeyboardButton(text="Cancel",
+                                 callback_data="notes_cancel")]])
         update.effective_message.reply_text(
             f"Are you sure you would like to clear ALL notes in {chat.title}? This action cannot be undone.",
             reply_markup=buttons,
@@ -336,8 +337,8 @@ def list_notes(update: Update, context: CallbackContext):
         else:
             note_name = f"`{note_id}.`  `#{(note.name.lower())}`\n"
         if len(msg) + len(note_name) > MAX_MESSAGE_LENGTH:
-            update.effective_message.reply_text(
-                msg, parse_mode=ParseMode.MARKDOWN)
+            update.effective_message.reply_text(msg,
+                                                parse_mode=ParseMode.MARKDOWN)
             msg = ""
         msg += note_name
 
@@ -345,8 +346,8 @@ def list_notes(update: Update, context: CallbackContext):
         try:
             update.effective_message.reply_text("No notes in this chat!")
         except BadRequest:
-            update.effective_message.reply_text(
-                "No notes in this chat!", quote=False)
+            update.effective_message.reply_text("No notes in this chat!",
+                                                quote=False)
 
     elif len(msg) != 0:
         update.effective_message.reply_text(msg, parse_mode=ParseMode.MARKDOWN)
@@ -374,12 +375,11 @@ def __import_data__(chat_id, data):
         elif matchsticker:
             content = notedata[matchsticker.end():].strip()
             if content:
-                sql.add_note_to_db(
-                    chat_id,
-                    notename[1:],
-                    notedata,
-                    sql.Types.STICKER,
-                    file=content)
+                sql.add_note_to_db(chat_id,
+                                   notename[1:],
+                                   notedata,
+                                   sql.Types.STICKER,
+                                   file=content)
         elif matchbtn:
             parse = notedata[matchbtn.end():].strip()
             notedata = parse.split("<###button###>")[0]
@@ -399,72 +399,66 @@ def __import_data__(chat_id, data):
             notedata = file[1]
             content = file[0]
             if content:
-                sql.add_note_to_db(
-                    chat_id,
-                    notename[1:],
-                    notedata,
-                    sql.Types.DOCUMENT,
-                    file=content)
+                sql.add_note_to_db(chat_id,
+                                   notename[1:],
+                                   notedata,
+                                   sql.Types.DOCUMENT,
+                                   file=content)
         elif matchphoto:
             photo = notedata[matchphoto.end():].strip()
             photo = photo.split("<###TYPESPLIT###>")
             notedata = photo[1]
             content = photo[0]
             if content:
-                sql.add_note_to_db(
-                    chat_id,
-                    notename[1:],
-                    notedata,
-                    sql.Types.PHOTO,
-                    file=content)
+                sql.add_note_to_db(chat_id,
+                                   notename[1:],
+                                   notedata,
+                                   sql.Types.PHOTO,
+                                   file=content)
         elif matchaudio:
             audio = notedata[matchaudio.end():].strip()
             audio = audio.split("<###TYPESPLIT###>")
             notedata = audio[1]
             content = audio[0]
             if content:
-                sql.add_note_to_db(
-                    chat_id,
-                    notename[1:],
-                    notedata,
-                    sql.Types.AUDIO,
-                    file=content)
+                sql.add_note_to_db(chat_id,
+                                   notename[1:],
+                                   notedata,
+                                   sql.Types.AUDIO,
+                                   file=content)
         elif matchvoice:
             voice = notedata[matchvoice.end():].strip()
             voice = voice.split("<###TYPESPLIT###>")
             notedata = voice[1]
             content = voice[0]
             if content:
-                sql.add_note_to_db(
-                    chat_id,
-                    notename[1:],
-                    notedata,
-                    sql.Types.VOICE,
-                    file=content)
+                sql.add_note_to_db(chat_id,
+                                   notename[1:],
+                                   notedata,
+                                   sql.Types.VOICE,
+                                   file=content)
         elif matchvideo:
             video = notedata[matchvideo.end():].strip()
             video = video.split("<###TYPESPLIT###>")
             notedata = video[1]
             content = video[0]
             if content:
-                sql.add_note_to_db(
-                    chat_id,
-                    notename[1:],
-                    notedata,
-                    sql.Types.VIDEO,
-                    file=content)
+                sql.add_note_to_db(chat_id,
+                                   notename[1:],
+                                   notedata,
+                                   sql.Types.VIDEO,
+                                   file=content)
         elif matchvn:
             video_note = notedata[matchvn.end():].strip()
             video_note = video_note.split("<###TYPESPLIT###>")
             notedata = video_note[1]
             content = video_note[0]
             if content:
-                sql.add_note_to_db(
-                    chat_id,
-                    notename[1:],
-                    notedata,
-                    sql.Types.VIDEO_NOTE,
-                    file=content)
+                sql.add_note_to_db(chat_id,
+                                   notename[1:],
+                                   notedata,
+                                   sql.Types.VIDEO_NOTE,
+                                   file=content)
         else:
             sql.add_note_to_db(chat_id, notename[1:], notedata, sql.Types.TEXT)
 

@@ -1,5 +1,3 @@
-
-
 import os
 import re
 import requests
@@ -40,7 +38,8 @@ async def _(event):
                 for ts in td.find_all("a"):
                     title = ts.get_text()
                     lool += 1
-                for ts in td.find_all("a", attrs={"href": re.compile("^/book/")}):
+                for ts in td.find_all("a",
+                                      attrs={"href": re.compile("^/book/")}):
                     ref = ts.get("href")
                     link = "https://b-ok.cc" + ref
 
@@ -54,7 +53,8 @@ async def _(event):
         await telethn.send_file(
             event.chat_id,
             "book.txt",
-            caption=f"**BOOKS GATHERED SUCCESSFULLY!\n\nBY DAISYX. JOIN THE SUPPORT @{SUPPORT_CHAT}.**",
+            caption=
+            f"**BOOKS GATHERED SUCCESSFULLY!\n\nBY DAISYX. JOIN THE SUPPORT @{SUPPORT_CHAT}.**",
         )
         os.remove("book.txt")
         await KkK.delete()

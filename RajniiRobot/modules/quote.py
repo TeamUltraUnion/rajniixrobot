@@ -9,7 +9,6 @@ from RajniiRobot.utils.errors import capture_err
 from RajniiRobot import pgram as app, BOT_USERNAME
 
 
-
 async def quotify(messages: list):
     response = await arq.quotly(messages)
     if not response.ok:
@@ -38,13 +37,10 @@ def isArgInt(message: Message) -> bool:
 @capture_err
 async def quotly_func(client, message: Message):
     if not message.reply_to_message:
-        return await message.reply_text(
-            "Reply to a message to quote it."
-        )
+        return await message.reply_text("Reply to a message to quote it.")
     if not message.reply_to_message.text:
         return await message.reply_text(
-            "Replied message has no text, can't quote it."
-        )
+            "Replied message has no text, can't quote it.")
     m = await message.reply_text("Quoting Messages Please wait....")
     if len(message.command) < 2:
         messages = [message.reply_to_message]
@@ -58,8 +54,7 @@ async def quotly_func(client, message: Message):
             messages = await client.get_messages(
                 message.chat.id,
                 [
-                    i
-                    for i in range(
+                    i for i in range(
                         message.reply_to_message.message_id,
                         message.reply_to_message.message_id + count,
                     )
@@ -78,9 +73,8 @@ async def quotly_func(client, message: Message):
             )
             messages = [reply_message]
     else:
-        await m.edit(
-            "Incorrect argument, check quotly module in help section."
-        )
+        await m.edit("Incorrect argument, check quotly module in help section."
+                     )
         return
     try:
         sticker = await quotify(messages)
@@ -92,11 +86,9 @@ async def quotly_func(client, message: Message):
         await m.delete()
         sticker.close()
     except Exception as e:
-        await m.edit(
-            "Something wrong happened while quoting messages,"
-            + " This error usually happens when there's a "
-            + " message containing something other than text."
-        )
+        await m.edit("Something wrong happened while quoting messages," +
+                     " This error usually happens when there's a " +
+                     " message containing something other than text.")
         e = format_exc()
         print(e)
 

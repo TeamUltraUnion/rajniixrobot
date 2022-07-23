@@ -1,4 +1,3 @@
-
 from gogoanimeapi import gogoanime as anime
 from telethon import Button, events
 
@@ -16,7 +15,8 @@ async def gogo(event):
     buttons = []
     for i in result:
         k = [
-            Button.inline("{}".format(i["name"]), data="search_{}".format(i["animeid"]))
+            Button.inline("{}".format(i["name"]),
+                          data="search_{}".format(i["animeid"]))
         ]
         buttons.append(k)
         if len(buttons) == 99:
@@ -88,8 +88,7 @@ async def episode(event):
     epsd = imd.strip()
     result = anime.get_episodes_link(animeid, epsd)
     text = "You are watching Episode {} of {}:\n\nNote: Select HDP link for faster streaming.".format(
-        epsd, animeid
-    )
+        epsd, animeid)
     butons = []
     cbutton = []
     for i in result:

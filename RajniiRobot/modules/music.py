@@ -1,4 +1,3 @@
-
 import os
 import wget
 import time
@@ -15,17 +14,17 @@ from youtube_search import YoutubeSearch
 from youtubesearchpython import SearchVideos
 
 
-
 def time_to_seconds(time):
     stringt = str(time)
-    return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(':'))))
+    return sum(
+        int(x) * 60**i for i, x in enumerate(reversed(stringt.split(':'))))
+
 
 @pgram.on_message(filters.command(["vsong", "video"]))
 async def ytmusic(client, message: Message):
     urlissed = get_text(message)
     pablo = await client.send_message(
-        message.chat.id, f"Name ➛ {urlissed} 🔎 Finding the song..."
-    )
+        message.chat.id, f"Name ➛ {urlissed} 🔎 Finding the song...")
     if not urlissed:
         await pablo.edit("Invalid Command Syntax")
         return
@@ -41,23 +40,35 @@ async def ytmusic(client, message: Message):
     url = mo
     sedlyf = wget.download(kekme)
     opts = {
-
-        "format": "best",
-        "addmetadata": True,
-        "key": "FFmpegMetadata",
-        "prefer_ffmpeg": True,
-        "geo_bypass": True,
-        "nocheckcertificate": True,
-        "postprocessors": [{"key": "FFmpegVideoConvertor", "preferedformat": "mp4"}],
-        "outtmpl": "%(id)s.mp4",
-        "logtostderr": False,
-        "quiet": True,
+        "format":
+        "best",
+        "addmetadata":
+        True,
+        "key":
+        "FFmpegMetadata",
+        "prefer_ffmpeg":
+        True,
+        "geo_bypass":
+        True,
+        "nocheckcertificate":
+        True,
+        "postprocessors": [{
+            "key": "FFmpegVideoConvertor",
+            "preferedformat": "mp4"
+        }],
+        "outtmpl":
+        "%(id)s.mp4",
+        "logtostderr":
+        False,
+        "quiet":
+        True,
     }
     try:
         with yt_dlp.YoutubeDL(opts) as ytdl:
             ytdl_data = ytdl.extract_info(url, download=True)
     except Exception as e:
-        await event.edit(event, f"**Failed To Download** \n**Error :** `{str(e)}`")
+        await event.edit(event,
+                         f"**Failed To Download** \n**Error :** `{str(e)}`")
         return
     c_time = time.time()
     file_stark = f"{ytdl_data['id']}.mp4"
@@ -89,7 +100,7 @@ def song(client, message):
 
     user_id = message.from_user.id
     user_name = message.from_user.first_name
-    rpk = "["+user_name+"](tg://user?id="+str(user_id)+")"
+    rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
 
     query = ''.join(' ' + str(i) for i in message.command[1:])
     print(query)
@@ -99,12 +110,11 @@ def song(client, message):
         results = YoutubeSearch(query, max_results=1).to_dict()
         link = f"https://youtube.com{results[0]['url_suffix']}"
         #print(results)
-        title = results[0]["title"][:40]       
+        title = results[0]["title"][:40]
         thumbnail = results[0]["thumbnails"][0]
         thumb_name = f'thumb{title}.jpg'
         thumb = requests.get(thumbnail, allow_redirects=True)
         open(thumb_name, 'wb').write(thumb.content)
-
 
         duration = results[0]["duration"]
         url_suffix = results[0]["url_suffix"]
@@ -124,10 +134,15 @@ def song(client, message):
             ydl.process_info(info_dict)
         rep = f'🎙 **Title**: [{title[:35]}]({link})\n🎬 **Source**: YouTube\n⏱️ **Duration**: `{duration}`\n👁‍🗨 **Views**: `{views}`\n📤 **By**: @{BOT_USERNAME}'
         secmul, dur, dur_arr = 1, 0, duration.split(':')
-        for i in range(len(dur_arr)-1, -1, -1):
+        for i in range(len(dur_arr) - 1, -1, -1):
             dur += (int(dur_arr[i]) * secmul)
             secmul *= 60
-        message.reply_audio(audio_file, caption=rep, thumb=thumb_name, parse_mode='md', title=title, duration=dur)
+        message.reply_audio(audio_file,
+                            caption=rep,
+                            thumb=thumb_name,
+                            parse_mode='md',
+                            title=title,
+                            duration=dur)
         m.delete()
     except Exception as e:
         m.edit('❌ Error')
@@ -138,6 +153,7 @@ def song(client, message):
         os.remove(thumb_name)
     except Exception as e:
         print(e)
+
 
 @pgram.on_message(filters.command("lyrics"))
 async def lyrics_func(_, message):

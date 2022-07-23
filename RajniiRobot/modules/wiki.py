@@ -22,8 +22,8 @@ def wiki(update: Update, context: CallbackContext):
             .format(e),
             parse_mode=ParseMode.HTML)
     except PageError as e:
-        update.message.reply_text(
-            "<code>{}</code>".format(e), parse_mode=ParseMode.HTML)
+        update.message.reply_text("<code>{}</code>".format(e),
+                                  parse_mode=ParseMode.HTML)
     if res:
         result = f"<b>{search}</b>\n\n"
         result += f"<i>{res}</i>\n"
@@ -39,10 +39,9 @@ def wiki(update: Update, context: CallbackContext):
                     chat_id=update.effective_chat.id,
                     parse_mode=ParseMode.HTML)
         else:
-            update.message.reply_text(
-                result,
-                parse_mode=ParseMode.HTML,
-                disable_web_page_preview=True)
+            update.message.reply_text(result,
+                                      parse_mode=ParseMode.HTML,
+                                      disable_web_page_preview=True)
 
 
 WIKI_HANDLER = DisableAbleCommandHandler("wiki", wiki)

@@ -11,6 +11,7 @@ import RajniiRobot.modules.sql.users_sql as sql
 from RajniiRobot.modules.helper_funcs.filters import CustomFilters
 from RajniiRobot import dispatcher, OWNER_ID, LOGGER
 from RajniiRobot.modules.disable import DisableAbleCommandHandler
+
 USERS_GROUP = 4
 
 
@@ -31,15 +32,15 @@ def snipe(update: Update, context: CallbackContext):
         except TelegramError:
             LOGGER.warning("Couldn't send to group %s", str(chat_id))
             update.effective_message.reply_text(
-                "Couldn't send the message. Perhaps I'm not part of that group?")
+                "Couldn't send the message. Perhaps I'm not part of that group?"
+            )
 
 
 __mod_name__ = "Snipe"
 
-SNIPE_HANDLER = CommandHandler(
-    "snipe",
-    snipe,
-    pass_args=True,
-    filters=CustomFilters.sudo_filter)
+SNIPE_HANDLER = CommandHandler("snipe",
+                               snipe,
+                               pass_args=True,
+                               filters=CustomFilters.sudo_filter)
 
 dispatcher.add_handler(SNIPE_HANDLER)

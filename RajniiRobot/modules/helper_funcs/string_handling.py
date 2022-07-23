@@ -102,12 +102,13 @@ def markdown_parser(txt: str,
                 # else, check the escapes between the prev and last and forcefully escape the url to avoid mangling
                 else:
                     # TODO: investigate possible offset bug when lots of emoji are present
-                    res += _selective_escape(txt[prev:start] or
-                                             "") + escape_markdown(ent_text)
+                    res += _selective_escape(txt[prev:start]
+                                             or "") + escape_markdown(ent_text)
 
             # code handling
             elif ent.type == "code":
-                res += _selective_escape(txt[prev:start]) + '`' + ent_text + '`'
+                res += _selective_escape(
+                    txt[prev:start]) + '`' + ent_text + '`'
 
             # handle markdown/html links
             elif ent.type == "text_link":

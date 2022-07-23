@@ -4,6 +4,7 @@ from RajniiRobot.modules.sql import BASE, SESSION
 from sqlalchemy import Column, String, distinct, func
 from sqlalchemy import BIGINT
 
+
 class GroupLogs(BASE):
     __tablename__ = "log_channels"
     chat_id = Column(String(14), primary_key=True)

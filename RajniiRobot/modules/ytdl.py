@@ -12,8 +12,6 @@ from RajniiRobot.utils.errors import capture_err
 from RajniiRobot.utils.formatter import convert_seconds_to_minutes as timeFormat
 from RajniiRobot.utils.functions import downloader
 
-
-
 VIDEO_DATA = {}
 
 
@@ -21,7 +19,8 @@ VIDEO_DATA = {}
 @capture_err
 async def ytdl_func(_, message):
     if len(message.command) != 2:
-        return await message.reply_text("please do like this `/ytdl (VIDEO_LINK)`")
+        return await message.reply_text(
+            "please do like this `/ytdl (VIDEO_LINK)`")
     m = await message.reply_text("Processing")
     url = message.text.split(None, 1)[1]
     results = await arq.ytdl(url)
@@ -51,10 +50,8 @@ async def ytdl_func(_, message):
             "cc": message.from_user.mention if message.from_user else "Anon",
         }
         keyboard.append(
-            InlineKeyboardButton(
-                text=f"{quality} | {size}", callback_data=f"ytdl {data}"
-            )
-        )
+            InlineKeyboardButton(text=f"{quality} | {size}",
+                                 callback_data=f"ytdl {data}"))
     buttons.add(*keyboard)
     caption = f"""
 **Title:** {title}
@@ -84,9 +81,8 @@ async def ytdlCallback(_, cq):
 **Duration:** {await timeFormat(duration)}
 **CC:** {cc}
         """
-        media, thumb = await gather(
-            downloader.download(url), downloader.download(thumbnail)
-        )
+        media, thumb = await gather(downloader.download(url),
+                                    downloader.download(thumbnail))
         await cq.message.edit("Uploading")
         if format == "mp3":
             await cq.message.reply_audio(
@@ -114,9 +110,6 @@ async def ytdlCallback(_, cq):
         print(e)
         del VIDEO_DATA[data_]
         await cq.message.delete()
-
-
-
 
 
 __mod_name__ = "YoutubeDL"

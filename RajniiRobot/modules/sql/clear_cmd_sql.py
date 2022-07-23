@@ -23,7 +23,8 @@ CLEAR_CMD_LOCK = threading.RLock()
 
 def get_allclearcmd(chat_id):
     try:
-        return SESSION.query(ClearCmd).filter(ClearCmd.chat_id == str(chat_id)).all()
+        return SESSION.query(ClearCmd).filter(
+            ClearCmd.chat_id == str(chat_id)).all()
     finally:
         SESSION.close()
 
@@ -63,7 +64,8 @@ def del_clearcmd(chat_id, cmd):
 
 def del_allclearcmd(chat_id):
     with CLEAR_CMD_LOCK:
-        del_cmd = SESSION.query(ClearCmd).filter(ClearCmd.chat_id == str(chat_id)).all()
+        del_cmd = SESSION.query(ClearCmd).filter(
+            ClearCmd.chat_id == str(chat_id)).all()
         if del_cmd:
             for cmd in del_cmd:
                 SESSION.delete(cmd)
@@ -76,11 +78,8 @@ def del_allclearcmd(chat_id):
 
 def migrate_chat(old_chat_id, new_chat_id):
     with CLEAR_CMD_LOCK:
-        chat_filters = (
-            SESSION.query(ClearCmd)
-            .filter(ClearCmd.chat_id == str(old_chat_id))
-            .all()
-        )
+        chat_filters = (SESSION.query(ClearCmd).filter(
+            ClearCmd.chat_id == str(old_chat_id)).all())
         for filt in chat_filters:
             filt.chat_id = str(new_chat_id)
         SESSION.commit()

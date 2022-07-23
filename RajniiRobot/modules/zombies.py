@@ -14,9 +14,7 @@ async def zombies(event):
     admin = chat.admin_rights
     creator = chat.creator
 
-    if not await user_is_admin(
-        user_id = event.sender_id, message = event
-    ):
+    if not await user_is_admin(user_id=event.sender_id, message=event):
         delmsg = "Only Admins are allowed to use this command"
 
     elif not admin and not creator:
@@ -28,37 +26,41 @@ async def zombies(event):
         arg = event.pattern_match.group(1).lower()
 
         if not arg:
-                msg = "**Searching for zombies...**\n"
-                msg = await event.reply(msg)
-                async for user in event.client.iter_participants(event.chat):
-                    if user.deleted:
-                        count += 1
+            msg = "**Searching for zombies...**\n"
+            msg = await event.reply(msg)
+            async for user in event.client.iter_participants(event.chat):
+                if user.deleted:
+                    count += 1
 
-                if count == 0:
-                    delmsg = await msg.edit("No deleted accounts found. Group is clean")
-                else:
-                    delmsg = await msg.edit(f"Found **{count}** zombies in this group\nClean them by using - `/zombies clean`")
+            if count == 0:
+                delmsg = await msg.edit(
+                    "No deleted accounts found. Group is clean")
+            else:
+                delmsg = await msg.edit(
+                    f"Found **{count}** zombies in this group\nClean them by using - `/zombies clean`"
+                )
 
         elif arg == "clean":
             msg = "**Cleaning zombies...**\n"
             msg = await event.reply(msg)
             async for user in event.client.iter_participants(event.chat):
-                if user.deleted and not await user_is_admin(user_id = user, message = event):
+                if user.deleted and not await user_is_admin(user_id=user,
+                                                            message=event):
                     count += 1
                     await event.client.kick_participant(chat, user)
 
             if count == 0:
-                delmsg = await msg.edit("No deleted accounts found. Group is clean")
+                delmsg = await msg.edit(
+                    "No deleted accounts found. Group is clean")
             else:
                 delmsg = await msg.edit(f"Cleaned `{count}` zombies")
 
         else:
-            delmsg = await event.reply("Wrong parameter. You can use only `/zombies clean`")
-
+            delmsg = await event.reply(
+                "Wrong parameter. You can use only `/zombies clean`")
 
     cleartime = get_clearcmd(chat_id, "zombies")
 
     if cleartime:
         await sleep(cleartime.time)
         await delmsg.delete()
-

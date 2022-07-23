@@ -48,10 +48,8 @@ logging.basicConfig(
               logging.StreamHandler()],
     level=logging.INFO)
 
-
 LOGGER = logging.getLogger(__name__)
 # logging.getLogger('ptbcontrib.postgres_persistence.postgrespersistence').setLevel(logging.WARNING)
-
 
 # if version < 3.6, stop bot.
 if sys.version_info[0] < 3 or sys.version_info[1] < 6:
@@ -75,7 +73,8 @@ if ENV:
 
     try:
         DRAGONS = set(int(x) for x in os.environ.get("DRAGONS", "").split())
-        DEV_USERS = set(int(x) for x in os.environ.get("DEV_USERS", "").split())
+        DEV_USERS = set(
+            int(x) for x in os.environ.get("DEV_USERS", "").split())
     except ValueError:
         raise Exception(
             "Your sudo or dev users list does not contain valid integers.")
@@ -98,11 +97,12 @@ if ENV:
         raise Exception(
             "Your tiger users list does not contain valid integers.")
 
-
     INFOPIC = bool(os.environ.get("INFOPIC", True))
-    OPENWEATHERMAP_ID = os.environ.get("OPENWEATHERMAP_ID", "") # From:- https://openweathermap.org/api
+    OPENWEATHERMAP_ID = os.environ.get(
+        "OPENWEATHERMAP_ID", "")  # From:- https://openweathermap.org/api
     HEROKU_APP_NAME = (os.environ.get("HEROKU_APP_NAME", False))
-    TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TEMP_DOWNLOAD_DIRECTORY", "./") # Don't Change
+    TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TEMP_DOWNLOAD_DIRECTORY",
+                                             "./")  # Don't Change
     ERROR_LOGS = os.environ.get("ERROR_LOGS", '')
     HEROKU_API_KEY = (os.environ.get("HEROKU_API_KEY", False))
     EVENT_LOGS = os.environ.get("EVENT_LOGS")
@@ -118,7 +118,7 @@ if ENV:
     API_ID = int(os.environ.get("API_ID", ''))
     API_HASH = os.environ.get("API_HASH", '')
     DB_URL = os.environ.get("DATABASE_URL")
-    MONGO_DB_URL = os.environ.get("MONGO_DB_URI","")
+    MONGO_DB_URL = os.environ.get("MONGO_DB_URI", "")
     MONGO_DB = "Rajnii"
     MONGO_PORT = int(os.environ.get("MONGO_PORT", 'None'))
     ARQ_API_URL = "https://thearq.tech"
@@ -132,7 +132,8 @@ if ENV:
     DEL_CMDS = bool(os.environ.get("DEL_CMDS", True))
     STRICT_GBAN = bool(os.environ.get("STRICT_GBAN", True))
     WORKERS = int(os.environ.get("WORKERS", 8))
-    BAN_STICKER = os.environ.get("BAN_STICKER", "CAADAgADOwADPPEcAXkko5EB3YGYAg")
+    BAN_STICKER = os.environ.get("BAN_STICKER",
+                                 "CAADAgADOwADPPEcAXkko5EB3YGYAg")
     ALLOW_EXCL = os.environ.get("ALLOW_EXCL", True)
     CASH_API_KEY = os.environ.get("CASH_API_KEY", '')
     TIME_API_KEY = os.environ.get("TIME_API_KEY", '')
@@ -238,7 +239,9 @@ DEV_USERS.add(OWNER_ID)
 
 if not SPAMWATCH_API:
     sw = None
-    LOGGER.warning(f"[{BOT_NAME} ERROR] SpamWatch API key Is Missing! Recheck Your Config.")
+    LOGGER.warning(
+        f"[{BOT_NAME} ERROR] SpamWatch API key Is Missing! Recheck Your Config."
+    )
 else:
     try:
         sw = spamwatch.Client(SPAMWATCH_API)
@@ -246,14 +249,17 @@ else:
         sw = None
         LOGGER.warning(f"[{BOT_NAME} ERROR] Can't connect to SpamWatch!")
 
-
-print("=========================================================================================================")
+print(
+    "========================================================================================================="
+)
 # Credits Logger
 print(f"[{BOT_NAME}] | Activating TUU • Project #C437 | Licensed Under GPLv3.")
 
 print(f"[{BOT_NAME}] | [#C437 ACTIVATING: Initializing Required Clients]")
 
-print(f"[{BOT_NAME}] | Project Maintained By: [github.com/TeamUltraUnion] (telegram.me/TeamUltraUnion)")
+print(
+    f"[{BOT_NAME}] | Project Maintained By: [github.com/TeamUltraUnion] (telegram.me/TeamUltraUnion)"
+)
 
 from RajniiRobot.modules.sql import SESSION
 
@@ -261,7 +267,13 @@ print(f"[{BOT_NAME}] | Installing Telegraph")
 telegraph = Telegraph()
 
 print(f"[{BOT_NAME}] | Creating Updater, Dispatcher")
-updater = tg.Updater(TOKEN, workers=WORKERS, request_kwargs={"read_timeout": 10, "connect_timeout": 10}, use_context=True)
+updater = tg.Updater(TOKEN,
+                     workers=WORKERS,
+                     request_kwargs={
+                         "read_timeout": 10,
+                         "connect_timeout": 10
+                     },
+                     use_context=True)
 dispatcher = updater.dispatcher
 
 print(f"[{BOT_NAME}] | TELETHON CLIENT STARTING")
@@ -271,13 +283,17 @@ print(f"[{BOT_NAME}] | PYROGRAM CLIENT STARTING")
 session_name = TOKEN.split(":")[0]
 pgram = Client(session_name, api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 
-print(f"[{BOT_NAME}] | Connecting To TUU • Data Center • Mumbai • MongoDB Database")
+print(
+    f"[{BOT_NAME}] | Connecting To TUU • Data Center • Mumbai • MongoDB Database"
+)
 mongodb = MongoClient(MONGO_DB_URL, MONGO_PORT)[MONGO_DB]
 motor = motor_asyncio.AsyncIOMotorClient(MONGO_DB_URL)
 db = motor[MONGO_DB]
 engine = AIOEngine(motor, MONGO_DB)
 
-print(f"[{BOT_NAME}] | Connecting To TUU • Data Center • Mumbai • PostgreSQL Database")
+print(
+    f"[{BOT_NAME}] | Connecting To TUU • Data Center • Mumbai • PostgreSQL Database"
+)
 
 print(f"[{BOT_NAME}] | Initializing aiohttp session")
 aiohttpsession = ClientSession()
@@ -286,12 +302,17 @@ aiohttpsession = ClientSession()
 print(f"[{BOT_NAME}] | Initializing ARQ Client")
 arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
 
-print(f"[{BOT_NAME}] | Connecting To TUU • {BOT_NAME}'s Userbot. (telegram.me/itzzzyashu)")
+print(
+    f"[{BOT_NAME}] | Connecting To TUU • {BOT_NAME}'s Userbot. (telegram.me/itzzzyashu)"
+)
 ubot = TelegramClient(StringSession(STRING_SESSION), API_ID, API_HASH)
-print("\n=========================================================================================================")
+print(
+    "\n========================================================================================================="
+)
 
 timeout = httpx.Timeout(40, pool=None)
 http = httpx.AsyncClient(http2=True, timeout=timeout)
+
 
 async def get_entity(client, entity):
     entity_client = client
@@ -318,6 +339,7 @@ async def get_entity(client, entity):
                 entity = await pgram.get_chat(entity)
                 entity_client = pgram
     return entity, entity_client
+
 
 apps = [pgram]
 DRAGONS = list(DRAGONS) + list(DEV_USERS)

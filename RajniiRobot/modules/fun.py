@@ -35,7 +35,8 @@ def meme(_, message):
 
 
 @run_async
-@bot.on_message(filters.command("hentaimeme", "hmeme", f"hmeme@{BOT_USERNAME}"))
+@bot.on_message(filters.command("hentaimeme", "hmeme",
+                                f"hmeme@{BOT_USERNAME}"))
 def hmeme(_, message):
     r = requests.get(
         'https://nksamamemeapi.pythonanywhere.com/get/hentaimemes').json()
@@ -75,10 +76,14 @@ def goodmorning(update, context):
 def scam_report(update, context):
     message = update.effective_message
     reply = f"Feel free to report spammers, scammers, fraudsters, pornographic content spammers and malicious user to\n[{SUPPORT_CHAT}](telegram.me/{SUPPORT_CHAT}) !"
-    keyboard = InlineKeyboardMarkup([
-        [InlineKeyboardButton(text="Appeal Here", url=f"https://telegram.me/{SUPPORT_CHAT}"),
-        InlineKeyboardButton(text="Global Logs", url="https://telegram.me/rajniixglobal")]])
+    keyboard = InlineKeyboardMarkup([[
+        InlineKeyboardButton(text="Appeal Here",
+                             url=f"https://telegram.me/{SUPPORT_CHAT}"),
+        InlineKeyboardButton(text="Global Logs",
+                             url="https://telegram.me/rajniixglobal")
+    ]])
     message.reply_text(reply, reply_markup=keyboard, parse_mode=ParseMode.HTML)
+
 
 @run_async
 def slap(update: Update, context: CallbackContext):
@@ -86,11 +91,8 @@ def slap(update: Update, context: CallbackContext):
     message = update.effective_message
     chat = update.effective_chat
 
-    reply_text = (
-        message.reply_to_message.reply_text
-        if message.reply_to_message
-        else message.reply_text
-    )
+    reply_text = (message.reply_to_message.reply_text
+                  if message.reply_to_message else message.reply_text)
 
     curr_user = html.escape(message.from_user.first_name)
     user_id = extract_user(message, args)
@@ -134,8 +136,11 @@ def slap(update: Update, context: CallbackContext):
     if update.effective_user.id == 1096215023:
         temp = "@NeoTheKitty scratches {user2}"
 
-    reply = temp.format(user1=user1, user2=user2,
-                        item=item, hits=hit, throws=throw)
+    reply = temp.format(user1=user1,
+                        user2=user2,
+                        item=item,
+                        hits=hit,
+                        throws=throw)
 
     reply_text(reply, parse_mode=ParseMode.HTML)
 
@@ -209,18 +214,16 @@ def toss(update: Update, context: CallbackContext):
 @run_async
 def shrug(update: Update, context: CallbackContext):
     msg = update.effective_message
-    reply_text = (
-        msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
-    )
+    reply_text = (msg.reply_to_message.reply_text
+                  if msg.reply_to_message else msg.reply_text)
     reply_text(r"¯\_(ツ)_/¯")
 
 
 @run_async
 def bluetext(update: Update, context: CallbackContext):
     msg = update.effective_message
-    reply_text = (
-        msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
-    )
+    reply_text = (msg.reply_to_message.reply_text
+                  if msg.reply_to_message else msg.reply_text)
     reply_text(
         "/BLUE /TEXT\n/MUST /CLICK\n/I /AM /A /STUPID /ANIMAL /THAT /IS /ATTRACTED /TO /COLORS",
     )
@@ -241,31 +244,25 @@ def rlg(update: Update, context: CallbackContext):
 
 @run_async
 def decide(update: Update, context: CallbackContext):
-    reply_text = (
-        update.effective_message.reply_to_message.reply_text
-        if update.effective_message.reply_to_message
-        else update.effective_message.reply_text
-    )
+    reply_text = (update.effective_message.reply_to_message.reply_text
+                  if update.effective_message.reply_to_message else
+                  update.effective_message.reply_text)
     reply_text(random.choice(fun_strings.DECIDE))
 
 
 @run_async
 def eightball(update: Update, context: CallbackContext):
-    reply_text = (
-        update.effective_message.reply_to_message.reply_text
-        if update.effective_message.reply_to_message
-        else update.effective_message.reply_text
-    )
+    reply_text = (update.effective_message.reply_to_message.reply_text
+                  if update.effective_message.reply_to_message else
+                  update.effective_message.reply_text)
     reply_text(random.choice(fun_strings.EIGHTBALL))
 
 
 @run_async
 def table(update: Update, context: CallbackContext):
-    reply_text = (
-        update.effective_message.reply_to_message.reply_text
-        if update.effective_message.reply_to_message
-        else update.effective_message.reply_text
-    )
+    reply_text = (update.effective_message.reply_to_message.reply_text
+                  if update.effective_message.reply_to_message else
+                  update.effective_message.reply_text)
     reply_text(random.choice(fun_strings.TABLE))
 
 
@@ -390,8 +387,10 @@ def gbam(update, context):
     if int(user.id) in DRAGONS or int(user.id) in DEMONS:
         gbamm = fun_strings.GBAM
         reason = random.choice(fun_strings.GBAM_REASON)
-        gbam = gbamm.format(user1=user1, user2=user2,
-                            chatid=chat.id, reason=reason)
+        gbam = gbamm.format(user1=user1,
+                            user2=user2,
+                            chatid=chat.id,
+                            reason=reason)
         context.bot.sendMessage(chat.id, gbam, parse_mode=ParseMode.HTML)
 
 
@@ -428,14 +427,17 @@ def cuddle(update: Update, context: CallbackContext):
         reply = temp.format(user1=user1, user2=user2)
         reply_to.reply_text(reply, parse_mode=ParseMode.HTML)
 
+
 @run_async
-@bot.on_message(filters.command("hentaimeme", "hmeme", f"hmeme@{BOT_USERNAME}"))
+@bot.on_message(filters.command("hentaimeme", "hmeme",
+                                f"hmeme@{BOT_USERNAME}"))
 def hmeme(_, message):
     r = requests.get(
         'https://nksamamemeapi.pythonanywhere.com/get/hentaimemes').json()
     pic = r['image']
     title = r['title']
     bot.send_photo(message.chat.id, pic, caption=title)
+
 
 @run_async
 def flirt(update: Update, context: CallbackContext):
@@ -561,7 +563,6 @@ def owo(update: Update, context: CallbackContext):
             owo_type = "Text"
 
 
-
 @run_async
 def uwu(update: Update, context: CallbackContext):
     bot = context.bot
@@ -675,13 +676,17 @@ FLIRT_HANDLER = DisableAbleCommandHandler("flirt", flirt)
 ROMANCE_HANDLER = DisableAbleCommandHandler("romance", romance)
 UWU_HANDLER = DisableAbleCommandHandler("uwu", uwu)
 OWO_HANDLER = DisableAbleCommandHandler("owo", owo)
-GDMORNING_HANDLER = DisableAbleMessageHandler(Filters.regex(
-    r"(?i)(goodmorning|good morning)"), goodmorning, friendly="goodmorning")
-GDNIGHT_HANDLER = DisableAbleMessageHandler(Filters.regex(
-    r"(?i)(goodnight|good night)"), goodnight, friendly="goodnight")
-SCAM_HANDLER = DisableAbleMessageHandler(Filters.regex(
-    r"(?i)(scamm|spamm)"), scam_report, friendly="scam_report")
-
+GDMORNING_HANDLER = DisableAbleMessageHandler(
+    Filters.regex(r"(?i)(goodmorning|good morning)"),
+    goodmorning,
+    friendly="goodmorning")
+GDNIGHT_HANDLER = DisableAbleMessageHandler(
+    Filters.regex(r"(?i)(goodnight|good night)"),
+    goodnight,
+    friendly="goodnight")
+SCAM_HANDLER = DisableAbleMessageHandler(Filters.regex(r"(?i)(scamm|spamm)"),
+                                         scam_report,
+                                         friendly="scam_report")
 
 dispatcher.add_handler(GBAM_HANDLER)
 dispatcher.add_handler(GBUN_HANDLER)

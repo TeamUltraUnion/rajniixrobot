@@ -1,4 +1,3 @@
-
 import codecs
 import pickle
 from asyncio import gather, get_running_loop
@@ -14,16 +13,14 @@ from wget import download
 
 from RajniiRobot.utils import aiodownloader
 from RajniiRobot.utils.fetch import fetch
-
 """
 Just import 'downloader' anywhere and do downloader.download() to
 download file from a given url
 """
 downloader = aiodownloader.Handler()
 
+
 # Another downloader, but with wget
-
-
 async def download_url(url: str):
     loop = get_running_loop()
     file = await loop.run_in_executor(None, download, url)
@@ -76,8 +73,9 @@ def generate_captcha():
 
 
 def test_speedtest():
+
     def speed_convert(size):
-        power = 2 ** 10
+        power = 2**10
         zero = 0
         units = {0: "", 1: "Kb/s", 2: "Mb/s", 3: "Gb/s", 4: "Tb/s"}
         while size > power:
@@ -112,7 +110,8 @@ async def make_carbon(code):
 async def transfer_sh(file):
     async with aiofiles.open(file, "rb") as f:
         params = {file: await f.read()}
-    async with aiohttp.ClientSession() as session, session.post("https://transfer.sh/", data=params) as resp:
+    async with aiohttp.ClientSession() as session, session.post(
+            "https://transfer.sh/", data=params) as resp:
         download_link = str(await resp.text()).strip()
     return download_link
 
@@ -131,16 +130,15 @@ def str_to_obj(string: str):
 
 async def calc_distance_from_ip(ip1: str, ip2: str) -> float:
     Radius_Earth = 6371.0088
-    data1, data2 = await gather(
-        fetch(f"http://ipinfo.io/{ip1}"), fetch(f"http://ipinfo.io/{ip2}")
-    )
+    data1, data2 = await gather(fetch(f"http://ipinfo.io/{ip1}"),
+                                fetch(f"http://ipinfo.io/{ip2}"))
     lat1, lon1 = data1["loc"].split(",")
     lat2, lon2 = data2["loc"].split(",")
     lat1, lon1 = radians(float(lat1)), radians(float(lon1))
     lat2, lon2 = radians(float(lat2)), radians(float(lon2))
     dlon = lon2 - lon1
     dlat = lat2 - lat1
-    a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2
+    a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
     c = 2 * atan2(sqrt(a), sqrt(1 - a))
     distance = Radius_Earth * c
     return distance

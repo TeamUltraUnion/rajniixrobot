@@ -22,7 +22,6 @@ BANNED_RIGHTS = ChatBannedRights(
     embed_links=True,
 )
 
-
 UNBAN_RIGHTS = ChatBannedRights(
     until_date=None,
     send_messages=None,
@@ -36,17 +35,16 @@ UNBAN_RIGHTS = ChatBannedRights(
 
 OFFICERS = [OWNER_ID] + DEV_USERS + DRAGONS + DEMONS
 
+
 # Check if user has admin rights
 async def is_administrator(user_id: int, message):
     admin = False
     async for user in telethn.iter_participants(
-        message.chat_id, filter=ChannelParticipantsAdmins
-    ):
+            message.chat_id, filter=ChannelParticipantsAdmins):
         if user_id == user.id or user_id in OFFICERS:
             admin = True
             break
     return admin
-
 
 
 @telethn.on(events.NewMessage(pattern="^[!/]zombies ?(.*)"))
@@ -67,6 +65,7 @@ async def zombies(event):
         if del_u > 0:
             del_status = f"Found `{del_u}` Zombies In This Group.\
             \nClean Them By Using - `/zombies clean`"
+
         await find_zombies.edit(del_status)
         return
 
@@ -92,15 +91,16 @@ async def zombies(event):
         if user.deleted:
             try:
                 await event.client(
-                    EditBannedRequest(event.chat_id, user.id, BANNED_RIGHTS)
-                )
+                    EditBannedRequest(event.chat_id, user.id, BANNED_RIGHTS))
             except ChatAdminRequiredError:
-                await cleaning_zombies.edit("I Don't Have Ban Rights In This Group.")
+                await cleaning_zombies.edit(
+                    "I Don't Have Ban Rights In This Group.")
                 return
             except UserAdminInvalidError:
                 del_u -= 1
                 del_a += 1
-            await event.client(EditBannedRequest(event.chat_id, user.id, UNBAN_RIGHTS))
+            await event.client(
+                EditBannedRequest(event.chat_id, user.id, UNBAN_RIGHTS))
             del_u += 1
 
     if del_u > 0:
@@ -111,5 +111,6 @@ async def zombies(event):
         \n`{del_a}` Zombie Admin Accounts Are Not Removed!"
 
     await cleaning_zombies.edit(del_status)
+
 
 __mod_name__ = "Zombies"

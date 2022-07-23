@@ -28,36 +28,36 @@ ad = AlphabetDetector()
 
 LOCK_TYPES = {
     "audio":
-        Filters.audio,
+    Filters.audio,
     "voice":
-        Filters.voice,
+    Filters.voice,
     "document":
-        Filters.document,
+    Filters.document,
     "video":
-        Filters.video,
+    Filters.video,
     "contact":
-        Filters.contact,
+    Filters.contact,
     "photo":
-        Filters.photo,
+    Filters.photo,
     "url":
-        Filters.entity(MessageEntity.URL)
-        | Filters.caption_entity(MessageEntity.URL),
+    Filters.entity(MessageEntity.URL)
+    | Filters.caption_entity(MessageEntity.URL),
     "bots":
-        Filters.status_update.new_chat_members,
+    Filters.status_update.new_chat_members,
     "forward":
-        Filters.forwarded,
+    Filters.forwarded,
     "game":
-        Filters.game,
+    Filters.game,
     "location":
-        Filters.location,
+    Filters.location,
     "egame":
-        Filters.dice,
+    Filters.dice,
     "rtl":
-        "rtl",
+    "rtl",
     "button":
-        "button",
+    "button",
     "inline":
-        "inline",
+    "inline",
 }
 
 LOCK_CHAT_RESTRICTION = {
@@ -210,14 +210,17 @@ def lock(update, context) -> str:
     chat = update.effective_chat
     user = update.effective_user
 
-    if (can_delete(chat, context.bot.id) or
-            update.effective_message.chat.type == "private"):
+    if (can_delete(chat, context.bot.id)
+            or update.effective_message.chat.type == "private"):
         if len(args) >= 1:
             ltype = args[0].lower()
             if ltype in LOCK_TYPES:
                 # Connection check
-                conn = connected(
-                    context.bot, update, chat, user.id, need_admin=True)
+                conn = connected(context.bot,
+                                 update,
+                                 chat,
+                                 user.id,
+                                 need_admin=True)
                 if conn:
                     chat = dispatcher.bot.getChat(conn)
                     chat_id = conn
@@ -236,8 +239,9 @@ def lock(update, context) -> str:
                     chat_name = update.effective_message.chat.title
                     text = "Locked {} for non-admins!".format(ltype)
                 sql.update_lock(chat.id, ltype, locked=True)
-                send_message(
-                    update.effective_message, text, parse_mode="markdown")
+                send_message(update.effective_message,
+                             text,
+                             parse_mode="markdown")
 
                 return ("<b>{}:</b>"
                         "\n#LOCK"
@@ -250,8 +254,11 @@ def lock(update, context) -> str:
 
             elif ltype in LOCK_CHAT_RESTRICTION:
                 # Connection check
-                conn = connected(
-                    context.bot, update, chat, user.id, need_admin=True)
+                conn = connected(context.bot,
+                                 update,
+                                 chat,
+                                 user.id,
+                                 need_admin=True)
                 if conn:
                     chat = dispatcher.bot.getChat(conn)
                     chat_id = conn
@@ -279,8 +286,9 @@ def lock(update, context) -> str:
                     ),
                 )
 
-                send_message(
-                    update.effective_message, text, parse_mode="markdown")
+                send_message(update.effective_message,
+                             text,
+                             parse_mode="markdown")
                 return ("<b>{}:</b>"
                         "\n#Permission_LOCK"
                         "\n<b>Admin:</b> {}"
@@ -322,8 +330,11 @@ def unlock(update, context) -> str:
             ltype = args[0].lower()
             if ltype in LOCK_TYPES:
                 # Connection check
-                conn = connected(
-                    context.bot, update, chat, user.id, need_admin=True)
+                conn = connected(context.bot,
+                                 update,
+                                 chat,
+                                 user.id,
+                                 need_admin=True)
                 if conn:
                     chat = dispatcher.bot.getChat(conn)
                     chat_id = conn
@@ -342,8 +353,9 @@ def unlock(update, context) -> str:
                     chat_name = update.effective_message.chat.title
                     text = "Unlocked {} for everyone!".format(ltype)
                 sql.update_lock(chat.id, ltype, locked=False)
-                send_message(
-                    update.effective_message, text, parse_mode="markdown")
+                send_message(update.effective_message,
+                             text,
+                             parse_mode="markdown")
                 return ("<b>{}:</b>"
                         "\n#UNLOCK"
                         "\n<b>Admin:</b> {}"
@@ -355,8 +367,11 @@ def unlock(update, context) -> str:
 
             elif ltype in UNLOCK_CHAT_RESTRICTION:
                 # Connection check
-                conn = connected(
-                    context.bot, update, chat, user.id, need_admin=True)
+                conn = connected(context.bot,
+                                 update,
+                                 chat,
+                                 user.id,
+                                 need_admin=True)
                 if conn:
                     chat = dispatcher.bot.getChat(conn)
                     chat_id = conn
@@ -393,8 +408,9 @@ def unlock(update, context) -> str:
                     ),
                 )
 
-                send_message(
-                    update.effective_message, text, parse_mode="markdown")
+                send_message(update.effective_message,
+                             text,
+                             parse_mode="markdown")
 
                 return ("<b>{}:</b>"
                         "\n#UNLOCK"
@@ -476,8 +492,8 @@ def del_lockables(update, context):
                             LOGGER.exception("ERROR in lockables")
                     break
             continue
-        if (filter(update) and sql.is_locked(chat.id, lockable) and
-                can_delete(chat, context.bot.id)):
+        if (filter(update) and sql.is_locked(chat.id, lockable)
+                and can_delete(chat, context.bot.id)):
             if lockable == "bots":
                 new_members = update.effective_message.new_chat_members
                 for new_mem in new_members:
@@ -535,9 +551,11 @@ def build_lock_message(chat_id):
             locklist.append("inline = `{}`".format(locks.inline))
     permissions = dispatcher.bot.get_chat(chat_id).permissions
     permslist.append("messages = `{}`".format(permissions.can_send_messages))
-    permslist.append("media = `{}`".format(permissions.can_send_media_messages))
+    permslist.append("media = `{}`".format(
+        permissions.can_send_media_messages))
     permslist.append("poll = `{}`".format(permissions.can_send_polls))
-    permslist.append("other = `{}`".format(permissions.can_send_other_messages))
+    permslist.append("other = `{}`".format(
+        permissions.can_send_other_messages))
     permslist.append("previews = `{}`".format(
         permissions.can_add_web_page_previews))
     permslist.append("info = `{}`".format(permissions.can_change_info))
@@ -647,11 +665,12 @@ Locking bots will stop non-admins from adding bots to the chat.
 __mod_name__ = "Locks"
 
 LOCKTYPES_HANDLER = DisableAbleCommandHandler("locktypes", locktypes)
-LOCK_HANDLER = CommandHandler(
-    "lock", lock, pass_args=True)  # , filters=Filters.group)
-UNLOCK_HANDLER = CommandHandler(
-    "unlock", unlock, pass_args=True)  # , filters=Filters.group)
-LOCKED_HANDLER = CommandHandler("locks", list_locks)  # , filters=Filters.group)
+LOCK_HANDLER = CommandHandler("lock", lock,
+                              pass_args=True)  # , filters=Filters.group)
+UNLOCK_HANDLER = CommandHandler("unlock", unlock,
+                                pass_args=True)  # , filters=Filters.group)
+LOCKED_HANDLER = CommandHandler("locks",
+                                list_locks)  # , filters=Filters.group)
 
 dispatcher.add_handler(LOCK_HANDLER)
 dispatcher.add_handler(UNLOCK_HANDLER)

@@ -18,7 +18,6 @@ from search_engine_parser import GoogleSearch
 from RajniiRobot import pgram as app
 from RajniiRobot.utils.errors import capture_err
 
-
 import bs4
 import html2text
 from bing_image_downloader import downloader
@@ -34,6 +33,7 @@ from RajniiRobot.events import register
 opener = urllib.request.build_opener()
 useragent = "Mozilla/5.0 (Linux; Android 9; SM-G960F Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0.3729.157 Mobile Safari/537.36"
 opener.addheaders = [("User-agent", useragent)]
+
 
 @register(pattern="^/google (.*)")
 async def _(event):
@@ -61,10 +61,9 @@ async def _(event):
             msg += f"❍[{title}]({link})\n**{desc}**\n\n"
         except IndexError:
             break
-    await webevent.edit(
-        "**Search Query:**\n`" + match + "`\n\n**Results:**\n" + msg, link_preview=False
-    )
-
+    await webevent.edit("**Search Query:**\n`" + match +
+                        "`\n\n**Results:**\n" + msg,
+                        link_preview=False)
 
 
 @register(pattern="^/img (.*)")
@@ -92,9 +91,6 @@ async def img_sampler(event):
     os.system("rm -rf store")
 
 
-
-
-
 @app.on_message(filters.command("so") & ~filters.edited)
 @capture_err
 async def stack(_, message):
@@ -118,10 +114,6 @@ async def stack(_, message):
         await message.reply_text(result, disable_web_page_preview=True)
     except Exception as e:
         await message.reply_text(str(e))
-
-
-
-
 
 
 opener = urllib.request.build_opener()
@@ -155,26 +147,31 @@ async def okgoogle(img):
         image.close()
         # https://stackoverflow.com/questions/23270175/google-reverse-image-search-using-post-request#28792943
         searchUrl = "https://www.google.com/searchbyimage/upload"
-        multipart = {"encoded_image": (name, open(name, "rb")), "image_content": ""}
-        response = requests.post(searchUrl, files=multipart, allow_redirects=False)
+        multipart = {
+            "encoded_image": (name, open(name, "rb")),
+            "image_content": ""
+        }
+        response = requests.post(searchUrl,
+                                 files=multipart,
+                                 allow_redirects=False)
         fetchUrl = response.headers["Location"]
 
         if response != 400:
-            await dev.edit(
-                "`Image successfully uploaded to Google. Maybe.`"
-                "\n`Parsing source now. Maybe.`"
-            )
+            await dev.edit("`Image successfully uploaded to Google. Maybe.`"
+                           "\n`Parsing source now. Maybe.`")
         else:
             await dev.edit("`Google told me to fuck off.`")
             return
 
         os.remove(name)
-        match = await ParseSauce(fetchUrl + "&preferences?hl=en&fg=1#languages")
+        match = await ParseSauce(fetchUrl +
+                                 "&preferences?hl=en&fg=1#languages")
         guess = match["best_guess"]
         imgspage = match["similar_images"]
 
         if guess and imgspage:
-            await dev.edit(f"[{guess}]({fetchUrl})\n\n`Looking for this Image...`")
+            await dev.edit(
+                f"[{guess}]({fetchUrl})\n\n`Looking for this Image...`")
         else:
             await dev.edit("`Can't find this piece of shit.`")
             return
@@ -197,8 +194,7 @@ async def okgoogle(img):
         except TypeError:
             pass
         await dev.edit(
-            f"[{guess}]({fetchUrl})\n\n[Visually similar images]({imgspage})"
-        )
+            f"[{guess}]({fetchUrl})\n\n[Visually similar images]({imgspage})")
 
 
 async def ParseSauce(googleurl):
@@ -212,8 +208,7 @@ async def ParseSauce(googleurl):
     try:
         for similar_image in soup.findAll("input", {"class": "gLFyf"}):
             url = "https://www.google.com/search?tbm=isch&q=" + urllib.parse.quote_plus(
-                similar_image.get("value")
-            )
+                similar_image.get("value"))
             results["similar_images"] = url
     except BaseException:
         pass
@@ -252,66 +247,40 @@ async def apk(e):
         app_name = e.pattern_match.group(1)
         remove_space = app_name.split(" ")
         final_name = "+".join(remove_space)
-        page = requests.get(
-            "https://play.google.com/store/search?q=" + final_name + "&c=apps"
-        )
+        page = requests.get("https://play.google.com/store/search?q=" +
+                            final_name + "&c=apps")
         lnk = str(page.status_code)
         soup = bs4.BeautifulSoup(page.content, "lxml", from_encoding="utf-8")
         results = soup.findAll("div", "ZmHEEd")
-        app_name = (
-            results[0].findNext("div", "Vpfmgd").findNext("div", "WsMG1c nnK0zc").text
-        )
-        app_dev = results[0].findNext("div", "Vpfmgd").findNext("div", "KoLSrc").text
-        app_dev_link = (
-            "https://play.google.com"
-            + results[0].findNext("div", "Vpfmgd").findNext("a", "mnKHRc")["href"]
-        )
-        app_rating = (
-            results[0]
-            .findNext("div", "Vpfmgd")
-            .findNext("div", "pf5lIe")
-            .find("div")["aria-label"]
-        )
-        app_link = (
-            "https://play.google.com"
-            + results[0]
-            .findNext("div", "Vpfmgd")
-            .findNext("div", "vU6FJ p63iDd")
-            .a["href"]
-        )
-        app_icon = (
-            results[0]
-            .findNext("div", "Vpfmgd")
-            .findNext("div", "uzcko")
-            .img["data-src"]
-        )
+        app_name = (results[0].findNext("div", "Vpfmgd").findNext(
+            "div", "WsMG1c nnK0zc").text)
+        app_dev = results[0].findNext("div",
+                                      "Vpfmgd").findNext("div", "KoLSrc").text
+        app_dev_link = ("https://play.google.com" + results[0].findNext(
+            "div", "Vpfmgd").findNext("a", "mnKHRc")["href"])
+        app_rating = (results[0].findNext("div", "Vpfmgd").findNext(
+            "div", "pf5lIe").find("div")["aria-label"])
+        app_link = ("https://play.google.com" + results[0].findNext(
+            "div", "Vpfmgd").findNext("div", "vU6FJ p63iDd").a["href"])
+        app_icon = (results[0].findNext("div", "Vpfmgd").findNext(
+            "div", "uzcko").img["data-src"])
         app_details = "<a href='" + app_icon + "'>📲&#8203;</a>"
         app_details += " <b>" + app_name + "</b>"
-        app_details += (
-            "\n\n<code>Developer :</code> <a href='"
-            + app_dev_link
-            + "'>"
-            + app_dev
-            + "</a>"
-        )
+        app_details += ("\n\n<code>Developer :</code> <a href='" +
+                        app_dev_link + "'>" + app_dev + "</a>")
         app_details += "\n<code>Rating :</code> " + app_rating.replace(
-            "Rated ", "⭐ "
-        ).replace(" out of ", "/").replace(" stars", "", 1).replace(
-            " stars", "⭐ "
-        ).replace(
-            "five", "5"
-        )
-        app_details += (
-            "\n<code>Features :</code> <a href='"
-            + app_link
-            + "'>View in Play Store</a>"
-        )
+            "Rated ", "⭐ ").replace(" out of ", "/").replace(
+                " stars", "", 1).replace(" stars", "⭐ ").replace("five", "5")
+        app_details += ("\n<code>Features :</code> <a href='" + app_link +
+                        "'>View in Play Store</a>")
         app_details += "\n\n===> Igris <==="
         await e.reply(app_details, link_preview=True, parse_mode="HTML")
     except IndexError:
-        await e.reply("No result found in search. Please enter **Valid app name**")
+        await e.reply(
+            "No result found in search. Please enter **Valid app name**")
     except Exception as err:
         await e.reply("Exception Occured:- " + str(err))
+
 
 __mod_name__ = "Google"
 

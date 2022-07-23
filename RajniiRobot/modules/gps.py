@@ -19,12 +19,12 @@ async def _(event):
         geoloc = geolocator.geocode(location)
         longitude = geoloc.longitude
         latitude = geoloc.latitude
-        gm = "https://www.google.com/maps/search/{},{}".format(latitude, longitude)
+        gm = "https://www.google.com/maps/search/{},{}".format(
+            latitude, longitude)
         await tbot.send_file(
             event.chat_id,
             file=types.InputMediaGeoPoint(
-                types.InputGeoPoint(float(latitude), float(longitude))
-            ),
+                types.InputGeoPoint(float(latitude), float(longitude))),
         )
         await event.reply(
             "Open with: [🌏Google Maps]({})".format(gm),

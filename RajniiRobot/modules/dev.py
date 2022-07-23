@@ -18,7 +18,8 @@ def leave(update: Update, context: CallbackContext):
         chat_id = str(args[0])
         try:
             bot.leave_chat(int(chat_id))
-            update.effective_message.reply_text("Beep boop, I left that soup!.")
+            update.effective_message.reply_text(
+                "Beep boop, I left that soup!.")
         except TelegramError:
             update.effective_message.reply_text(
                 "Beep boop, I could not leave that group(dunno why tho).")
@@ -44,6 +45,7 @@ def gitpull(update: Update, context: CallbackContext):
     os.system('restart.bat')
     os.execv('start.bat', sys.argv)
 
+
 @run_async
 @dev_plus
 def gitpush(update: Update, context: CallbackContext):
@@ -60,6 +62,7 @@ def gitpush(update: Update, context: CallbackContext):
     sent_msg.edit_text("Git Pushed.")
 
     os.system('git_push.bat')
+
 
 @run_async
 @dev_plus
@@ -82,4 +85,6 @@ dispatcher.add_handler(GITPUSH_HANDLER)
 dispatcher.add_handler(RESTART_HANDLER)
 
 __mod_name__ = "Dev"
-__handlers__ = [LEAVE_HANDLER, GITPULL_HANDLER, RESTART_HANDLER, GITPUSH_HANDLER]
+__handlers__ = [
+    LEAVE_HANDLER, GITPULL_HANDLER, RESTART_HANDLER, GITPUSH_HANDLER
+]

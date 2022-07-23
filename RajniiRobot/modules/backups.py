@@ -40,7 +40,8 @@ def import_data(update, context):
         chat_name = dispatcher.bot.getChat(conn).title
     else:
         if update.effective_message.chat.type == "private":
-            update.effective_message.reply_text("This is a group only command!")
+            update.effective_message.reply_text(
+                "This is a group only command!")
             return ""
 
         chat = update.effective_chat
@@ -135,7 +136,8 @@ def export_data(update, context):
         # chat_name = dispatcher.bot.getChat(conn).title
     else:
         if update.effective_message.chat.type == "private":
-            update.effective_message.reply_text("This is a group only command!")
+            update.effective_message.reply_text(
+                "This is a group only command!")
             return ""
         chat = update.effective_chat
         chat_id = update.effective_chat.id
@@ -213,8 +215,9 @@ def export_data(update, context):
         else:
             isicat += "{}<###splitter###>".format(note.value)
     for x in range(count):
-        notes["#{}".format(namacat.split("<###splitter###>")[x])] = "{}".format(
-            isicat.split("<###splitter###>")[x])
+        notes["#{}".format(
+            namacat.split("<###splitter###>")[x])] = "{}".format(
+                isicat.split("<###splitter###>")[x])
     # Rules
     rules = rulessql.get_rules(chat_id)
     # Blacklist
@@ -283,20 +286,20 @@ def export_data(update, context):
     if curr_restr:
         locked_restr = {
             "messages":
-                curr_restr.messages,
+            curr_restr.messages,
             "media":
-                curr_restr.media,
+            curr_restr.media,
             "other":
-                curr_restr.other,
+            curr_restr.other,
             "previews":
-                curr_restr.preview,
+            curr_restr.preview,
             "all":
-                all([
-                    curr_restr.messages,
-                    curr_restr.media,
-                    curr_restr.other,
-                    curr_restr.preview,
-                ]),
+            all([
+                curr_restr.messages,
+                curr_restr.media,
+                curr_restr.other,
+                curr_restr.preview,
+            ]),
         }
     else:
         locked_restr = {}
@@ -334,14 +337,17 @@ def export_data(update, context):
         pass
     context.bot.sendDocument(
         current_chat_id,
-        document=open("{}{}.backup".format(dispatcher.bot.first_name, chat_id), "rb"),
-        caption="*Successfully Exported backup:*\nChat: `{}`\nChat ID: `{}`\nOn: `{}`\n\nNote: This `{}-Backup` was specially made for notes."
+        document=open("{}{}.backup".format(dispatcher.bot.first_name, chat_id),
+                      "rb"),
+        caption=
+        "*Successfully Exported backup:*\nChat: `{}`\nChat ID: `{}`\nOn: `{}`\n\nNote: This `{}-Backup` was specially made for notes."
         .format(chat.title, chat_id, tgl, dispatcher.bot.first_name),
         timeout=360,
         reply_to_message_id=msg.message_id,
         parse_mode=ParseMode.MARKDOWN,
     )
-    os.remove("{}{}.backup".format(dispatcher.bot.first_name, chat_id))  # Cleaning file
+    os.remove("{}{}.backup".format(dispatcher.bot.first_name,
+                                   chat_id))  # Cleaning file
 
 
 # Temporary data

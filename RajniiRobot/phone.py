@@ -1,5 +1,3 @@
-
-
 import json
 
 import requests
@@ -14,17 +12,15 @@ async def is_register_admin(chat, user):
     if isinstance(chat, (types.InputPeerChannel, types.InputChannel)):
 
         return isinstance(
-            (
-                await client(functions.channels.GetParticipantRequest(chat, user))
-            ).participant,
+            (await client(functions.channels.GetParticipantRequest(chat, user)
+                          )).participant,
             (types.ChannelParticipantAdmin, types.ChannelParticipantCreator),
         )
     if isinstance(chat, types.InputPeerChat):
 
         ui = await client.get_peer_id(user)
-        ps = (
-            await client(functions.messages.GetFullChatRequest(chat.chat_id))
-        ).full_chat.participants.participants
+        ps = (await client(functions.messages.GetFullChatRequest(chat.chat_id)
+                           )).full_chat.participants.participants
         return isinstance(
             next((p for p in ps if p.user_id == ui), None),
             (types.ChatParticipantAdmin, types.ChatParticipantCreator),
@@ -34,22 +30,15 @@ async def is_register_admin(chat, user):
 
 @register(pattern=r"^/phone (.*)")
 async def phone(event):
-    if (
-        event.is_group
-        and not await is_register_admin(event.input_chat, event.message.sender_id)
-    ):
+    if (event.is_group and not await is_register_admin(
+            event.input_chat, event.message.sender_id)):
         await event.reply("☎️ You are not admin 🚶‍♀️")
         return
     information = event.pattern_match.group(1)
     number = information
     key = "MhX7qm3V9fwVWM3gxkGH6O1ZF13kQe4k"
-    api = (
-        "http://apilayer.net/api/validate?access_key="
-        + key
-        + "&number="
-        + number
-        + "&country_code=&format=1"
-    )
+    api = ("http://apilayer.net/api/validate?access_key=" + key + "&number=" +
+           number + "&country_code=&format=1")
     output = requests.get(api)
     content = output.text
     obj = json.loads(content)

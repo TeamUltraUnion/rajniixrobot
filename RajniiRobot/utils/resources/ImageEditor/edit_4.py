@@ -9,6 +9,7 @@ from PIL import Image, ImageDraw, ImageOps
 
 from RajniiRobot import REM_BG_API_KEY
 
+
 async def rotate_90(client, message):
     try:
         userid = str(message.chat.id)
@@ -18,17 +19,16 @@ async def rotate_90(client, message):
         edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "rotate_90.jpg"
         if not message.reply_to_message.empty:
             msg = await message.reply_to_message.reply_text(
-                "Downloading image", quote=True
-            )
-            a = await client.download_media(
-                message=message.reply_to_message, file_name=download_location
-            )
+                "Downloading image", quote=True)
+            a = await client.download_media(message=message.reply_to_message,
+                                            file_name=download_location)
             await msg.edit("Processing Image...")
             src = cv2.imread(a)
             image = cv2.rotate(src, cv2.cv2.ROTATE_90_CLOCKWISE)
             cv2.imwrite(edit_img_loc, image)
             await message.reply_chat_action("upload_photo")
-            await message.reply_to_message.reply_photo(edit_img_loc, quote=True)
+            await message.reply_to_message.reply_photo(edit_img_loc,
+                                                       quote=True)
             await msg.delete()
         else:
             await message.reply_text("Why did you delete that??")
@@ -41,9 +41,8 @@ async def rotate_90(client, message):
         if "USER_IS_BLOCKED" in str(e):
             return
         try:
-            await message.reply_to_message.reply_text(
-                "Something went wrong!", quote=True
-            )
+            await message.reply_to_message.reply_text("Something went wrong!",
+                                                      quote=True)
         except Exception:
             return
 
@@ -57,17 +56,16 @@ async def rotate_180(client, message):
         edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "rotate_180.jpg"
         if not message.reply_to_message.empty:
             msg = await message.reply_to_message.reply_text(
-                "Downloading image", quote=True
-            )
-            a = await client.download_media(
-                message=message.reply_to_message, file_name=download_location
-            )
+                "Downloading image", quote=True)
+            a = await client.download_media(message=message.reply_to_message,
+                                            file_name=download_location)
             await msg.edit("Processing Image...")
             src = cv2.imread(a)
             image = cv2.rotate(src, cv2.ROTATE_180)
             cv2.imwrite(edit_img_loc, image)
             await message.reply_chat_action("upload_photo")
-            await message.reply_to_message.reply_photo(edit_img_loc, quote=True)
+            await message.reply_to_message.reply_photo(edit_img_loc,
+                                                       quote=True)
             await msg.delete()
         else:
             await message.reply_text("Why did you delete that??")
@@ -80,9 +78,8 @@ async def rotate_180(client, message):
         if "USER_IS_BLOCKED" in str(e):
             return
         try:
-            await message.reply_to_message.reply_text(
-                "Something went wrong!", quote=True
-            )
+            await message.reply_to_message.reply_text("Something went wrong!",
+                                                      quote=True)
         except Exception:
             return
 
@@ -96,17 +93,16 @@ async def rotate_270(client, message):
         edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "rotate_270.jpg"
         if not message.reply_to_message.empty:
             msg = await message.reply_to_message.reply_text(
-                "Downloading image", quote=True
-            )
-            a = await client.download_media(
-                message=message.reply_to_message, file_name=download_location
-            )
+                "Downloading image", quote=True)
+            a = await client.download_media(message=message.reply_to_message,
+                                            file_name=download_location)
             await msg.edit("Processing Image...")
             src = cv2.imread(a)
             image = cv2.rotate(src, cv2.ROTATE_90_COUNTERCLOCKWISE)
             cv2.imwrite(edit_img_loc, image)
             await message.reply_chat_action("upload_photo")
-            await message.reply_to_message.reply_photo(edit_img_loc, quote=True)
+            await message.reply_to_message.reply_photo(edit_img_loc,
+                                                       quote=True)
             await msg.delete()
         else:
             await message.reply_text("Why did you delete that??")
@@ -119,9 +115,8 @@ async def rotate_270(client, message):
         if "USER_IS_BLOCKED" in str(e):
             return
         try:
-            await message.reply_to_message.reply_text(
-                "Something went wrong!", quote=True
-            )
+            await message.reply_to_message.reply_text("Something went wrong!",
+                                                      quote=True)
         except Exception:
             return
 
@@ -147,11 +142,9 @@ async def round_sticker(client, message):
         edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "rounded.webp"
         if not message.reply_to_message.empty:
             msg = await message.reply_to_message.reply_text(
-                "Downloading image", quote=True
-            )
-            a = await client.download_media(
-                message=message.reply_to_message, file_name=download_location
-            )
+                "Downloading image", quote=True)
+            a = await client.download_media(message=message.reply_to_message,
+                                            file_name=download_location)
             await msg.edit("Processing Image...")
             resized = resize_photo(a, userid)
             img = Image.open(resized).convert("RGB")
@@ -164,7 +157,8 @@ async def round_sticker(client, message):
             npImage = np.dstack((npImage, npAlpha))
             Image.fromarray(npImage).save(edit_img_loc)
             await message.reply_chat_action("upload_photo")
-            await message.reply_to_message.reply_sticker(edit_img_loc, quote=True)
+            await message.reply_to_message.reply_sticker(edit_img_loc,
+                                                         quote=True)
             await msg.delete()
         else:
             await message.reply_text("Why did you delete that??")
@@ -177,9 +171,8 @@ async def round_sticker(client, message):
         if "USER_IS_BLOCKED" in str(e):
             return
         try:
-            await message.reply_to_message.reply_text(
-                "Something went wrong!", quote=True
-            )
+            await message.reply_to_message.reply_text("Something went wrong!",
+                                                      quote=True)
         except Exception:
             return
 
@@ -193,17 +186,16 @@ async def inverted(client, message):
         edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "inverted.png"
         if not message.reply_to_message.empty:
             msg = await message.reply_to_message.reply_text(
-                "Downloading image", quote=True
-            )
-            a = await client.download_media(
-                message=message.reply_to_message, file_name=download_location
-            )
+                "Downloading image", quote=True)
+            a = await client.download_media(message=message.reply_to_message,
+                                            file_name=download_location)
             await msg.edit("Processing Image...")
             image = Image.open(a)
             inverted_image = ImageOps.invert(image)
             inverted_image.save(edit_img_loc)
             await message.reply_chat_action("upload_photo")
-            await message.reply_to_message.reply_photo(edit_img_loc, quote=True)
+            await message.reply_to_message.reply_photo(edit_img_loc,
+                                                       quote=True)
             await msg.delete()
         else:
             await message.reply_text("Why did you delete that??")
@@ -216,9 +208,8 @@ async def inverted(client, message):
         if "USER_IS_BLOCKED" in str(e):
             return
         try:
-            await message.reply_to_message.reply_text(
-                "Something went wrong!", quote=True
-            )
+            await message.reply_to_message.reply_text("Something went wrong!",
+                                                      quote=True)
         except Exception:
             return
 
@@ -233,11 +224,9 @@ async def removebg_plain(client, message):
             edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "nobgplain.png"
             if not message.reply_to_message.empty:
                 msg = await message.reply_to_message.reply_text(
-                    "Downloading image", quote=True
-                )
-                await client.download_media(
-                    message=message.reply_to_message, file_name=download_location
-                )
+                    "Downloading image", quote=True)
+                await client.download_media(message=message.reply_to_message,
+                                            file_name=download_location)
                 await msg.edit("Processing Image...")
 
                 response = requests.post(
@@ -251,12 +240,12 @@ async def removebg_plain(client, message):
                         out.write(response.content)
                 else:
                     await message.reply_to_message.reply_text(
-                        "Check if your api is correct", quote=True
-                    )
+                        "Check if your api is correct", quote=True)
                     return
 
                 await message.reply_chat_action("upload_document")
-                await message.reply_to_message.reply_document(edit_img_loc, quote=True)
+                await message.reply_to_message.reply_document(edit_img_loc,
+                                                              quote=True)
                 await msg.delete()
             else:
                 await message.reply_text("Why did you delete that??")
@@ -275,9 +264,8 @@ async def removebg_plain(client, message):
         if "USER_IS_BLOCKED" in str(e):
             return
         try:
-            await message.reply_to_message.reply_text(
-                "Something went wrong!", quote=True
-            )
+            await message.reply_to_message.reply_text("Something went wrong!",
+                                                      quote=True)
         except Exception:
             return
 
@@ -292,11 +280,9 @@ async def removebg_white(client, message):
             edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "nobgwhite.png"
             if not message.reply_to_message.empty:
                 msg = await message.reply_to_message.reply_text(
-                    "Downloading image", quote=True
-                )
-                await client.download_media(
-                    message=message.reply_to_message, file_name=download_location
-                )
+                    "Downloading image", quote=True)
+                await client.download_media(message=message.reply_to_message,
+                                            file_name=download_location)
                 await msg.edit("Processing Image...")
 
                 response = requests.post(
@@ -310,12 +296,12 @@ async def removebg_white(client, message):
                         out.write(response.content)
                 else:
                     await message.reply_to_message.reply_text(
-                        "Check if your api is correct", quote=True
-                    )
+                        "Check if your api is correct", quote=True)
                     return
 
                 await message.reply_chat_action("upload_photo")
-                await message.reply_to_message.reply_photo(edit_img_loc, quote=True)
+                await message.reply_to_message.reply_photo(edit_img_loc,
+                                                           quote=True)
                 await msg.delete()
             else:
                 await message.reply_text("Why did you delete that??")
@@ -334,9 +320,8 @@ async def removebg_white(client, message):
         if "USER_IS_BLOCKED" in str(e):
             return
         try:
-            await message.reply_to_message.reply_text(
-                "Something went wrong!", quote=True
-            )
+            await message.reply_to_message.reply_text("Something went wrong!",
+                                                      quote=True)
         except Exception:
             return
 
@@ -351,11 +336,9 @@ async def removebg_sticker(client, message):
             edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "nobgsticker.webp"
             if not message.reply_to_message.empty:
                 msg = await message.reply_to_message.reply_text(
-                    "Downloading image", quote=True
-                )
-                await client.download_media(
-                    message=message.reply_to_message, file_name=download_location
-                )
+                    "Downloading image", quote=True)
+                await client.download_media(message=message.reply_to_message,
+                                            file_name=download_location)
                 await msg.edit("Processing Image...")
 
                 response = requests.post(
@@ -369,12 +352,12 @@ async def removebg_sticker(client, message):
                         out.write(response.content)
                 else:
                     await message.reply_to_message.reply_text(
-                        "Check if your api is correct", quote=True
-                    )
+                        "Check if your api is correct", quote=True)
                     return
 
                 await message.reply_chat_action("upload_photo")
-                await message.reply_to_message.reply_sticker(edit_img_loc, quote=True)
+                await message.reply_to_message.reply_sticker(edit_img_loc,
+                                                             quote=True)
                 await msg.delete()
             else:
                 await message.reply_text("Why did you delete that??")
@@ -393,8 +376,7 @@ async def removebg_sticker(client, message):
         if "USER_IS_BLOCKED" in str(e):
             return
         try:
-            await message.reply_to_message.reply_text(
-                "Something went wrong!", quote=True
-            )
+            await message.reply_to_message.reply_text("Something went wrong!",
+                                                      quote=True)
         except Exception:
             return

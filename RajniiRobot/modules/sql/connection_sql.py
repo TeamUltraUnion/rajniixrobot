@@ -44,8 +44,8 @@ class ConnectionHistory(BASE):
         self.conn_time = int(conn_time)
 
     def __repr__(self):
-        return "<connection user {} history {}>".format(self.user_id,
-                                                        self.chat_id)
+        return "<connection user {} history {}>".format(
+            self.user_id, self.chat_id)
 
 
 ChatAccessConnectionSettings.__table__.create(checkfirst=True)
@@ -123,9 +123,8 @@ def add_history_conn(user_id, chat_id, chat_name):
     with CONNECTION_HISTORY_LOCK:
         conn_time = int(time.time())
         if HISTORY_CONNECT.get(int(user_id)):
-            counting = (
-                SESSION.query(ConnectionHistory.user_id).filter(
-                    ConnectionHistory.user_id == str(user_id)).count())
+            counting = (SESSION.query(ConnectionHistory.user_id).filter(
+                ConnectionHistory.user_id == str(user_id)).count())
             getchat_id = {}
             for x in HISTORY_CONNECT[int(user_id)]:
                 getchat_id[HISTORY_CONNECT[int(user_id)][x]["chat_id"]] = x
@@ -153,8 +152,8 @@ def add_history_conn(user_id, chat_id, chat_name):
             (int(user_id), str(chat_id)))
         if delold:
             SESSION.delete(delold)
-        history = ConnectionHistory(
-            int(user_id), str(chat_id), chat_name, conn_time)
+        history = ConnectionHistory(int(user_id), str(chat_id), chat_name,
+                                    conn_time)
         SESSION.add(history)
         SESSION.commit()
         HISTORY_CONNECT[int(user_id)][conn_time] = {

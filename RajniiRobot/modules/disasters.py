@@ -13,8 +13,7 @@ from telegram import ParseMode, TelegramError, Update
 from telegram.ext import CallbackContext, CommandHandler, run_async
 from telegram.utils.helpers import mention_html
 
-ELEVATED_USERS_FILE = os.path.join(os.getcwd(),
-                                   'RajniiRobot/disasters.json')
+ELEVATED_USERS_FILE = os.path.join(os.getcwd(), 'RajniiRobot/disasters.json')
 
 
 def check_user_id(user_id: int, context: CallbackContext) -> Optional[str]:
@@ -198,7 +197,8 @@ def addwhitelist(update: Update, context: CallbackContext) -> str:
 
     update.effective_message.reply_text(
         rt +
-        f"\nSuccessfully promoted {user_member.first_name} to a Wolf Disaster!")
+        f"\nSuccessfully promoted {user_member.first_name} to a Wolf Disaster!"
+    )
 
     log_message = (
         f"#WOLF\n"
@@ -622,14 +622,12 @@ Group admins/group owners do not need these commands.
 Visit @{SUPPORT_CHAT} for more information.
 """
 
-
 SUDO_HANDLER = CommandHandler(("addsudo", "adddragon"), addsudo)
 SUPPORT_HANDLER = CommandHandler(("addsupport", "adddemon"), addsupport)
 TIGER_HANDLER = CommandHandler(("addtiger"), addtiger)
 WHITELIST_HANDLER = CommandHandler(("addwhitelist", "addwolf"), addwhitelist)
 UNSUDO_HANDLER = CommandHandler(("rmsudo", "rmdragon"), removesudo)
-UNSUPPORT_HANDLER = CommandHandler(("rmsupport", "rmdemon"),
-                                   removesupport)
+UNSUPPORT_HANDLER = CommandHandler(("rmsupport", "rmdemon"), removesupport)
 UNTIGER_HANDLER = CommandHandler(("rmtiger"), removetiger)
 UNWHITELIST_HANDLER = CommandHandler(("rmwhitelist", "rmwolf"),
                                      removewhitelist)

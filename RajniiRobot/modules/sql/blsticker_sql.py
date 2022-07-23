@@ -4,6 +4,7 @@ from RajniiRobot.modules.sql import BASE, SESSION
 from sqlalchemy import Column, Integer, String, UnicodeText, distinct, func
 from sqlalchemy import BIGINT
 
+
 class StickersFilters(BASE):
     __tablename__ = "blacklist_stickers"
     chat_id = Column(String(14), primary_key=True)
@@ -18,8 +19,9 @@ class StickersFilters(BASE):
 
     def __eq__(self, other):
         return bool(
-            isinstance(other, StickersFilters) and
-            self.chat_id == other.chat_id and self.trigger == other.trigger)
+            isinstance(other, StickersFilters)
+            and self.chat_id == other.chat_id
+            and self.trigger == other.trigger)
 
 
 class StickerSettings(BASE):
@@ -117,8 +119,9 @@ def set_blacklist_strength(chat_id, blacklist_type, value):
     with STICKSET_FILTER_INSERTION_LOCK:
         curr_setting = SESSION.query(StickerSettings).get(str(chat_id))
         if not curr_setting:
-            curr_setting = StickerSettings(
-                chat_id, blacklist_type=int(blacklist_type), value=value)
+            curr_setting = StickerSettings(chat_id,
+                                           blacklist_type=int(blacklist_type),
+                                           value=value)
 
         curr_setting.blacklist_type = int(blacklist_type)
         curr_setting.value = str(value)
@@ -147,7 +150,7 @@ def __load_CHAT_STICKERS():
     global CHAT_STICKERS
     try:
         chats = SESSION.query(StickersFilters.chat_id).distinct().all()
-        for (chat_id,) in chats:  # remove tuple by ( ,)
+        for (chat_id, ) in chats:  # remove tuple by ( ,)
             CHAT_STICKERS[chat_id] = []
 
         all_filters = SESSION.query(StickersFilters).all()

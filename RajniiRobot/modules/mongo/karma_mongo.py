@@ -1,7 +1,6 @@
 from RajniiRobot import db
 from typing import Dict, List, Union
 
-
 karmadb = db.karma
 karmaonoffdb = db.karmaonoff
 
@@ -27,9 +26,7 @@ async def user_global_karma(user_id) -> int:
         return 0
     total_karma = 0
     for chat in await chats.to_list(length=1000000):
-        karma = await get_karma(
-            chat["chat_id"], await int_to_alpha(user_id)
-        )
+        karma = await get_karma(chat["chat_id"], await int_to_alpha(user_id))
         if karma and int(karma['karma']) > 0:
             total_karma += int(karma['karma'])
     return total_karma
@@ -53,9 +50,10 @@ async def update_karma(chat_id: int, name: str, karma: dict):
     name = name.lower().strip()
     karmas = await get_karmas(chat_id)
     karmas[name] = karma
-    await karmadb.update_one(
-        {"chat_id": chat_id}, {"$set": {"karma": karmas}}, upsert=True
-    )
+    await karmadb.update_one({"chat_id": chat_id}, {"$set": {
+        "karma": karmas
+    }},
+                             upsert=True)
 
 
 async def is_karma_on(chat_id: int) -> bool:
@@ -77,6 +75,7 @@ async def karma_off(chat_id: int):
     if not is_karma:
         return
     return await karmaonoffdb.insert_one({"chat_id_toggle": chat_id})
+
 
 async def int_to_alpha(user_id: int) -> str:
     alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]

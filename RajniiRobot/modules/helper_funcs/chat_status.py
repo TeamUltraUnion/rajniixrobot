@@ -3,43 +3,57 @@ import requests
 from functools import wraps
 from cachetools import TTLCache
 from threading import RLock
-from RajniiRobot import (DEL_CMDS, DEV_USERS, DRAGONS, SUPPORT_CHAT, DEMONS, TOKEN,
-                          TIGERS, WOLVES, dispatcher)
+from RajniiRobot import (DEL_CMDS, DEV_USERS, DRAGONS, SUPPORT_CHAT, DEMONS,
+                         TOKEN, TIGERS, WOLVES, dispatcher)
 
 from telegram import Chat, ChatMember, ParseMode, Update, User
 from telegram.ext import CallbackContext
 
 # stores admemes in memory for 10 min.
 ADMIN_CACHE = TTLCache(maxsize=512, ttl=60 * 10, timer=perf_counter)
-B_CACHE = TTLCache(maxsize = 512, ttl = (60 * 10), timer=perf_counter)
+B_CACHE = TTLCache(maxsize=512, ttl=(60 * 10), timer=perf_counter)
 THREAD_LOCK = RLock()
 
 
-def is_whitelist_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
-    return any(user_id in user for user in [WOLVES, TIGERS, DEMONS, DRAGONS, DEV_USERS])
+def is_whitelist_plus(chat: Chat,
+                      user_id: int,
+                      member: ChatMember = None) -> bool:
+    return any(user_id in user
+               for user in [WOLVES, TIGERS, DEMONS, DRAGONS, DEV_USERS])
 
 
-def is_support_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
+def is_support_plus(chat: Chat,
+                    user_id: int,
+                    member: ChatMember = None) -> bool:
     return user_id in DEMONS or user_id in DRAGONS or user_id in DEV_USERS
 
 
 def is_sudo_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
     return user_id in DRAGONS or user_id in DEV_USERS
 
+
 def is_stats_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
     return user_id in DEV_USERS
+
 
 def user_can_changeinfo(chat: Chat, user: User, bot_id: int) -> bool:
     return chat.get_member(user.id).can_change_info
 
+
 def user_can_promote(chat: Chat, user: User, bot_id: int) -> bool:
     return chat.get_member(user.id).can
 
-def is_whitelist_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
-    return any(user_id in user for user in [WOLVES, TIGERS, DEMONS, DRAGONS, DEV_USERS])
+
+def is_whitelist_plus(chat: Chat,
+                      user_id: int,
+                      member: ChatMember = None) -> bool:
+    return any(user_id in user
+               for user in [WOLVES, TIGERS, DEMONS, DRAGONS, DEV_USERS])
 
 
-def is_support_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
+def is_support_plus(chat: Chat,
+                    user_id: int,
+                    member: ChatMember = None) -> bool:
     return user_id in DEMONS or user_id in DRAGONS or user_id in DEV_USERS
 
 
@@ -48,10 +62,10 @@ def user_can_pin(chat: Chat, user: User, bot_id: int) -> bool:
 
 
 def is_user_admin(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
-    if (chat.type == 'private' or user_id in DRAGONS or user_id in DEV_USERS or
-            chat.all_members_are_administrators or
-            user_id in [777000, 1087968824
-                       ]):  # Count telegram and Group Anonymous as admin
+    if (chat.type == 'private' or user_id in DRAGONS or user_id in DEV_USERS
+            or chat.all_members_are_administrators
+            or user_id in [777000, 1087968824
+                           ]):  # Count telegram and Group Anonymous as admin
         return True
 
     if not member:
@@ -83,22 +97,27 @@ def is_bot_admin(chat: Chat,
 
     return bot_member.status in ('administrator', 'creator')
 
+
 def get_bot_member(chat_id: int) -> ChatMember:
-	try:
-		return B_CACHE[chat_id]
-	except KeyError:
-		mem = dispatcher.bot.getChatMember(chat_id, dispatcher.bot.id)
-		B_CACHE[chat_id] = mem
-		return 
+    try:
+        return B_CACHE[chat_id]
+    except KeyError:
+        mem = dispatcher.bot.getChatMember(chat_id, dispatcher.bot.id)
+        B_CACHE[chat_id] = mem
+        return
+
 
 def can_manage_voice_chats(chat_id, user_id):
-	result = requests.post(f"https://api.telegram.org/bot{TOKEN}/getChatMember?chat_id={chat_id}&user_id={user_id}")
-	status = result.json()["ok"]
+    result = requests.post(
+        f"https://api.telegram.org/bot{TOKEN}/getChatMember?chat_id={chat_id}&user_id={user_id}"
+    )
+    status = result.json()["ok"]
 
-	if status is True:
-		data = result.json()["result"]["can_manage_voice_chats"]
-		return data
-	return False
+    if status is True:
+        data = result.json()["result"]["can_manage_voice_chats"]
+        return data
+    return False
+
 
 def can_delete(chat: Chat, bot_id: int) -> bool:
     return chat.get_member(bot_id).can_delete_messages
@@ -107,11 +126,11 @@ def can_delete(chat: Chat, bot_id: int) -> bool:
 def is_user_ban_protected(chat: Chat,
                           user_id: int,
                           member: ChatMember = None) -> bool:
-    if (chat.type == 'private' or user_id in DRAGONS or user_id in DEV_USERS or
-            user_id in WOLVES or user_id in TIGERS or
-            chat.all_members_are_administrators or
-            user_id in [777000, 1087968824
-                       ]):  # Count telegram and Group Anonymous as admin
+    if (chat.type == 'private' or user_id in DRAGONS or user_id in DEV_USERS
+            or user_id in WOLVES or user_id in TIGERS
+            or chat.all_members_are_administrators
+            or user_id in [777000, 1087968824
+                           ]):  # Count telegram and Group Anonymous as admin
         return True
 
     if not member:
@@ -262,7 +281,8 @@ def user_admin_no_reply(func):
 def user_not_admin(func):
 
     @wraps(func)
-    def is_not_admin(update: Update, context: CallbackContext, *args, **kwargs):
+    def is_not_admin(update: Update, context: CallbackContext, *args,
+                     **kwargs):
         bot = context.bot
         user = update.effective_user
         chat = update.effective_chat
@@ -292,8 +312,8 @@ def bot_admin(func):
         if is_bot_admin(chat, bot.id):
             return func(update, context, *args, **kwargs)
         else:
-            update.effective_message.reply_text(
-                not_admin, parse_mode=ParseMode.HTML)
+            update.effective_message.reply_text(not_admin,
+                                                parse_mode=ParseMode.HTML)
 
     return is_admin
 
@@ -316,8 +336,8 @@ def bot_can_delete(func):
         if can_delete(chat, bot.id):
             return func(update, context, *args, **kwargs)
         else:
-            update.effective_message.reply_text(
-                cant_delete, parse_mode=ParseMode.HTML)
+            update.effective_message.reply_text(cant_delete,
+                                                parse_mode=ParseMode.HTML)
 
     return delete_rights
 
@@ -339,8 +359,8 @@ def can_pin(func):
         if chat.get_member(bot.id).can_pin_messages:
             return func(update, context, *args, **kwargs)
         else:
-            update.effective_message.reply_text(
-                cant_pin, parse_mode=ParseMode.HTML)
+            update.effective_message.reply_text(cant_pin,
+                                                parse_mode=ParseMode.HTML)
 
     return pin_rights
 
@@ -365,8 +385,8 @@ def can_promote(func):
         if chat.get_member(bot.id).can_promote_members:
             return func(update, context, *args, **kwargs)
         else:
-            update.effective_message.reply_text(
-                cant_promote, parse_mode=ParseMode.HTML)
+            update.effective_message.reply_text(cant_promote,
+                                                parse_mode=ParseMode.HTML)
 
     return promote_rights
 
@@ -389,8 +409,8 @@ def can_restrict(func):
         if chat.get_member(bot.id).can_restrict_members:
             return func(update, context, *args, **kwargs)
         else:
-            update.effective_message.reply_text(
-                cant_restrict, parse_mode=ParseMode.HTML)
+            update.effective_message.reply_text(cant_restrict,
+                                                parse_mode=ParseMode.HTML)
 
     return restrict_rights
 
@@ -404,7 +424,7 @@ def user_can_ban(func):
         user = update.effective_user.id
         member = update.effective_chat.get_member(user)
         if not (member.can_restrict_members or member.status == "creator"
-               ) and not user in DRAGONS and user not in [777000, 1087968824]:
+                ) and not user in DRAGONS and user not in [777000, 1087968824]:
             update.effective_message.reply_text(
                 "Sorry son, but you're not worthy to wield the banhammer.")
             return ""
@@ -418,12 +438,11 @@ def connection_status(func):
     @wraps(func)
     def connected_status(update: Update, context: CallbackContext, *args,
                          **kwargs):
-        conn = connected(
-            context.bot,
-            update,
-            update.effective_chat,
-            update.effective_user.id,
-            need_admin=False)
+        conn = connected(context.bot,
+                         update,
+                         update.effective_chat,
+                         update.effective_user.id,
+                         need_admin=False)
 
         if conn:
             chat = dispatcher.bot.getChat(conn)
@@ -440,8 +459,10 @@ def connection_status(func):
 
     return connected_status
 
+
 def can_change_info(chat: Chat, user: User, bot_id: int) -> bool:
     return chat.get_member(user.id).can_change_info
+
 
 # Workaround for circular import with connection.py
 from RajniiRobot.modules import connection

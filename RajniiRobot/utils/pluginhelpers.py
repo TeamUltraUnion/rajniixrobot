@@ -36,6 +36,7 @@ def get_user(message: Message, text: str) -> [int, str, None]:
             reason_ = asplit[1]
     return user_s, reason_
 
+
 async def is_admin(event, user):
     try:
         sed = await event.client.get_permissions(event.chat_id, user)
@@ -43,6 +44,7 @@ async def is_admin(event, user):
     except:
         is_mod = False
     return is_mod
+
 
 def get_readable_time(seconds: int) -> int:
     count = 0
@@ -77,13 +79,11 @@ def time_formatter(milliseconds: int) -> str:
     minutes, seconds = divmod(seconds, 60)
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
-    tmp = (
-        ((str(days) + " day(s), ") if days else "")
-        + ((str(hours) + " hour(s), ") if hours else "")
-        + ((str(minutes) + " minute(s), ") if minutes else "")
-        + ((str(seconds) + " second(s), ") if seconds else "")
-        + ((str(milliseconds) + " millisecond(s), ") if milliseconds else "")
-    )
+    tmp = (((str(days) + " day(s), ") if days else "") +
+           ((str(hours) + " hour(s), ") if hours else "") +
+           ((str(minutes) + " minute(s), ") if minutes else "") +
+           ((str(seconds) + " second(s), ") if seconds else "") +
+           ((str(milliseconds) + " millisecond(s), ") if milliseconds else ""))
     return tmp[:-2]
 
 
@@ -96,7 +96,7 @@ async def delete_or_pass(message):
 def humanbytes(size):
     if not size:
         return ""
-    power = 2 ** 10
+    power = 2**10
     raised_to_pow = 0
     dict_power_n = {0: "", 1: "Ki", 2: "Mi", 3: "Gi", 4: "Ti"}
     while size > power:
@@ -122,13 +122,12 @@ async def progress(current, total, message, start, type_of_ps, file_name=None):
             round(percentage, 2),
         )
         tmp = progress_str + "{0} of {1}\nETA: {2}".format(
-            humanbytes(current), humanbytes(total), time_formatter(estimated_total_time)
-        )
+            humanbytes(current), humanbytes(total),
+            time_formatter(estimated_total_time))
         if file_name:
             try:
-                await message.edit(
-                    "{}\n**File Name:** `{}`\n{}".format(type_of_ps, file_name, tmp)
-                )
+                await message.edit("{}\n**File Name:** `{}`\n{}".format(
+                    type_of_ps, file_name, tmp))
             except FloodWait as e:
                 await asyncio.sleep(e.x)
             except MessageNotModified:
@@ -190,9 +189,9 @@ async def edit_or_reply(message, text, parse_mode="md"):
     if message.from_user.id:
         if message.reply_to_message:
             kk = message.reply_to_message.message_id
-            return await message.reply_text(
-                text, reply_to_message_id=kk, parse_mode=parse_mode
-            )
+            return await message.reply_text(text,
+                                            reply_to_message_id=kk,
+                                            parse_mode=parse_mode)
         return await message.reply_text(text, parse_mode=parse_mode)
     return await message.edit(text, parse_mode=parse_mode)
 
@@ -201,8 +200,7 @@ async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
     """run command in terminal"""
     args = shlex.split(cmd)
     process = await asyncio.create_subprocess_exec(
-        *args, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
-    )
+        *args, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
     stdout, stderr = await process.communicate()
     return (
         stdout.decode("utf-8", "replace").strip(),
@@ -215,13 +213,10 @@ async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
 async def convert_to_image(message, client) -> [None, str]:
     """Convert Most Media Formats To Raw Image"""
     final_path = None
-    if not (
-        message.reply_to_message.photo
-        or message.reply_to_message.sticker
-        or message.reply_to_message.media
-        or message.reply_to_message.animation
-        or message.reply_to_message.audio
-    ):
+    if not (message.reply_to_message.photo or message.reply_to_message.sticker
+            or message.reply_to_message.media
+            or message.reply_to_message.animation
+            or message.reply_to_message.audio):
         return None
     if message.reply_to_message.photo:
         final_path = await message.reply_to_message.download()
@@ -244,7 +239,8 @@ async def convert_to_image(message, client) -> [None, str]:
     elif message.reply_to_message.video or message.reply_to_message.animation:
         final_path = "fetched_thumb.png"
         vid_path = await client.download_media(message.reply_to_message)
-        await runcmd(f"ffmpeg -i {vid_path} -filter:v scale=500:500 -an {final_path}")
+        await runcmd(
+            f"ffmpeg -i {vid_path} -filter:v scale=500:500 -an {final_path}")
     return final_path
 
 
@@ -291,12 +287,16 @@ async def get_administrators(chat: Chat) -> List[User]:
         return _get
     set(
         chat.id,
-        [member.user for member in await chat.get_member(filter="administrators")],
+        [
+            member.user
+            for member in await chat.get_member(filter="administrators")
+        ],
     )
     return await get_administrators(chat)
 
 
 def admins_only(func: Callable) -> Coroutine:
+
     async def wrapper(client: Client, message: Message):
         if message.from_user.id == OWNER_ID:
             return await func(client, message)
@@ -310,6 +310,7 @@ def admins_only(func: Callable) -> Coroutine:
 
 # @Mr_Dark_Prince
 def capture_err(func):
+
     @wraps(func)
     async def capture(client, message, *args, **kwargs):
         try:
@@ -327,8 +328,7 @@ def capture_err(func):
                     0 if not message.chat else message.chat.id,
                     message.text or message.caption,
                     "".join(errors),
-                ),
-            )
+                ), )
             for x in error_feedback:
                 await pgram.send_message(SUPPORT_CHAT, x)
             raise err
@@ -414,10 +414,10 @@ def get_url(message_1: Message) -> Union[str, None]:
                     offset, length = entity.offset, entity.length
                     break
 
-    if offset in (None,):
+    if offset in (None, ):
         return None
 
-    return text[offset : offset + length]
+    return text[offset:offset + length]
 
 
 async def fetch(url):

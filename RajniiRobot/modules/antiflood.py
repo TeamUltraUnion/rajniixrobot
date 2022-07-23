@@ -5,9 +5,9 @@ from telegram import Message, Chat, Update, User, ChatPermissions
 
 from RajniiRobot import TIGERS, WOLVES, dispatcher
 from RajniiRobot.modules.helper_funcs.chat_status import (bot_admin,
-                                                           is_user_admin,
-                                                           user_admin,
-                                                           user_admin_no_reply)
+                                                          is_user_admin,
+                                                          user_admin,
+                                                          user_admin_no_reply)
 from RajniiRobot.modules.log_channel import loggable
 from RajniiRobot.modules.sql import antiflood_sql as sql
 from telegram.error import BadRequest
@@ -16,6 +16,7 @@ from telegram.utils.helpers import mention_html, escape_markdown
 from RajniiRobot.modules.helper_funcs.string_handling import extract_time
 from RajniiRobot.modules.connection import connected
 from RajniiRobot.modules.helper_funcs.alternate import send_message
+
 FLOOD_GROUP = 3
 
 
@@ -29,7 +30,8 @@ def check_flood(update, context) -> str:
         return ""
 
     # ignore admins and whitelists
-    if (is_user_admin(chat, user.id) or user.id in WOLVES or user.id in TIGERS):
+    if (is_user_admin(chat, user.id) or user.id in WOLVES
+            or user.id in TIGERS):
         sql.update_flood(chat.id, None)
         return ""
 
@@ -100,14 +102,13 @@ def flood_button(update: Update, context: CallbackContext):
         user_id = match.group(1)
         chat = update.effective_chat.id
         try:
-            bot.restrict_chat_member(
-                chat,
-                int(user_id),
-                permissions=ChatPermissions(
-                    can_send_messages=True,
-                    can_send_media_messages=True,
-                    can_send_other_messages=True,
-                    can_add_web_page_previews=True))
+            bot.restrict_chat_member(chat,
+                                     int(user_id),
+                                     permissions=ChatPermissions(
+                                         can_send_messages=True,
+                                         can_send_media_messages=True,
+                                         can_send_other_messages=True,
+                                         can_add_web_page_previews=True))
             update.effective_message.edit_text(
                 f"Unmuted by {mention_html(user.id, html.escape(user.first_name))}.",
                 parse_mode="HTML")
@@ -267,8 +268,9 @@ def set_flood_mode(update, context):
                 teks = """It looks like you tried to set time value for antiflood but you didn't specified time; Try, `/setfloodmode tban <timevalue>`.
 
 Examples of time value: 4m = 4 minutes, 3h = 3 hours, 6d = 6 days, 5w = 5 weeks."""
-                send_message(
-                    update.effective_message, teks, parse_mode="markdown")
+                send_message(update.effective_message,
+                             teks,
+                             parse_mode="markdown")
                 return
             settypeflood = ("tban for {}".format(args[1]))
             sql.set_flood_strength(chat_id, 4, str(args[1]))
@@ -277,8 +279,9 @@ Examples of time value: 4m = 4 minutes, 3h = 3 hours, 6d = 6 days, 5w = 5 weeks.
                 teks = update.effective_message, """It looks like you tried to set time value for antiflood but you didn't specified time; Try, `/setfloodmode tmute <timevalue>`.
 
 Examples of time value: 4m = 4 minutes, 3h = 3 hours, 6d = 6 days, 5w = 5 weeks."""
-                send_message(
-                    update.effective_message, teks, parse_mode="markdown")
+                send_message(update.effective_message,
+                             teks,
+                             parse_mode="markdown")
                 return
             settypeflood = ("tmute for {}".format(args[1]))
             sql.set_flood_strength(chat_id, 5, str(args[1]))
@@ -288,8 +291,8 @@ Examples of time value: 4m = 4 minutes, 3h = 3 hours, 6d = 6 days, 5w = 5 weeks.
             return
         if conn:
             text = msg.reply_text(
-                "Exceeding consecutive flood limit will result in {} in {}!"
-                .format(settypeflood, chat_name))
+                "Exceeding consecutive flood limit will result in {} in {}!".
+                format(settypeflood, chat_name))
         else:
             text = msg.reply_text(
                 "Exceeding consecutive flood limit will result in {}!".format(
@@ -316,8 +319,8 @@ Examples of time value: 4m = 4 minutes, 3h = 3 hours, 6d = 6 days, 5w = 5 weeks.
                 .format(settypeflood, chat_name))
         else:
             text = msg.reply_text(
-                "Sending more message than flood limit will result in {}."
-                .format(settypeflood))
+                "Sending more message than flood limit will result in {}.".
+                format(settypeflood))
     return ""
 
 
@@ -358,11 +361,13 @@ __mod_name__ = "Anti-Flood"
 
 FLOOD_BAN_HANDLER = MessageHandler(
     Filters.all & ~Filters.status_update & Filters.group, check_flood)
-SET_FLOOD_HANDLER = CommandHandler("setflood", set_flood, filters=Filters.group)
+SET_FLOOD_HANDLER = CommandHandler("setflood",
+                                   set_flood,
+                                   filters=Filters.group)
 SET_FLOOD_MODE_HANDLER = CommandHandler(
     "setfloodmode", set_flood_mode, pass_args=True)  #, filters=Filters.group)
-FLOOD_QUERY_HANDLER = CallbackQueryHandler(
-    flood_button, pattern=r"unmute_flooder")
+FLOOD_QUERY_HANDLER = CallbackQueryHandler(flood_button,
+                                           pattern=r"unmute_flooder")
 FLOOD_HANDLER = CommandHandler("flood", flood, filters=Filters.group)
 
 dispatcher.add_handler(FLOOD_BAN_HANDLER, FLOOD_GROUP)

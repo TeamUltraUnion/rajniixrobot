@@ -1,11 +1,9 @@
-
 from RajniiRobot import db
 from typing import Dict, List, Union
 
-
 nsfwdb = db.nsfw
-
 """NSFW System"""
+
 
 async def is_nsfw_on(chat_id: int) -> bool:
     chat = await nsfwdb.find_one({"chat_id": chat_id})

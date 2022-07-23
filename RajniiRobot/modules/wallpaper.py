@@ -38,19 +38,17 @@ def wall(update: Update, context: CallbackContext):
                 wallpaper = wallpapers[index]
                 wallpaper = wallpaper.get("url_image")
                 wallpaper = wallpaper.replace("\\", "")
-                bot.send_photo(
-                    chat_id,
-                    photo=wallpaper,
-                    caption='Preview',
-                    reply_to_message_id=msg_id,
-                    timeout=60)
-                bot.send_document(
-                    chat_id,
-                    document=wallpaper,
-                    filename='wallpaper',
-                    caption=caption,
-                    reply_to_message_id=msg_id,
-                    timeout=60)
+                bot.send_photo(chat_id,
+                               photo=wallpaper,
+                               caption='Preview',
+                               reply_to_message_id=msg_id,
+                               timeout=60)
+                bot.send_document(chat_id,
+                                  document=wallpaper,
+                                  filename='wallpaper',
+                                  caption=caption,
+                                  reply_to_message_id=msg_id,
+                                  timeout=60)
 
 
 WALLPAPER_HANDLER = DisableAbleCommandHandler("wall", wall)

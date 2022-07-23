@@ -284,8 +284,9 @@ def rkick(update: Update, context: CallbackContext):
             message.reply_text(excp.message)
         else:
             LOGGER.warning(update)
-            LOGGER.exception("ERROR punching user %s in chat %s (%s) due to %s",
-                             user_id, chat.title, chat.id, excp.message)
+            LOGGER.exception(
+                "ERROR punching user %s in chat %s (%s) due to %s", user_id,
+                chat.title, chat.id, excp.message)
             message.reply_text("Well damn, I can't punch that user.")
 
 
@@ -432,14 +433,13 @@ def runmute(update: Update, context: CallbackContext):
         return
 
     try:
-        bot.restrict_chat_member(
-            chat.id,
-            int(user_id),
-            permissions=ChatPermissions(
-                can_send_messages=True,
-                can_send_media_messages=True,
-                can_send_other_messages=True,
-                can_add_web_page_previews=True))
+        bot.restrict_chat_member(chat.id,
+                                 int(user_id),
+                                 permissions=ChatPermissions(
+                                     can_send_messages=True,
+                                     can_send_media_messages=True,
+                                     can_send_other_messages=True,
+                                     can_add_web_page_previews=True))
         message.reply_text("Yep, this user can talk in that chat!")
     except BadRequest as excp:
         if excp.message == "Reply message not found":
@@ -456,14 +456,18 @@ def runmute(update: Update, context: CallbackContext):
 
 
 RBAN_HANDLER = CommandHandler("rban", rban, filters=CustomFilters.sudo_filter)
-RUNBAN_HANDLER = CommandHandler(
-    "runban", runban, filters=CustomFilters.sudo_filter)
-RKICK_HANDLER = CommandHandler(
-    "rpunch", rkick, filters=CustomFilters.sudo_filter)
-RMUTE_HANDLER = CommandHandler(
-    "rmute", rmute, filters=CustomFilters.sudo_filter)
-RUNMUTE_HANDLER = CommandHandler(
-    "runmute", runmute, filters=CustomFilters.sudo_filter)
+RUNBAN_HANDLER = CommandHandler("runban",
+                                runban,
+                                filters=CustomFilters.sudo_filter)
+RKICK_HANDLER = CommandHandler("rpunch",
+                               rkick,
+                               filters=CustomFilters.sudo_filter)
+RMUTE_HANDLER = CommandHandler("rmute",
+                               rmute,
+                               filters=CustomFilters.sudo_filter)
+RUNMUTE_HANDLER = CommandHandler("runmute",
+                                 runmute,
+                                 filters=CustomFilters.sudo_filter)
 
 dispatcher.add_handler(RBAN_HANDLER)
 dispatcher.add_handler(RUNBAN_HANDLER)

@@ -4,6 +4,7 @@ from RajniiRobot.modules.sql import BASE, SESSION
 from sqlalchemy import Column, String, UnicodeText
 from sqlalchemy import BIGINT
 
+
 class BlacklistUsers(BASE):
     __tablename__ = "blacklistusers"
     user_id = Column(String(14), primary_key=True)
@@ -61,7 +62,8 @@ def __load_blacklist_userid_list():
     global BLACKLIST_USERS
     try:
         BLACKLIST_USERS = {
-            int(x.user_id) for x in SESSION.query(BlacklistUsers).all()
+            int(x.user_id)
+            for x in SESSION.query(BlacklistUsers).all()
         }
     finally:
         SESSION.close()

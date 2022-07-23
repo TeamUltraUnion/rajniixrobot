@@ -1,4 +1,3 @@
-
 import os
 
 import requests
@@ -14,10 +13,7 @@ from RajniiRobot import telethn, SUPPORT_CHAT
 async def hi(event):
     if event.fwd_from:
         return
-    if (
-        event.is_group
-        and not await is_admin(event, event.message.sender_id)
-    ):
+    if (event.is_group and not await is_admin(event, event.message.sender_id)):
         await event.reply("`You Should Be Admin To Do This!`")
         return
     fake = Faker()
@@ -31,8 +27,7 @@ async def hi(event):
     job = fake.job()
     android = fake.android_platform_token()
     pc = fake.chrome()
-    await event.reply(
-        f"""
+    await event.reply(f"""
 <b><u> Fake Information Generated</b></u>\n
 <b>Name:</b> <code>{name}</code>\n\n
 <b>Address:</b> <code>{address}</code>\n\n
@@ -42,7 +37,7 @@ async def hi(event):
 <b>Job:</b><code>{job} </code>\n\n
 <b>android user agent:</b> <code>{android}</code>\n\n
 <b>Pc user agent:</b> <code>{pc}</code>""",
-        parse_mode="HTML")
+                      parse_mode="HTML")
 
 
 @telethn.on(events.NewMessage(pattern="/picgen$"))

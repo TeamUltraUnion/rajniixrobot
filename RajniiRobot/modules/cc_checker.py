@@ -9,9 +9,9 @@ from RajniiRobot import ubot, telethn as tbot
 async def is_register_admin(chat, user):
     if isinstance(chat, (types.InputPeerChannel, types.InputChannel)):
         return isinstance(
-            (
-                await tbot(functions.channels.GetParticipantRequest(chat, user))
-            ).participant,
+            (await
+             tbot(functions.channels.GetParticipantRequest(chat,
+                                                           user))).participant,
             (types.ChannelParticipantAdmin, types.ChannelParticipantCreator),
         )
     if isinstance(chat, types.InputPeerUser):

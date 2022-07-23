@@ -2,14 +2,14 @@ import html
 
 from RajniiRobot import (LOGGER, DRAGONS, TIGERS, WOLVES, dispatcher)
 from RajniiRobot.modules.helper_funcs.chat_status import (user_admin,
-                                                           user_not_admin)
+                                                          user_not_admin)
 from RajniiRobot.modules.log_channel import loggable
 from RajniiRobot.modules.sql import reporting_sql as sql
 from telegram import (Chat, InlineKeyboardButton, InlineKeyboardMarkup,
                       ParseMode, Update)
 from telegram.error import BadRequest, Unauthorized
-from telegram.ext import (CallbackContext, CallbackQueryHandler, CommandHandler,
-                          Filters, MessageHandler, run_async)
+from telegram.ext import (CallbackContext, CallbackQueryHandler,
+                          CommandHandler, Filters, MessageHandler, run_async)
 from telegram.utils.helpers import mention_html
 
 REPORT_GROUP = 12
@@ -106,23 +106,27 @@ def report(update: Update, context: CallbackContext) -> str:
                 [
                     InlineKeyboardButton(
                         u"➡ Message",
-                        url=f"https://t.me/{chat.username}/{message.reply_to_message.message_id}"
+                        url=
+                        f"https://t.me/{chat.username}/{message.reply_to_message.message_id}"
                     )
                 ],
                 [
                     InlineKeyboardButton(
                         u"⚠ Kick",
-                        callback_data=f"report_{chat.id}=kick={reported_user.id}={reported_user.first_name}"
+                        callback_data=
+                        f"report_{chat.id}=kick={reported_user.id}={reported_user.first_name}"
                     ),
                     InlineKeyboardButton(
                         u"⛔️ Ban",
-                        callback_data=f"report_{chat.id}=banned={reported_user.id}={reported_user.first_name}"
+                        callback_data=
+                        f"report_{chat.id}=banned={reported_user.id}={reported_user.first_name}"
                     )
                 ],
                 [
                     InlineKeyboardButton(
                         u"❎ Delete Message",
-                        callback_data=f"report_{chat.id}=delete={reported_user.id}={message.reply_to_message.message_id}"
+                        callback_data=
+                        f"report_{chat.id}=delete={reported_user.id}={message.reply_to_message.message_id}"
                     )
                 ]
             ]
@@ -142,10 +146,9 @@ def report(update: Update, context: CallbackContext) -> str:
             if sql.user_should_report(admin.user.id):
                 try:
                     if not chat.type == Chat.SUPERGROUP:
-                        bot.send_message(
-                            admin.user.id,
-                            msg + link,
-                            parse_mode=ParseMode.HTML)
+                        bot.send_message(admin.user.id,
+                                         msg + link,
+                                         parse_mode=ParseMode.HTML)
 
                         if should_forward:
                             message.reply_to_message.forward(admin.user.id)
@@ -155,10 +158,9 @@ def report(update: Update, context: CallbackContext) -> str:
                             ) > 1:  # If user is giving a reason, send his message too
                                 message.forward(admin.user.id)
                     if not chat.username:
-                        bot.send_message(
-                            admin.user.id,
-                            msg + link,
-                            parse_mode=ParseMode.HTML)
+                        bot.send_message(admin.user.id,
+                                         msg + link,
+                                         parse_mode=ParseMode.HTML)
 
                         if should_forward:
                             message.reply_to_message.forward(admin.user.id)
@@ -169,11 +171,10 @@ def report(update: Update, context: CallbackContext) -> str:
                                 message.forward(admin.user.id)
 
                     if chat.username and chat.type == Chat.SUPERGROUP:
-                        bot.send_message(
-                            admin.user.id,
-                            msg + link,
-                            parse_mode=ParseMode.HTML,
-                            reply_markup=reply_markup)
+                        bot.send_message(admin.user.id,
+                                         msg + link,
+                                         parse_mode=ParseMode.HTML,
+                                         reply_markup=reply_markup)
 
                         if should_forward:
                             message.reply_to_message.forward(admin.user.id)
@@ -224,20 +225,18 @@ def buttons(update: Update, context: CallbackContext):
             return ""
         except Exception as err:
             query.answer("🛑 Failed to Punch")
-            bot.sendMessage(
-                text=f"Error: {err}",
-                chat_id=query.message.chat_id,
-                parse_mode=ParseMode.HTML)
+            bot.sendMessage(text=f"Error: {err}",
+                            chat_id=query.message.chat_id,
+                            parse_mode=ParseMode.HTML)
     elif splitter[1] == "banned":
         try:
             bot.kickChatMember(splitter[0], splitter[2])
             query.answer("✅  Succesfully Banned")
             return ""
         except Exception as err:
-            bot.sendMessage(
-                text=f"Error: {err}",
-                chat_id=query.message.chat_id,
-                parse_mode=ParseMode.HTML)
+            bot.sendMessage(text=f"Error: {err}",
+                            chat_id=query.message.chat_id,
+                            parse_mode=ParseMode.HTML)
             query.answer("🛑 Failed to Ban")
     elif splitter[1] == "delete":
         try:
@@ -245,10 +244,9 @@ def buttons(update: Update, context: CallbackContext):
             query.answer("✅ Message Deleted")
             return ""
         except Exception as err:
-            bot.sendMessage(
-                text=f"Error: {err}",
-                chat_id=query.message.chat_id,
-                parse_mode=ParseMode.HTML)
+            bot.sendMessage(text=f"Error: {err}",
+                            chat_id=query.message.chat_id,
+                            parse_mode=ParseMode.HTML)
             query.answer("🛑 Failed to delete message!")
 
 

@@ -17,30 +17,11 @@ import sys
 from sys import argv
 from typing import Optional
 
-
-from RajniiRobot import (
-    ALLOW_EXCL,
-    CERT_PATH,
-    DONATION_LINK,
-    LOGGER,
-    OWNER_ID,
-    OWNER_USERNAME,
-    PORT,
-    TOKEN,
-    URL,
-    WEBHOOK,
-    SUPPORT_CHAT,
-    UPDATES_LOGS,
-    BOT_NAME,
-    BOT_USERNAME,
-    RAJNII_IMG,
-    ERROR_LOGS,
-    dispatcher,
-    StartTime,
-    telethn,
-    updater,
-    pgram,
-    ubot)
+from RajniiRobot import (ALLOW_EXCL, CERT_PATH, DONATION_LINK, LOGGER,
+                         OWNER_ID, OWNER_USERNAME, PORT, TOKEN, URL, WEBHOOK,
+                         SUPPORT_CHAT, UPDATES_LOGS, BOT_NAME, BOT_USERNAME,
+                         RAJNII_IMG, ERROR_LOGS, dispatcher, StartTime,
+                         telethn, updater, pgram, ubot)
 
 from telegram.utils.helpers import mention_html
 # needed to dynamically load modules
@@ -48,11 +29,8 @@ from telegram.utils.helpers import mention_html
 from RajniiRobot.modules import ALL_MODULES
 from RajniiRobot.modules.helper_funcs.chat_status import is_user_admin
 from RajniiRobot.modules.helper_funcs.misc import paginate_modules
-from telegram import (
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    ParseMode,
-    Update)
+from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, ParseMode,
+                      Update)
 from telegram.error import (
     BadRequest,
     ChatMigrated,
@@ -81,8 +59,8 @@ def get_readable_time(seconds: int) -> str:
 
     while count < 4:
         count += 1
-        remainder, result = divmod(
-            seconds, 60) if count < 3 else divmod(seconds, 24)
+        remainder, result = divmod(seconds, 60) if count < 3 else divmod(
+            seconds, 24)
         if seconds == 0 and remainder == 0:
             break
         time_list.append(int(result))
@@ -99,7 +77,6 @@ def get_readable_time(seconds: int) -> str:
     return ping_time
 
 
-
 PM_START_TEXT = f"""
 Hii, I'm {dispatcher.bot.first_name} [✨]({RAJNII_IMG})
 _I am an Anime themed group management bot with some awesome features,_
@@ -110,19 +87,14 @@ Checkout full help menu by sending /help or click help button to know about me, 
 
 buttons = [
     [
-        InlineKeyboardButton(
-            text=f"ᴀᴅᴅ {BOT_NAME} ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ",
-            url=f"t.me/{BOT_USERNAME}?startgroup=true")],
+        InlineKeyboardButton(text=f"ᴀᴅᴅ {BOT_NAME} ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ",
+                             url=f"t.me/{BOT_USERNAME}?startgroup=true")
+    ],
     [
-        InlineKeyboardButton(
-            text="☆ ᴀʙᴏᴜᴛ ᴍᴇ",
-            callback_data="rajni_"),
-        InlineKeyboardButton(
-            text="☆ ʜᴇʟᴘ",
-            callback_data="help_back"),
+        InlineKeyboardButton(text="☆ ᴀʙᴏᴜᴛ ᴍᴇ", callback_data="rajni_"),
+        InlineKeyboardButton(text="☆ ʜᴇʟᴘ", callback_data="help_back"),
     ],
 ]
-
 
 HELP_STRINGS = """
 *『 ʜᴇʟᴘ ꜱᴇᴄᴛɪᴏɴ: 』*
@@ -144,10 +116,10 @@ Click on the buttons below to get documentation about specific modules!
 {}.
 """.format(
     dispatcher.bot.first_name,
-    SUPPORT_CHAT, SUPPORT_CHAT,
+    SUPPORT_CHAT,
+    SUPPORT_CHAT,
     "" if not ALLOW_EXCL else "\nAll commands can either used with / or !\n",
 )
-
 
 DONATE_STRING = f"""*{dispatcher.bot.first_name}* is hosted on heroku server,
 If you want to donate my developers, you can...,
@@ -175,8 +147,8 @@ CHAT_SETTINGS = {}
 USER_SETTINGS = {}
 
 for module_name in ALL_MODULES:
-    imported_module = importlib.import_module(
-        "RajniiRobot.modules." + module_name)
+    imported_module = importlib.import_module("RajniiRobot.modules." +
+                                              module_name)
     if not hasattr(imported_module, "__mod_name__"):
         imported_module.__mod_name__ = imported_module.__name__
 
@@ -246,44 +218,41 @@ def help_button(update, context):
     try:
         if mod_match:
             module = mod_match.group(1)
-            text = (
-                "Here is the help for *{}* module:\n".format(
-                    HELPABLE[module].__mod_name__
-                )
-                + HELPABLE[module].__help__
-            )
+            text = ("Here is the help for *{}* module:\n".format(
+                HELPABLE[module].__mod_name__) + HELPABLE[module].__help__)
             query.message.edit_text(
                 text=text,
                 parse_mode=ParseMode.MARKDOWN,
                 disable_web_page_preview=True,
-                reply_markup=InlineKeyboardMarkup(
-                    [[InlineKeyboardButton(text="☆ ʜᴏᴍᴇ", callback_data="rajni_back"),
-                      InlineKeyboardButton(text="☆ ʙᴀᴄᴋ", callback_data="help_back")]]
-                ),
+                reply_markup=InlineKeyboardMarkup([[
+                    InlineKeyboardButton(text="☆ ʜᴏᴍᴇ",
+                                         callback_data="rajni_back"),
+                    InlineKeyboardButton(text="☆ ʙᴀᴄᴋ",
+                                         callback_data="help_back")
+                ]]),
             )
 
         elif prev_match:
             curr_page = int(prev_match.group(1))
-            query.message.edit_text(
-                text=HELP_STRINGS,
-                parse_mode=ParseMode.MARKDOWN,
-                reply_markup=InlineKeyboardMarkup(
-                    paginate_modules(curr_page - 1, HELPABLE, "help")))
+            query.message.edit_text(text=HELP_STRINGS,
+                                    parse_mode=ParseMode.MARKDOWN,
+                                    reply_markup=InlineKeyboardMarkup(
+                                        paginate_modules(
+                                            curr_page - 1, HELPABLE, "help")))
 
         elif next_match:
             next_page = int(next_match.group(1))
-            query.message.edit_text(
-                text=HELP_STRINGS,
-                parse_mode=ParseMode.MARKDOWN,
-                reply_markup=InlineKeyboardMarkup(
-                    paginate_modules(next_page + 1, HELPABLE, "help")))
+            query.message.edit_text(text=HELP_STRINGS,
+                                    parse_mode=ParseMode.MARKDOWN,
+                                    reply_markup=InlineKeyboardMarkup(
+                                        paginate_modules(
+                                            next_page + 1, HELPABLE, "help")))
 
         elif back_match:
-            query.message.edit_text(
-                text=HELP_STRINGS,
-                parse_mode=ParseMode.MARKDOWN,
-                reply_markup=InlineKeyboardMarkup(
-                    paginate_modules(0, HELPABLE, "help")))
+            query.message.edit_text(text=HELP_STRINGS,
+                                    parse_mode=ParseMode.MARKDOWN,
+                                    reply_markup=InlineKeyboardMarkup(
+                                        paginate_modules(0, HELPABLE, "help")))
 
         # ensure no spinny white circle
         context.bot.answer_callback_query(query.id)
@@ -308,10 +277,12 @@ def start(update: Update, context: CallbackContext):
                 send_help(
                     update.effective_chat.id,
                     HELPABLE[mod].__help__,
-                    InlineKeyboardMarkup(
-                        [[InlineKeyboardButton(text="☆ ʙᴀᴄᴋ", callback_data="help_back"),
-                          InlineKeyboardButton(text="☆ ʜᴏᴍᴇ", callback_data="rajni_back")]]
-                    ),
+                    InlineKeyboardMarkup([[
+                        InlineKeyboardButton(text="☆ ʙᴀᴄᴋ",
+                                             callback_data="help_back"),
+                        InlineKeyboardButton(text="☆ ʜᴏᴍᴇ",
+                                             callback_data="rajni_back")
+                    ]]),
                 )
 
             elif args[0].lower() == "markdownhelp":
@@ -323,11 +294,11 @@ def start(update: Update, context: CallbackContext):
                 chat = dispatcher.bot.getChat(match.group(1))
 
                 if is_user_admin(chat, update.effective_user.id):
-                    send_settings(match.group(
-                        1), update.effective_user.id, False)
+                    send_settings(match.group(1), update.effective_user.id,
+                                  False)
                 else:
-                    send_settings(match.group(
-                        1), update.effective_user.id, True)
+                    send_settings(match.group(1), update.effective_user.id,
+                                  True)
 
             elif args[0][1:].isdigit() and "rules" in IMPORTED:
                 IMPORTED["rules"].send_rules(update, args[0], from_pm=True)
@@ -343,12 +314,15 @@ def start(update: Update, context: CallbackContext):
     else:
         reply = "I'm awake already!\n<b>Haven't slept since:</b> <code>{}</code>".format(
             uptime)
-        keyboard = InlineKeyboardMarkup([
-            [InlineKeyboardButton(text="Support", url=f"https://telegram.me/{SUPPORT_CHAT}"),
-             InlineKeyboardButton(text="Updates", url=f"https://telegram.me/{UPDATES_LOGS}")]
-             ])
-        update.effective_message.reply_text(
-            reply, reply_markup=keyboard, parse_mode=ParseMode.HTML)
+        keyboard = InlineKeyboardMarkup([[
+            InlineKeyboardButton(text="Support",
+                                 url=f"https://telegram.me/{SUPPORT_CHAT}"),
+            InlineKeyboardButton(text="Updates",
+                                 url=f"https://telegram.me/{UPDATES_LOGS}")
+        ]])
+        update.effective_message.reply_text(reply,
+                                            reply_markup=keyboard,
+                                            parse_mode=ParseMode.HTML)
 
 
 # for test purposes
@@ -410,15 +384,26 @@ def rajni_about_callback(update, context):
 *Thanks for using me ^_^,* [Click here](https://t.me/{UPDATES_LOGS}) *and join to support us*💙""",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(
+            reply_markup=InlineKeyboardMarkup([
                 [
-                 [InlineKeyboardButton(text="ᴄʀᴇᴅɪᴛꜱ 👨‍💻", callback_data="credits_"),
-                  InlineKeyboardButton(text="ꜱᴜᴘᴘᴏʀᴛ 👨‍✈️", callback_data="support_"),
-                  InlineKeyboardButton(text="ᴍᴀɴᴜᴀʟ 📚", callback_data="manual_")],
-                 [InlineKeyboardButton(text="ᴛᴇʀᴍꜱ ᴀɴᴅ ᴄᴏɴᴅɪᴛɪᴏɴꜱ 📄", callback_data="tandc_")],
-                 [InlineKeyboardButton(text="☆ ʜᴏᴍᴇ", callback_data="rajni_back"),
-                  InlineKeyboardButton(text="☆ ʜᴇʟᴘ", callback_data="help_back")],
-                ]))
+                    InlineKeyboardButton(text="ᴄʀᴇᴅɪᴛꜱ 👨‍💻",
+                                         callback_data="credits_"),
+                    InlineKeyboardButton(text="ꜱᴜᴘᴘᴏʀᴛ 👨‍✈️",
+                                         callback_data="support_"),
+                    InlineKeyboardButton(text="ᴍᴀɴᴜᴀʟ 📚",
+                                         callback_data="manual_")
+                ],
+                [
+                    InlineKeyboardButton(text="ᴛᴇʀᴍꜱ ᴀɴᴅ ᴄᴏɴᴅɪᴛɪᴏɴꜱ 📄",
+                                         callback_data="tandc_")
+                ],
+                [
+                    InlineKeyboardButton(text="☆ ʜᴏᴍᴇ",
+                                         callback_data="rajni_back"),
+                    InlineKeyboardButton(text="☆ ʜᴇʟᴘ",
+                                         callback_data="help_back")
+                ],
+            ]))
     elif query.data == "rajni_back":
         query.message.edit_text(
             PM_START_TEXT,
@@ -444,15 +429,27 @@ Here is the help how to use me with my best performance, follow the steps below!
 • Now start learning and try to use me with my full strength!""",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(
+            reply_markup=InlineKeyboardMarkup([
                 [
-                 [InlineKeyboardButton(text="｢ᴀᴅᴅ ᴍᴇ」", url=f"t.me/{BOT_USERNAME}?startgroup=true"),
-                  InlineKeyboardButton(text="｢ᴀʙᴏᴜᴛ」", callback_data="rajni_")],
-                 [InlineKeyboardButton(text="｢ᴀᴅᴍɪɴ ꜱᴇᴛᴜᴘ」", callback_data="adminsetup_"),
-                  InlineKeyboardButton(text="｢ᴀɴᴛɪ-ꜱᴘᴀᴍ ꜱᴇᴛᴜᴘ」", callback_data="antispamsetup_")],
-                 [InlineKeyboardButton(text="☆ ʜᴏᴍᴇ", callback_data="rajni_back"),
-                  InlineKeyboardButton(text="☆ ʜᴇʟᴘ", callback_data="help_back")],
-                ]))
+                    InlineKeyboardButton(
+                        text="｢ᴀᴅᴅ ᴍᴇ」",
+                        url=f"t.me/{BOT_USERNAME}?startgroup=true"),
+                    InlineKeyboardButton(text="｢ᴀʙᴏᴜᴛ」",
+                                         callback_data="rajni_")
+                ],
+                [
+                    InlineKeyboardButton(text="｢ᴀᴅᴍɪɴ ꜱᴇᴛᴜᴘ」",
+                                         callback_data="adminsetup_"),
+                    InlineKeyboardButton(text="｢ᴀɴᴛɪ-ꜱᴘᴀᴍ ꜱᴇᴛᴜᴘ」",
+                                         callback_data="antispamsetup_")
+                ],
+                [
+                    InlineKeyboardButton(text="☆ ʜᴏᴍᴇ",
+                                         callback_data="rajni_back"),
+                    InlineKeyboardButton(text="☆ ʜᴇʟᴘ",
+                                         callback_data="help_back")
+                ],
+            ]))
 
 
 def admin_setup(update, context):
@@ -479,13 +476,20 @@ you need to have the Change group info permission.
 • The message very clearly says that you need these admin rights; {dispatcher.bot.first_name} already have enough.""",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(
+            reply_markup=InlineKeyboardMarkup([
                 [
-                 [InlineKeyboardButton(text="☆ ᴍᴀɴᴜᴀʟ", callback_data="manual_"),
-                  InlineKeyboardButton(text="☆ ᴀʙᴏᴜᴛ", callback_data="rajni_")],
-                 [InlineKeyboardButton(text="☆ ʜᴏᴍᴇ", callback_data="rajni_back"),
-                  InlineKeyboardButton(text="☆ ʜᴇʟᴘ", callback_data="help_back")],
-                ]))
+                    InlineKeyboardButton(text="☆ ᴍᴀɴᴜᴀʟ",
+                                         callback_data="manual_"),
+                    InlineKeyboardButton(text="☆ ᴀʙᴏᴜᴛ",
+                                         callback_data="rajni_")
+                ],
+                [
+                    InlineKeyboardButton(text="☆ ʜᴏᴍᴇ",
+                                         callback_data="rajni_back"),
+                    InlineKeyboardButton(text="☆ ʜᴇʟᴘ",
+                                         callback_data="help_back")
+                ],
+            ]))
 
 
 def antispam_setup(update, context):
@@ -534,13 +538,20 @@ A button gets added to the welcome message for them to unmute themselves. This p
 """,
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(
+            reply_markup=InlineKeyboardMarkup([
                 [
-                 [InlineKeyboardButton(text="☆ ᴍᴀɴᴜᴀʟ", callback_data="manual_"),
-                  InlineKeyboardButton(text="☆ ᴀʙᴏᴜᴛ", callback_data="rajni_")],
-                 [InlineKeyboardButton(text="☆ ʜᴏᴍᴇ", callback_data="rajni_back"),
-                  InlineKeyboardButton(text="☆ ʜᴇʟᴘ", callback_data="help_back")],
-                ]))
+                    InlineKeyboardButton(text="☆ ᴍᴀɴᴜᴀʟ",
+                                         callback_data="manual_"),
+                    InlineKeyboardButton(text="☆ ᴀʙᴏᴜᴛ",
+                                         callback_data="rajni_")
+                ],
+                [
+                    InlineKeyboardButton(text="☆ ʜᴏᴍᴇ",
+                                         callback_data="rajni_back"),
+                    InlineKeyboardButton(text="☆ ʜᴇʟᴘ",
+                                         callback_data="help_back")
+                ],
+            ]))
 
 
 @run_async
@@ -557,13 +568,15 @@ def rajni_support_callback(update, context):
 """,
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton(text="☆ ᴀʙᴏᴜᴛ", callback_data="rajni_")],
                 [
-                 [InlineKeyboardButton(
-                     text="☆ ᴀʙᴏᴜᴛ", callback_data="rajni_")],
-                 [InlineKeyboardButton(text="☆ ʜᴏᴍᴇ", callback_data="rajni_back"),
-                  InlineKeyboardButton(text="☆ ʜᴇʟᴘ", callback_data="help_back")],
-                ]))
+                    InlineKeyboardButton(text="☆ ʜᴏᴍᴇ",
+                                         callback_data="rajni_back"),
+                    InlineKeyboardButton(text="☆ ʜᴇʟᴘ",
+                                         callback_data="help_back")
+                ],
+            ]))
 
 
 @run_async
@@ -581,13 +594,15 @@ I'm thankful for them as they've given thier too much time in updating me.
 • Base Code        - @SonOfLars""",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton(text="☆ ᴀʙᴏᴜᴛ", callback_data="rajni_")],
                 [
-                 [InlineKeyboardButton(
-                     text="☆ ᴀʙᴏᴜᴛ", callback_data="rajni_")],
-                 [InlineKeyboardButton(text="☆ ʜᴏᴍᴇ", callback_data="rajni_back"),
-                  InlineKeyboardButton(text="☆ ʜᴇʟᴘ", callback_data="help_back")],
-                ]))
+                    InlineKeyboardButton(text="☆ ʜᴏᴍᴇ",
+                                         callback_data="rajni_back"),
+                    InlineKeyboardButton(text="☆ ʜᴇʟᴘ",
+                                         callback_data="help_back")
+                ],
+            ]))
 
 
 @run_async
@@ -613,13 +628,15 @@ if we blacklist them who spams {dispatcher.bot.first_name}’s buttons or comman
 _Terms & Conditions can be changed anytime, please check once a month._""",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton(text="☆ ᴀʙᴏᴜᴛ", callback_data="rajni_")],
                 [
-                 [InlineKeyboardButton(
-                     text="☆ ᴀʙᴏᴜᴛ", callback_data="rajni_")],
-                 [InlineKeyboardButton(text="☆ ʜᴏᴍᴇ", callback_data="rajni_back"),
-                  InlineKeyboardButton(text="☆ ʜᴇʟᴘ", callback_data="help_back")],
-                ]))
+                    InlineKeyboardButton(text="☆ ʜᴏᴍᴇ",
+                                         callback_data="rajni_back"),
+                    InlineKeyboardButton(text="☆ ʜᴇʟᴘ",
+                                         callback_data="help_back")
+                ],
+            ]))
 
 
 @run_async
@@ -634,18 +651,17 @@ def get_help(update: Update, context: CallbackContext):
             update.effective_message.reply_text(
                 f"Contact me in PM to get help of {module.capitalize()}",
                 reply_markup=InlineKeyboardMarkup([[
-                    InlineKeyboardButton(
-                        text="ʜᴇʟᴘ",
-                        url="t.me/{}?start=ghelp_{}".format(
-                            context.bot.username, module))
+                    InlineKeyboardButton(text="ʜᴇʟᴘ",
+                                         url="t.me/{}?start=ghelp_{}".format(
+                                             context.bot.username, module))
                 ]]))
             return
         update.effective_message.reply_text(
             "Contact me in PM to get the list of possible commands.",
             reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton(
-                    text="ʜᴇʟᴘ",
-                    url="t.me/{}?start=help".format(context.bot.username))
+                InlineKeyboardButton(text="ʜᴇʟᴘ",
+                                     url="t.me/{}?start=help".format(
+                                         context.bot.username))
             ]]))
         return
 
@@ -655,13 +671,11 @@ def get_help(update: Update, context: CallbackContext):
                + HELPABLE[module].__help__
         send_help(
             chat.id, text,
-            InlineKeyboardMarkup(
-                [InlineKeyboardButton(
-                    text="☆ ʜᴏᴍᴇ",
-                    callback_data="rajni_back"),
-                 InlineKeyboardButton(
-                    text="☆ ʙᴀᴄᴋ",
-                    callback_data="help_back")]))
+            InlineKeyboardMarkup([
+                InlineKeyboardButton(text="☆ ʜᴏᴍᴇ",
+                                     callback_data="rajni_back"),
+                InlineKeyboardButton(text="☆ ʙᴀᴄᴋ", callback_data="help_back")
+            ]))
 
     else:
         send_help(chat.id, HELP_STRINGS)
@@ -672,11 +686,11 @@ def send_settings(chat_id, user_id, user=False):
         if USER_SETTINGS:
             settings = "\n\n".join("*{}*:\n{}".format(
                 mod.__mod_name__, mod.__user_settings__(user_id))
-                for mod in USER_SETTINGS.values())
-            dispatcher.bot.send_message(
-                user_id,
-                "These are your current settings:" + "\n\n" + settings,
-                parse_mode=ParseMode.MARKDOWN)
+                                   for mod in USER_SETTINGS.values())
+            dispatcher.bot.send_message(user_id,
+                                        "These are your current settings:" +
+                                        "\n\n" + settings,
+                                        parse_mode=ParseMode.MARKDOWN)
 
         else:
             dispatcher.bot.send_message(
@@ -689,8 +703,8 @@ def send_settings(chat_id, user_id, user=False):
             chat_name = dispatcher.bot.getChat(chat_id).title
             dispatcher.bot.send_message(
                 user_id,
-                text="Which module would you like to check {}'s settings for?"
-                .format(chat_name),
+                text="Which module would you like to check {}'s settings for?".
+                format(chat_name),
                 reply_markup=InlineKeyboardMarkup(
                     paginate_modules(0, CHAT_SETTINGS, "stngs", chat=chat_id)))
         else:
@@ -735,8 +749,10 @@ def settings_button(update: Update, context: CallbackContext):
                 "Hi there! There are quite a few settings for {} - go ahead and pick what "
                 "you're interested in.".format(chat.title),
                 reply_markup=InlineKeyboardMarkup(
-                    paginate_modules(
-                        curr_page - 1, CHAT_SETTINGS, "stngs", chat=chat_id)))
+                    paginate_modules(curr_page - 1,
+                                     CHAT_SETTINGS,
+                                     "stngs",
+                                     chat=chat_id)))
 
         elif next_match:
             chat_id = next_match.group(1)
@@ -746,14 +762,17 @@ def settings_button(update: Update, context: CallbackContext):
                 "Hi there! There are quite a few settings for {} - go ahead and pick what "
                 "you're interested in.".format(chat.title),
                 reply_markup=InlineKeyboardMarkup(
-                    paginate_modules(
-                        next_page + 1, CHAT_SETTINGS, "stngs", chat=chat_id)))
+                    paginate_modules(next_page + 1,
+                                     CHAT_SETTINGS,
+                                     "stngs",
+                                     chat=chat_id)))
 
         elif back_match:
             chat_id = back_match.group(1)
             chat = bot.get_chat(chat_id)
             query.message.reply_text(
-                text="Hi there! There are quite a few settings for {} - go ahead and pick what "
+                text=
+                "Hi there! There are quite a few settings for {} - go ahead and pick what "
                 "you're interested in.".format(escape_markdown(chat.title)),
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(
@@ -784,14 +803,13 @@ def get_settings(update: Update, context: CallbackContext):
     if chat.type != chat.PRIVATE:
         if is_user_admin(chat, user.id):
             text = "Click here to get this chat's settings, as well as yours."
-            msg.reply_text(
-                text,
-                reply_markup=InlineKeyboardMarkup([[
-                    InlineKeyboardButton(
-                        text="☆ Settings",
-                        url="t.me/{}?start=stngs_{}".format(
-                            context.bot.username, chat.id))
-                ]]))
+            msg.reply_text(text,
+                           reply_markup=InlineKeyboardMarkup([[
+                               InlineKeyboardButton(
+                                   text="☆ Settings",
+                                   url="t.me/{}?start=stngs_{}".format(
+                                       context.bot.username, chat.id))
+                           ]]))
         else:
             text = "Click here to check your settings."
 
@@ -808,11 +826,7 @@ def donate(update: Update, context: CallbackContext):
         update.effective_message.reply_text(
             DONATE_STRING,
             reply_markup=InlineKeyboardMarkup(
-                    [
-                        [InlineKeyboardButton(
-                            text="Join Now", url=DONATION_LINK)]
-                    ]
-                ),
+                [[InlineKeyboardButton(text="Join Now", url=DONATION_LINK)]]),
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True)
 
@@ -821,21 +835,17 @@ def donate(update: Update, context: CallbackContext):
                 "Thanks for supporting us!😘"
                 f"You can join our chatting group instead too ;)",
                 disable_web_page_preview=True,
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [InlineKeyboardButton(
-                            text="Join Now", url=DONATION_LINK)]
-                    ]
-                ),
+                reply_markup=InlineKeyboardMarkup([[
+                    InlineKeyboardButton(text="Join Now", url=DONATION_LINK)
+                ]]),
                 parse_mode=ParseMode.MARKDOWN)
 
     else:
         try:
-            bot.send_message(
-                user.id,
-                DONATE_STRING,
-                parse_mode=ParseMode.MARKDOWN,
-                disable_web_page_preview=True)
+            bot.send_message(user.id,
+                             DONATE_STRING,
+                             parse_mode=ParseMode.MARKDOWN,
+                             disable_web_page_preview=True)
 
             update.effective_message.reply_text(
                 "I've PM'ed you about donating to my creator!")
@@ -869,43 +879,44 @@ def main():
             dispatcher.bot.sendMessage(f"@{ERROR_LOGS}", "I am now online!")
         except Unauthorized:
             LOGGER.warning(
-                f"{dispatcher.bot.first_name} isnt able to send message to @{ERROR_LOGS} channel/group chat, go and check {dispatcher.bot.first_name} is added there or not!")
+                f"{dispatcher.bot.first_name} isnt able to send message to @{ERROR_LOGS} channel/group chat, go and check {dispatcher.bot.first_name} is added there or not!"
+            )
         except BadRequest as e:
             LOGGER.warning(e.message)
 
-  # INPUT HANDLERS
-    # Main Handlers
+# INPUT HANDLERS
+# Main Handlers
     test_handler = CommandHandler("test", test)
     start_handler = CommandHandler("start", start)
 
     # About Callbacks
-    about_callback_handler = CallbackQueryHandler(
-        rajni_about_callback, pattern=r"rajni_")
-    term_condition_handler = CallbackQueryHandler(
-        rajni_tandc_callback, pattern=r"tandc_")
-    support_callback_handler = CallbackQueryHandler(
-        rajni_support_callback, pattern=r"support_")
-    credits_callback_handler = CallbackQueryHandler(
-        rajni_credits_callback, pattern=r"credits_")
-    manual_callback_handler = CallbackQueryHandler(
-        rajni_manual_callback, pattern=r"manual_")
-    admin_setup_handler = CallbackQueryHandler(
-        admin_setup, pattern=r"adminsetup_")
-    antispam_setup_handler = CallbackQueryHandler(
-        antispam_setup, pattern=r"antispamsetup_")
+    about_callback_handler = CallbackQueryHandler(rajni_about_callback,
+                                                  pattern=r"rajni_")
+    term_condition_handler = CallbackQueryHandler(rajni_tandc_callback,
+                                                  pattern=r"tandc_")
+    support_callback_handler = CallbackQueryHandler(rajni_support_callback,
+                                                    pattern=r"support_")
+    credits_callback_handler = CallbackQueryHandler(rajni_credits_callback,
+                                                    pattern=r"credits_")
+    manual_callback_handler = CallbackQueryHandler(rajni_manual_callback,
+                                                   pattern=r"manual_")
+    admin_setup_handler = CallbackQueryHandler(admin_setup,
+                                               pattern=r"adminsetup_")
+    antispam_setup_handler = CallbackQueryHandler(antispam_setup,
+                                                  pattern=r"antispamsetup_")
 
     # Help Handlers
     help_handler = CommandHandler("help", get_help)
-    help_callback_handler = CallbackQueryHandler(
-        help_button, pattern=r"help_.*")
+    help_callback_handler = CallbackQueryHandler(help_button,
+                                                 pattern=r"help_.*")
     settings_handler = CommandHandler("settings", get_settings)
-    settings_callback_handler = CallbackQueryHandler(
-        settings_button, pattern=r"stngs_")
+    settings_callback_handler = CallbackQueryHandler(settings_button,
+                                                     pattern=r"stngs_")
     donate_handler = CommandHandler("donate", donate)
     migrate_handler = MessageHandler(Filters.status_update.migrate,
                                      migrate_chats)
 
-   # OUTPUT HANDLERS
+    # OUTPUT HANDLERS
     # Main Handlers
     # dispatcher.add_handler(test_handler)
     dispatcher.add_handler(start_handler)
@@ -936,12 +947,13 @@ def main():
             f"[{dispatcher.bot.first_name}] | TUU • Connection Successful!")
         time.sleep(0)
         LOGGER.info(
-            f"[{dispatcher.bot.first_name}] | TUU • {dispatcher.bot.first_name} deployed, check @{SUPPORT_CHAT}")
+            f"[{dispatcher.bot.first_name}] | TUU • {dispatcher.bot.first_name} deployed, check @{SUPPORT_CHAT}"
+        )
         updater.start_webhook(listen="127.0.0.1", port=PORT, url_path=TOKEN)
 
         if CERT_PATH:
-            updater.bot.set_webhook(
-                url=URL + TOKEN, certificate=open(CERT_PATH, "rb"))
+            updater.bot.set_webhook(url=URL + TOKEN,
+                                    certificate=open(CERT_PATH, "rb"))
         else:
             updater.bot.set_webhook(url=URL + TOKEN)
 
@@ -953,7 +965,8 @@ def main():
             f"[{dispatcher.bot.first_name}] | TUU • Connection Successful!")
         time.sleep(0)
         LOGGER.info(
-            f"[{dispatcher.bot.first_name}] | TUU • {dispatcher.bot.first_name} deployed, check @{SUPPORT_CHAT}")
+            f"[{dispatcher.bot.first_name}] | TUU • {dispatcher.bot.first_name} deployed, check @{SUPPORT_CHAT}"
+        )
         updater.start_polling(timeout=15, read_latency=4)
 
     if len(argv) not in (1, 3, 4):
@@ -963,11 +976,12 @@ def main():
 
     updater.idle()
 
-
 try:
     ubot.start()
 except BaseException:
-    print(f"[{dispatcher.bot.first_name}] • Userbot Error ! Please add a STRING_SESSION get it from https://repl.it/@SpEcHiDe/GenerateStringSession - Telethon String Session")
+    print(
+        f"[{dispatcher.bot.first_name}] • Userbot Error ! Please add a STRING_SESSION get it from https://repl.it/@SpEcHiDe/GenerateStringSession - Telethon String Session"
+    )
     sys.exit(1)
 
 if __name__ == '__main__':

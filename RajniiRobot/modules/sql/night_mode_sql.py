@@ -1,4 +1,3 @@
-
 from sqlalchemy import Boolean, Column, Integer, String, UnicodeText, BIGINT
 from RajniiRobot.modules.sql import BASE, SESSION
 

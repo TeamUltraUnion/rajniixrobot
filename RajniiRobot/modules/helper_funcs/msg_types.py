@@ -31,10 +31,10 @@ def get_note_type(msg: Message):
     if len(args) >= 3:
         offset = len(args[2]) - len(
             raw_text)  # set correct offset relative to command + notename
-        text, buttons = button_markdown_parser(
-            args[2],
-            entities=msg.parse_entities() or msg.parse_caption_entities(),
-            offset=offset)
+        text, buttons = button_markdown_parser(args[2],
+                                               entities=msg.parse_entities()
+                                               or msg.parse_caption_entities(),
+                                               offset=offset)
         if buttons:
             data_type = Types.BUTTON_TEXT
         else:
@@ -149,8 +149,9 @@ def get_welcome_type(msg: Message):
             offset = len(argumen) - len(
                 msg.text)  # set correct offset relative to command + notename
             entities = msg.parse_entities()
-        text, buttons = button_markdown_parser(
-            argumen, entities=entities, offset=offset)
+        text, buttons = button_markdown_parser(argumen,
+                                               entities=entities,
+                                               offset=offset)
 
     if not data_type:
         if text and buttons:
@@ -168,8 +169,8 @@ def get_filter_type(msg: Message):
         text = msg.text.split(None, 2)[2]
         data_type = Types.TEXT
 
-    elif (msg.reply_to_message and msg.reply_to_message.text and
-          len(msg.text.split()) >= 2):
+    elif (msg.reply_to_message and msg.reply_to_message.text
+          and len(msg.text.split()) >= 2):
         content = None
         text = msg.reply_to_message.text
         data_type = Types.TEXT

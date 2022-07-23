@@ -48,8 +48,10 @@ async def paste(content):
 async def inline_help_func(__HELP__):
     buttons = InlineKeyboard(row_width=2)
     buttons.add(
-        InlineKeyboardButton("Get More Help.", url=f"t.me/{BOT_USERNAME}?start=start"),
-        InlineKeyboardButton("Go Inline!", switch_inline_query_current_chat=""),
+        InlineKeyboardButton("Get More Help.",
+                             url=f"t.me/{BOT_USERNAME}?start=start"),
+        InlineKeyboardButton("Go Inline!",
+                             switch_inline_query_current_chat=""),
     )
     answerss = [
         InlineQueryResultArticle(
@@ -70,7 +72,8 @@ async def alive_function(answers):
     # ubot_state = 'Dead' if not await app2.get_me() else 'Alive'
     buttons.add(
         InlineKeyboardButton("Main Bot", url="https://t.me/RajniiRobot"),
-        InlineKeyboardButton("Go Inline!", switch_inline_query_current_chat=""),
+        InlineKeyboardButton("Go Inline!",
+                             switch_inline_query_current_chat=""),
     )
 
     msg = f"""
@@ -89,11 +92,9 @@ async def alive_function(answers):
             description="Check Bot's Statistics",
             thumb_url="https://telegra.ph/file/e76d780fd13417ed7a718.jpg",
             input_message_content=InputTextMessageContent(
-                msg, disable_web_page_preview=True
-            ),
+                msg, disable_web_page_preview=True),
             reply_markup=buttons,
-        )
-    )
+        ))
     return answers
 
 
@@ -122,18 +123,16 @@ __**Translated from {i.src} to {lang}**__
 {tex}
 **OUTPUT:**
 {i.text}"""
-    answers.extend(
-        [
-            InlineQueryResultArticle(
-                title=f"Translated from {i.src} to {lang}.",
-                description=i.text,
-                input_message_content=InputTextMessageContent(msg),
-            ),
-            InlineQueryResultArticle(
-                title=i.text, input_message_content=InputTextMessageContent(i.text)
-            ),
-        ]
-    )
+    answers.extend([
+        InlineQueryResultArticle(
+            title=f"Translated from {i.src} to {lang}.",
+            description=i.text,
+            input_message_content=InputTextMessageContent(msg),
+        ),
+        InlineQueryResultArticle(title=i.text,
+                                 input_message_content=InputTextMessageContent(
+                                     i.text)),
+    ])
     return answers
 
 
@@ -145,8 +144,7 @@ async def urban_func(answers, text):
                 title="Error",
                 description=results.result,
                 input_message_content=InputTextMessageContent(results.result),
-            )
-        )
+            ))
         return answers
     results = results.result
     limit = 0
@@ -164,8 +162,7 @@ async def urban_func(answers, text):
                 title=i.word,
                 description=i.definition,
                 input_message_content=InputTextMessageContent(msg),
-            )
-        )
+            ))
     return answers
 
 
@@ -187,10 +184,8 @@ async def google_search_func(answers, text):
                     title=i["titles"],
                     description=i["descriptions"],
                     input_message_content=InputTextMessageContent(
-                        msg, disable_web_page_preview=True
-                    ),
-                )
-            )
+                        msg, disable_web_page_preview=True),
+                ))
         except KeyError:
             pass
     return answers
@@ -204,8 +199,7 @@ async def wall_func(answers, text):
                 title="Error",
                 description=results.result,
                 input_message_content=InputTextMessageContent(results.result),
-            )
-        )
+            ))
         return answers
     limit = 0
     results = results.result
@@ -218,8 +212,7 @@ async def wall_func(answers, text):
                 photo_url=i.url_image,
                 thumb_url=i.url_thumb,
                 caption=f"[Source]({i.url_image})",
-            )
-        )
+            ))
     return answers
 
 
@@ -232,8 +225,7 @@ async def saavn_func(answers, text):
                 title="Error",
                 description=results.result,
                 input_message_content=InputTextMessageContent(results.result),
-            )
-        )
+            ))
         return answers
     results = results.result
     for count, i in enumerate(results):
@@ -252,13 +244,11 @@ async def saavn_func(answers, text):
             InlineQueryResultArticle(
                 title=i.song,
                 input_message_content=InputTextMessageContent(
-                    caption, disable_web_page_preview=True
-                ),
+                    caption, disable_web_page_preview=True),
                 description=description,
                 thumb_url=i.image,
                 reply_markup=buttons_list[count],
-            )
-        )
+            ))
     return answers
 
 
@@ -272,8 +262,7 @@ async def paste_func(answers, text):
             title=f"Pasted In {round(end_time - start_time)} Seconds.",
             description=url,
             input_message_content=InputTextMessageContent(msg),
-        )
-    )
+        ))
     return answers
 
 
@@ -286,8 +275,7 @@ async def deezer_func(answers, text):
                 title="Error",
                 description=results.result,
                 input_message_content=InputTextMessageContent(results.result),
-            )
-        )
+            ))
         return answers
     results = results.result
     for count, i in enumerate(results):
@@ -307,11 +295,9 @@ async def deezer_func(answers, text):
                 thumb_url=i.thumbnail,
                 description=description,
                 input_message_content=InputTextMessageContent(
-                    caption, disable_web_page_preview=True
-                ),
+                    caption, disable_web_page_preview=True),
                 reply_markup=buttons_list[count],
-            )
-        )
+            ))
     return answers
 
 
@@ -326,8 +312,8 @@ async def shortify(url):
     payload = {"long_url": f"{url}"}
     payload = json.dumps(payload)
     async with aiohttp.ClientSession() as session, session.post(
-        "https://api-ssl.bitly.com/v4/shorten", headers=header, data=payload
-    ) as resp:
+            "https://api-ssl.bitly.com/v4/shorten", headers=header,
+            data=payload) as resp:
         data = await resp.json()
     msg = data["link"]
     a = []
@@ -335,8 +321,7 @@ async def shortify(url):
         title="Link Shortened!",
         description=data["link"],
         input_message_content=InputTextMessageContent(
-            msg, disable_web_page_preview=True
-        ),
+            msg, disable_web_page_preview=True),
     )
     a.append(b)
     return a
@@ -350,8 +335,7 @@ async def torrent_func(answers, text):
                 title="Error",
                 description=results.result,
                 input_message_content=InputTextMessageContent(results.result),
-            )
-        )
+            ))
         return answers
     limit = 0
     results = results.result
@@ -378,10 +362,8 @@ async def torrent_func(answers, text):
                 title=title,
                 description=description,
                 input_message_content=InputTextMessageContent(
-                    caption, disable_web_page_preview=True
-                ),
-            )
-        )
+                    caption, disable_web_page_preview=True),
+            ))
         limit += 1
     return answers
 
@@ -394,8 +376,7 @@ async def wiki_func(answers, text):
                 title="Error",
                 description=data.result,
                 input_message_content=InputTextMessageContent(data.result),
-            )
-        )
+            ))
         return answers
     data = data.result
     msg = f"""
@@ -408,8 +389,7 @@ __{data.answer}__"""
             title=data.title,
             description=data.answer,
             input_message_content=InputTextMessageContent(msg),
-        )
-    )
+        ))
     return answers
 
 
@@ -421,9 +401,8 @@ async def ping_func(answers):
     ping = f"{str(round((t2 - t1), 2))} Seconds"
     answers.append(
         InlineQueryResultArticle(
-            title=ping, input_message_content=InputTextMessageContent(f"__**{ping}**__")
-        )
-    )
+            title=ping,
+            input_message_content=InputTextMessageContent(f"__**{ping}**__")))
     return answers
 
 
@@ -432,8 +411,8 @@ async def pokedexinfo(answers, pokemon):
     result = await fetch(Pokemon)
     buttons = InlineKeyboard(row_width=1)
     buttons.add(
-        InlineKeyboardButton("Pokedex", switch_inline_query_current_chat="pokedex")
-    )
+        InlineKeyboardButton("Pokedex",
+                             switch_inline_query_current_chat="pokedex"))
     caption = f"""
 **Pokemon:** `{result['name']}`
 **Pokedex:** `{result['id']}`
@@ -451,6 +430,5 @@ async def pokedexinfo(answers, pokemon):
             description=result["description"],
             caption=caption,
             reply_markup=buttons,
-        )
-    )
+        ))
     return answers

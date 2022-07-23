@@ -16,9 +16,9 @@ from RajniiRobot.events import register
 async def is_register_admin(chat, user):
     if isinstance(chat, (types.InputPeerChannel, types.InputChannel)):
         return isinstance(
-            (
-                await tbot(functions.channels.GetParticipantRequest(chat, user))
-            ).participant,
+            (await
+             tbot(functions.channels.GetParticipantRequest(chat,
+                                                           user))).participant,
             (types.ChannelParticipantAdmin, types.ChannelParticipantCreator),
         )
     if isinstance(chat, types.InputPeerUser):
@@ -30,9 +30,12 @@ async def _(event):
     if event.fwd_from:
         return
     if event.is_group:
-     if not (await is_register_admin(event.input_chat, event.message.sender_id)):
-       await event.reply("🚨 Need Admin Pewer.. You can't use this command.. But you can use in my pm")
-       return
+        if not (await is_register_admin(event.input_chat,
+                                        event.message.sender_id)):
+            await event.reply(
+                "🚨 Need Admin Pewer.. You can't use this command.. But you can use in my pm"
+            )
+            return
 
     input_str = event.pattern_match.group(1)
     reply_to_id = event.message.id
@@ -53,11 +56,9 @@ async def _(event):
         tts = gTTS(text, tld="com", lang=lan)
         tts.save("k.mp3")
     except AssertionError:
-        await event.reply(
-            "The text is empty.\n"
-            "Nothing left to speak after pre-precessing, "
-            "tokenizing and cleaning."
-        )
+        await event.reply("The text is empty.\n"
+                          "Nothing left to speak after pre-precessing, "
+                          "tokenizing and cleaning.")
         return
     except ValueError:
         await event.reply("Language is not supported.")
@@ -69,7 +70,8 @@ async def _(event):
         await event.reply("Error in Google Text-to-Speech API request !")
         return
     with open("k.mp3", "r"):
-        await tbot.send_file(
-            event.chat_id, "k.mp3", voice_note=True, reply_to=reply_to_id
-        )
+        await tbot.send_file(event.chat_id,
+                             "k.mp3",
+                             voice_note=True,
+                             reply_to=reply_to_id)
         os.remove("k.mp3")

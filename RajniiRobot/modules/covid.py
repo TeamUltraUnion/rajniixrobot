@@ -16,6 +16,7 @@ from telegram.ext import CommandHandler, run_async, CallbackContext
 from RajniiRobot import dispatcher
 from RajniiRobot.modules.disable import DisableAbleCommandHandler
 
+
 @run_async
 def covid(update: Update, context: CallbackContext):
     message = update.effective_message
@@ -29,7 +30,6 @@ def covid(update: Update, context: CallbackContext):
             f"https://corona.lmao.ninja/v2/countries/{variabla}").json()
         reply_text = f"**Cases for {r['country']} 🦠**\nCases: {r['cases']:,}\nCases Today: {r['todayCases']:,}\nDeaths: {r['deaths']:,}\nDeaths Today: {r['todayDeaths']:,}\nRecovered: {r['recovered']:,}\nActive: {r['active']:,}\nCritical: {r['critical']:,}\nCases/Mil: {r['casesPerOneMillion']}\nDeaths/Mil: {r['deathsPerOneMillion']}"
     message.reply_text(reply_text, parse_mode=ParseMode.MARKDOWN)
-
 
 
 COVID_HANDLER = DisableAbleCommandHandler(["covid", "corona"], covid)

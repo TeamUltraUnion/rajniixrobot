@@ -44,7 +44,6 @@ from RajniiRobot import telethn as SaitamaTelethonClient
 from RajniiRobot.modules.arq import arq_stats
 # from RajniiRobot.modules.heroku.dyno_usage import AppHours, AppMinutes, AppPercentage, hours, minutes, percentage
 
-
 # ARQ INFO
 # ARQ INFO
 """
@@ -86,7 +85,6 @@ async def arq_stats(_, message):
 # HEROKU
 # HEROKU
 
-
 heroku_api = "https://api.heroku.com"
 Heroku = heroku3.from_key(HEROKU_API_KEY)
 
@@ -106,7 +104,8 @@ async def variable(var):
     if HEROKU_APP_NAME is not None:
         app = Heroku.app(HEROKU_APP_NAME)
     else:
-        return await var.reply("`[HEROKU]:" "\nPlease setup your` **HEROKU_APP_NAME**")
+        return await var.reply("`[HEROKU]:"
+                               "\nPlease setup your` **HEROKU_APP_NAME**")
     exe = var.pattern_match.group(1)
     heroku_var = app.config()
     if exe == "see":
@@ -116,11 +115,10 @@ async def variable(var):
             variable = var.pattern_match.group(2).split()[0]
             if variable in heroku_var:
                 return await k.edit(
-                    "**ConfigVars**:" f"\n\n`{variable} = {heroku_var[variable]}`\n"
-                )
-            return await k.edit(
-                "**ConfigVars**:" f"\n\n`Error:\n-> {variable} don't exists`"
-            )
+                    "**ConfigVars**:"
+                    f"\n\n`{variable} = {heroku_var[variable]}`\n")
+            return await k.edit("**ConfigVars**:"
+                                f"\n\n`Error:\n-> {variable} don't exists`")
         except IndexError:
             configs = prettyjson(heroku_var.to_dict(), indent=2)
             with open("configs.json", "w") as fp:
@@ -135,12 +133,10 @@ async def variable(var):
                         caption="`Output too large, sending it as a file`",
                     )
                 else:
-                    await k.edit(
-                        "`[HEROKU]` ConfigVars:\n\n"
-                        "================================"
-                        f"\n```{result}```\n"
-                        "================================"
-                    )
+                    await k.edit("`[HEROKU]` ConfigVars:\n\n"
+                                 "================================"
+                                 f"\n```{result}```\n"
+                                 "================================")
             os.remove("configs.json")
             return
     elif exe == "set":
@@ -158,8 +154,7 @@ async def variable(var):
         await asyncio.sleep(1.5)
         if variable in heroku_var:
             await s.edit(
-                f"**{variable}**  `successfully changed to`  ->  **{value}**"
-            )
+                f"**{variable}**  `successfully changed to`  ->  **{value}**")
         else:
             await s.edit(
                 f"**{variable}**  `successfully added with value`  ->  **{value}**"
@@ -170,7 +165,8 @@ async def variable(var):
         try:
             variable = var.pattern_match.group(2).split()[0]
         except IndexError:
-            return await m.edit("`Please specify ConfigVars you want to delete`")
+            return await m.edit(
+                "`Please specify ConfigVars you want to delete`")
         await asyncio.sleep(1.5)
         if variable in heroku_var:
             await m.edit(f"**{variable}**  `successfully deleted`")
@@ -191,11 +187,9 @@ async def dyno_usage(dyno):
     Get your account Dyno Usage
     """
     die = await dyno.reply("**Processing...**")
-    useragent = (
-        "Mozilla/5.0 (Linux; Android 10; SM-G975F) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/80.0.3987.149 Mobile Safari/537.36"
-    )
+    useragent = ("Mozilla/5.0 (Linux; Android 10; SM-G975F) "
+                 "AppleWebKit/537.36 (KHTML, like Gecko) "
+                 "Chrome/80.0.3987.149 Mobile Safari/537.36")
     user_id = Heroku.account().id
     headers = {
         "User-Agent": useragent,
@@ -205,20 +199,17 @@ async def dyno_usage(dyno):
     path = "/accounts/" + user_id + "/actions/get-quota"
     r = requests.get(heroku_api + path, headers=headers)
     if r.status_code != 200:
-        return await die.edit(
-            "`Error: something bad happened`\n\n" f">.`{r.reason}`\n"
-        )
+        return await die.edit("`Error: something bad happened`\n\n"
+                              f">.`{r.reason}`\n")
     result = r.json()
     quota = result["account_quota"]
     quota_used = result["quota_used"]
-
     """ - Used - """
     remaining_quota = quota - quota_used
     percentage = math.floor(remaining_quota / quota * 100)
     minutes_remaining = remaining_quota / 60
     hours = math.floor(minutes_remaining / 60)
     minutes = math.floor(minutes_remaining % 60)
-
     """ - Current - """
     App = result["apps"]
     try:
@@ -234,16 +225,14 @@ async def dyno_usage(dyno):
 
     await asyncio.sleep(1.5)
 
-    return await die.edit(
-        "**Dyno Usage**:\n\n"
-        f" -> `Dyno usage for`  **{HEROKU_APP_NAME}**:\n"
-        f"     ❍  `{AppHours}`**h**  `{AppMinutes}`**m**  "
-        f"**|**  [`{AppPercentage}`**%**]"
-        "\n\n"
-        " -> `Dyno hours quota remaining this month`:\n"
-        f"     ❍  `{hours}`**h**  `{minutes}`**m**  "
-        f"**|**  [`{percentage}`**%**]"
-    )
+    return await die.edit("**Dyno Usage**:\n\n"
+                          f" -> `Dyno usage for`  **{HEROKU_APP_NAME}**:\n"
+                          f"     ❍  `{AppHours}`**h**  `{AppMinutes}`**m**  "
+                          f"**|**  [`{AppPercentage}`**%**]"
+                          "\n\n"
+                          " -> `Dyno hours quota remaining this month`:\n"
+                          f"     ❍  `{hours}`**h**  `{minutes}`**m**  "
+                          f"**|**  [`{percentage}`**%**]")
 
 
 def prettyjson(obj, indent=2, maxlinelength=80):
@@ -258,8 +247,6 @@ def prettyjson(obj, indent=2, maxlinelength=80):
         indent=indent,
     )
     return indentitems(items, indent, level=0)
-
-
 
 
 # HEROKU
@@ -389,21 +376,23 @@ def get_id(update: Update, context: CallbackContext):
         else:
             msg.reply_text(
                 # f"Your ID is <code>{user1.id}</code>"
-                f"This group's id is <code>{chat.id}</code>.", parse_mode=ParseMode.HTML,
+                f"This group's id is <code>{chat.id}</code>.",
+                parse_mode=ParseMode.HTML,
             )
 
 
 @SaitamaTelethonClient.on(
     events.NewMessage(
-        pattern="/ginfo ", from_users=(TIGERS or []) + (DRAGONS or []) + (DEMONS or []),
-    ),
-)
+        pattern="/ginfo ",
+        from_users=(TIGERS or []) + (DRAGONS or []) + (DEMONS or []),
+    ), )
 async def group_info(event) -> None:
     chat = event.text.split(" ", 1)[1]
     try:
         entity = await event.client.get_entity(chat)
         totallist = await event.client.get_participants(
-            entity, filter=ChannelParticipantsAdmins,
+            entity,
+            filter=ChannelParticipantsAdmins,
         )
         ch_full = await event.client(GetFullChannelRequest(channel=entity))
     except:
@@ -440,7 +429,8 @@ def gifid(update: Update, context: CallbackContext):
             parse_mode=ParseMode.HTML,
         )
     else:
-        update.effective_message.reply_text("Please reply to a gif to get its ID.")
+        update.effective_message.reply_text(
+            "Please reply to a gif to get its ID.")
 
 
 @run_async
@@ -457,27 +447,22 @@ def info(update: Update, context: CallbackContext):
         user = message.from_user
 
     elif not message.reply_to_message and (
-        not args
-        or (
-            len(args) >= 1
-            and not args[0].startswith("@")
-            and not args[0].isdigit()
-            and not message.parse_entities([MessageEntity.TEXT_MENTION])
-        )
-    ):
+            not args or
+        (len(args) >= 1 and not args[0].startswith("@")
+         and not args[0].isdigit()
+         and not message.parse_entities([MessageEntity.TEXT_MENTION]))):
         message.reply_text("I can't extract a user from this.")
         return
 
     else:
         return
 
-    rep = message.reply_text("<code>Appraising...</code>", parse_mode=ParseMode.HTML)
+    rep = message.reply_text("<code>Appraising...</code>",
+                             parse_mode=ParseMode.HTML)
 
-    text = (
-        f"╒═══「<b> User info </b>」\n"
-        f"<b>User ID:</b> <code>{user.id}</code>\n"
-        f"<b>First Name:</b> {html.escape(user.first_name)}"
-    )
+    text = (f"╒═══「<b> User info </b>」\n"
+            f"<b>User ID:</b> <code>{user.id}</code>\n"
+            f"<b>First Name:</b> {html.escape(user.first_name)}")
 
     if user.last_name:
         text += f"\n<b>Last Name:</b> {html.escape(user.last_name)}"
@@ -564,7 +549,8 @@ def info(update: Update, context: CallbackContext):
 
     if INFOPIC:
         try:
-            profile = context.bot.get_user_profile_photos(user.id).photos[0][-1]
+            profile = context.bot.get_user_profile_photos(
+                user.id).photos[0][-1]
             _file = bot.get_file(profile["file_id"])
             _file.download(f"{user.id}.png")
 
@@ -579,12 +565,16 @@ def info(update: Update, context: CallbackContext):
         # Incase user don't have profile pic, send normal text
         except IndexError:
             message.reply_text(
-                text, parse_mode=ParseMode.HTML, disable_web_page_preview=False,
+                text,
+                parse_mode=ParseMode.HTML,
+                disable_web_page_preview=False,
             )
 
     else:
         message.reply_text(
-            text, parse_mode=ParseMode.HTML, disable_web_page_preview=False,
+            text,
+            parse_mode=ParseMode.HTML,
+            disable_web_page_preview=False,
         )
 
     rep.delete()
@@ -612,10 +602,10 @@ def about_me(update: Update, context: CallbackContext):
     elif message.reply_to_message:
         username = message.reply_to_message.from_user.first_name
         update.effective_message.reply_text(
-            f"{username} hasn't set an info message about themselves yet!",
-        )
+            f"{username} hasn't set an info message about themselves yet!", )
     else:
-        update.effective_message.reply_text("There isnt one, use /setme to set one.")
+        update.effective_message.reply_text(
+            "There isnt one, use /setme to set one.")
 
 
 @run_async
@@ -629,7 +619,8 @@ def set_about_me(update: Update, context: CallbackContext):
     if message.reply_to_message:
         repl_message = message.reply_to_message
         repl_user_id = repl_message.from_user.id
-        if repl_user_id in [bot.id, 777000, 1087968824] and (user_id in DEV_USERS):
+        if repl_user_id in [bot.id, 777000, 1087968824] and (user_id
+                                                             in DEV_USERS):
             user_id = repl_user_id
     text = message.text
     info = text.split(None, 1)
@@ -639,15 +630,17 @@ def set_about_me(update: Update, context: CallbackContext):
             if user_id in [777000, 1087968824]:
                 message.reply_text("Authorized...Information updated!")
             elif user_id == bot.id:
-                message.reply_text("I have updated my info with the one you provided!")
+                message.reply_text(
+                    "I have updated my info with the one you provided!")
             else:
                 message.reply_text("Information updated!")
         else:
             message.reply_text(
-                "The info needs to be under {} characters! You have {}.".format(
-                    MAX_MESSAGE_LENGTH // 4, len(info[1]),
-                ),
-            )
+                "The info needs to be under {} characters! You have {}.".
+                format(
+                    MAX_MESSAGE_LENGTH // 4,
+                    len(info[1]),
+                ), )
 
 
 """
@@ -689,9 +682,10 @@ def set_about_me(update: Update, context: CallbackContext):
     | <code>{percentage}%</code>
 """
 
+
 @run_async
 @sudo_plus
-def nstats(update: Update, context: CallbackContext): #  (_, message)
+def nstats(update: Update, context: CallbackContext):  #  (_, message)
     stats = f"""
 ╒═══「 <b>System statistics</b> 」
 
@@ -705,10 +699,11 @@ def nstats(update: Update, context: CallbackContext): #  (_, message)
 ╒═══「 <b>Rajnii statistics</b> 」
        """ + "\n".join([mod.__stats__() for mod in STATS])
     result = re.sub(r"(\d+)", r"<code>\1</code>", stats)
-    update.effective_message.reply_text(result+"""
+    update.effective_message.reply_text(result + """
 
 <a href="https://t.me/RajniSupport">✦ Support</a> | <a href="https://t.me/RajniUpdates">✦ Updates</a>
-╘══「 <b>By <a href="https://github.com/itzzzzyashu">itzzzyashu</a></b> 」""", parse_mode=ParseMode.HTML)
+╘══「 <b>By <a href="https://github.com/itzzzzyashu">itzzzyashu</a></b> 」""",
+                                        parse_mode=ParseMode.HTML)
 
 
 @run_async
@@ -737,8 +732,7 @@ def about_bio(update: Update, context: CallbackContext):
         )
     else:
         update.effective_message.reply_text(
-            "You haven't had a bio set about yourself yet!",
-        )
+            "You haven't had a bio set about yourself yet!", )
 
 
 @run_async
@@ -769,21 +763,23 @@ def set_about_bio(update: Update, context: CallbackContext):
 
         text = message.text
         bio = text.split(
-            None, 1,
+            None,
+            1,
         )  # use python's maxsplit to only remove the cmd, hence keeping newlines.
 
         if len(bio) == 2:
             if len(bio[1]) < MAX_MESSAGE_LENGTH // 4:
                 sql.set_user_bio(user_id, bio[1])
                 message.reply_text(
-                    "Updated {}'s bio!".format(repl_message.from_user.first_name),
-                )
+                    "Updated {}'s bio!".format(
+                        repl_message.from_user.first_name), )
             else:
                 message.reply_text(
-                    "Bio needs to be under {} characters! You tried to set {}.".format(
-                        MAX_MESSAGE_LENGTH // 4, len(bio[1]),
-                    ),
-                )
+                    "Bio needs to be under {} characters! You tried to set {}."
+                    .format(
+                        MAX_MESSAGE_LENGTH // 4,
+                        len(bio[1]),
+                    ), )
     else:
         message.reply_text("Reply to someone to set their bio!")
 

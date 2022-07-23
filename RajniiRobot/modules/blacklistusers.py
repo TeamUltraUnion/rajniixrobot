@@ -2,10 +2,10 @@
 import html
 import RajniiRobot.modules.sql.blacklistusers_sql as sql
 from RajniiRobot import (DEV_USERS, OWNER_ID, DRAGONS, DEMONS, TIGERS, WOLVES,
-                          dispatcher)
+                         dispatcher)
 from RajniiRobot.modules.helper_funcs.chat_status import dev_plus
 from RajniiRobot.modules.helper_funcs.extraction import (extract_user,
-                                                          extract_user_and_text)
+                                                         extract_user_and_text)
 from RajniiRobot.modules.log_channel import gloggable
 from telegram import ParseMode, Update
 from telegram.error import BadRequest

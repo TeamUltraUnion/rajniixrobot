@@ -9,10 +9,11 @@ import RajniiRobot.modules.sql.kuki_sql as sql
 from time import sleep
 from telegram import ParseMode
 from telegram import (CallbackQuery, Chat, MessageEntity, InlineKeyboardButton,
-                      InlineKeyboardMarkup, Message, ParseMode, Update, Bot, User)
-from telegram.ext import (CallbackContext, CallbackQueryHandler, CommandHandler,
-                          DispatcherHandlerStop, Filters, MessageHandler,
-                          run_async)
+                      InlineKeyboardMarkup, Message, ParseMode, Update, Bot,
+                      User)
+from telegram.ext import (CallbackContext, CallbackQueryHandler,
+                          CommandHandler, DispatcherHandlerStop, Filters,
+                          MessageHandler, run_async)
 from telegram.error import BadRequest, RetryAfter, Unauthorized
 from telegram.utils.helpers import mention_html, mention_markdown, escape_markdown
 
@@ -42,11 +43,13 @@ def rm_ai(update: Update, context: CallbackContext) -> str:
             )
         else:
             update.effective_message.edit_text(
-                "Rajni AI Chat module Deactivated by {}.".format(mention_html(user.id, user.first_name)),
+                "Rajni AI Chat module Deactivated by {}.".format(
+                    mention_html(user.id, user.first_name)),
                 parse_mode=ParseMode.HTML,
             )
 
     return ""
+
 
 @user_admin_no_reply
 @gloggable
@@ -68,11 +71,13 @@ def add_ai(update: Update, context: CallbackContext) -> str:
             )
         else:
             update.effective_message.edit_text(
-                "Rajni AI Chat module Activated by {}.".format(mention_html(user.id, user.first_name)),
+                "Rajni AI Chat module Activated by {}.".format(
+                    mention_html(user.id, user.first_name)),
                 parse_mode=ParseMode.HTML,
             )
 
     return ""
+
 
 @user_admin
 @gloggable
@@ -82,18 +87,16 @@ def aichat_toggle(update: Update, context: CallbackContext):
     message = update.effective_message
     msg = f"Choose an option below to toggle ai chatbot."
     keyboard = InlineKeyboardMarkup([[
-        InlineKeyboardButton(
-            text="◇ Activate",
-            callback_data="add_chat({})")],
-       [
-        InlineKeyboardButton(
-            text="◇ Deactivate",
-            callback_data="rm_chat({})")]])
+        InlineKeyboardButton(text="◇ Activate", callback_data="add_chat({})")
+    ], [
+        InlineKeyboardButton(text="◇ Deactivate", callback_data="rm_chat({})")
+    ]])
     message.reply_text(
         msg,
         reply_markup=keyboard,
         parse_mode=ParseMode.HTML,
     )
+
 
 def get_message(context: CallbackContext, message):
     reply_message = message.reply_to_message
@@ -104,6 +107,7 @@ def get_message(context: CallbackContext, message):
             return True
     else:
         return False
+
 
 @run_async
 def ai_reply(update: Update, context: CallbackContext):
@@ -119,11 +123,12 @@ def ai_reply(update: Update, context: CallbackContext):
             return
         Message = message.text
         bot.send_chat_action(chat_id, action="typing")
-        kukiurl = requests.get(f'{AI_API_KEY}'+Message)
+        kukiurl = requests.get(f'{AI_API_KEY}' + Message)
         Kuki = json.loads(kukiurl.text)
         kuki = Kuki['reply']
         sleep(0.3)
         message.reply_text(kuki, timeout=60)
+
 
 @run_async
 def ai_chats(update: Update, context: CallbackContext):
@@ -140,6 +145,7 @@ def ai_chats(update: Update, context: CallbackContext):
             sleep(e.retry_after)
     update.effective_message.reply_text(text, parse_mode="HTML")
 
+
 __help__ = f"""
 AI Chat Module utilizes the Kuki's api which allows {dispatcher.bot.first_name} to talk and provide a more interactive group chat experience.
 *Admins only Commands*:
@@ -149,15 +155,15 @@ AI Chat Module utilizes the Kuki's api which allows {dispatcher.bot.first_name} 
 
 __mod_name__ = "AIChat"
 
-
 CHATBOTK_HANDLER = CommandHandler("aichat", aichat_toggle)
 ADD_CHAT_HANDLER = CallbackQueryHandler(add_ai, pattern=r"add_chat")
 RM_CHAT_HANDLER = CallbackQueryHandler(rm_ai, pattern=r"rm_chat")
 CHATBOT_HANDLER = MessageHandler(
     Filters.text & (~Filters.regex(r"^#[^\s]+") & ~Filters.regex(r"^!")
                     & ~Filters.regex(r"^\/")), ai_reply)
-LIST_ALL_CHATS_HANDLER = CommandHandler(
-    "aichats", ai_chats, filters=CustomFilters.dev_filter)
+LIST_ALL_CHATS_HANDLER = CommandHandler("aichats",
+                                        ai_chats,
+                                        filters=CustomFilters.dev_filter)
 
 dispatcher.add_handler(ADD_CHAT_HANDLER)
 dispatcher.add_handler(CHATBOTK_HANDLER)

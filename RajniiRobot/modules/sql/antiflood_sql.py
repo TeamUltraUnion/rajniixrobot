@@ -3,6 +3,7 @@ import threading
 from sqlalchemy import String, Column, Integer, UnicodeText, BIGINT
 
 from RajniiRobot.modules.sql import SESSION, BASE
+
 DEF_COUNT = 1
 DEF_LIMIT = 0
 DEF_OBJ = (None, DEF_COUNT, DEF_LIMIT)
@@ -97,8 +98,9 @@ def set_flood_strength(chat_id, flood_type, value):
     with INSERTION_FLOOD_SETTINGS_LOCK:
         curr_setting = SESSION.query(FloodSettings).get(str(chat_id))
         if not curr_setting:
-            curr_setting = FloodSettings(
-                chat_id, flood_type=int(flood_type), value=value)
+            curr_setting = FloodSettings(chat_id,
+                                         flood_type=int(flood_type),
+                                         value=value)
 
         curr_setting.flood_type = int(flood_type)
         curr_setting.value = str(value)
@@ -136,7 +138,8 @@ def __load_flood_settings():
     try:
         all_chats = SESSION.query(FloodControl).all()
         CHAT_FLOOD = {
-            chat.chat_id: (None, DEF_COUNT, chat.limit) for chat in all_chats
+            chat.chat_id: (None, DEF_COUNT, chat.limit)
+            for chat in all_chats
         }
     finally:
         SESSION.close()

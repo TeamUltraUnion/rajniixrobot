@@ -18,8 +18,9 @@ class BlackListFilters(BASE):
 
     def __eq__(self, other):
         return bool(
-            isinstance(other, BlackListFilters) and
-            self.chat_id == other.chat_id and self.trigger == other.trigger)
+            isinstance(other, BlackListFilters)
+            and self.chat_id == other.chat_id
+            and self.trigger == other.trigger)
 
 
 class BlacklistSettings(BASE):
@@ -147,7 +148,7 @@ def __load_chat_blacklists():
     global CHAT_BLACKLISTS
     try:
         chats = SESSION.query(BlackListFilters.chat_id).distinct().all()
-        for (chat_id,) in chats:  # remove tuple by ( ,)
+        for (chat_id, ) in chats:  # remove tuple by ( ,)
             CHAT_BLACKLISTS[chat_id] = []
 
         all_filters = SESSION.query(BlackListFilters).all()
@@ -175,9 +176,8 @@ def __load_chat_settings_blacklists():
 
 def migrate_chat(old_chat_id, new_chat_id):
     with BLACKLIST_FILTER_INSERTION_LOCK:
-        chat_filters = (
-            SESSION.query(BlackListFilters).filter(
-                BlackListFilters.chat_id == str(old_chat_id)).all())
+        chat_filters = (SESSION.query(BlackListFilters).filter(
+            BlackListFilters.chat_id == str(old_chat_id)).all())
         for filt in chat_filters:
             filt.chat_id = str(new_chat_id)
         SESSION.commit()

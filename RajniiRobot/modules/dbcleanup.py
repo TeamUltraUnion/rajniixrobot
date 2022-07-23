@@ -6,7 +6,8 @@ from RajniiRobot import DEV_USERS, OWNER_ID, dispatcher
 from RajniiRobot.modules.helper_funcs.chat_status import dev_plus
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.error import BadRequest, Unauthorized
-from telegram.ext import (CallbackContext, CallbackQueryHandler, CommandHandler, run_async)
+from telegram.ext import (CallbackContext, CallbackQueryHandler,
+                          CommandHandler, run_async)
 
 
 def get_invalid_chats(update: Update,
@@ -99,7 +100,9 @@ def dbcleanup(update: Update, context: CallbackContext):
     reply = f"Total invalid chats - {invalid_chat_count}\n"
     reply += f"Total invalid gbanned users - {invalid_gban_count}"
 
-    buttons = [[InlineKeyboardButton("Cleanup DB", callback_data="db_cleanup")]]
+    buttons = [[
+        InlineKeyboardButton("Cleanup DB", callback_data="db_cleanup")
+    ]]
 
     update.effective_message.reply_text(
         reply, reply_markup=InlineKeyboardMarkup(buttons))

@@ -27,8 +27,8 @@ def convert(update: Update, context: CallbackContext):
                        f"&apikey={CASH_API_KEY}")
         response = requests.get(request_url).json()
         try:
-            current_rate = float(
-                response['Realtime Currency Exchange Rate']['5. Exchange Rate'])
+            current_rate = float(response['Realtime Currency Exchange Rate']
+                                 ['5. Exchange Rate'])
         except KeyError:
             update.effective_message.reply_text("Currency Not Supported.")
             return
@@ -37,8 +37,8 @@ def convert(update: Update, context: CallbackContext):
             f"{orig_cur_amount} {orig_cur} = {new_cur_amount} {new_cur}")
 
     elif len(args) == 1:
-        update.effective_message.reply_text(
-            __help__, parse_mode=ParseMode.MARKDOWN)
+        update.effective_message.reply_text(__help__,
+                                            parse_mode=ParseMode.MARKDOWN)
 
     else:
         update.effective_message.reply_text(

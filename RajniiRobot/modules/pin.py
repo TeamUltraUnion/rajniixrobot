@@ -7,7 +7,8 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from RajniiRobot.utils.pluginhelp import member_permissions
 from RajniiRobot import pgram, db
 
-BTN_URL_REGEX = compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
+BTN_URL_REGEX = compile(
+    r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
 
 
 async def parse_button(text: str):
@@ -27,8 +28,9 @@ async def parse_button(text: str):
         # if even, not escaped -> create button
         if n_escapes % 2 == 0:
             # create a thruple with button label, url, and newline status
-            buttons.pgramend((match.group(2), match.group(3), bool(match.group(4))))
-            note_data += markdown_note[prev : match.start(1)]
+            buttons.pgramend(
+                (match.group(2), match.group(3), bool(match.group(4))))
+            note_data += markdown_note[prev:match.start(1)]
             prev = match.end(1)
         # if odd, escaped -> move along
         else:
@@ -50,6 +52,7 @@ async def build_keyboard(buttons):
             keyb.pgramend([InlineKeyboardButton(btn[0], url=btn[1])])
 
     return keyb
+
 
 class MongoDB:
     """Class for interacting with Bot database."""
@@ -193,7 +196,10 @@ class Pins:
             otype = "cleanlinked" if atype == "antichannelpin" else "antichannelpin"
             return self.collection.update(
                 {"_id": self.chat_id},
-                {atype: True, otype: False},
+                {
+                    atype: True,
+                    otype: False
+                },
             )
 
     def set_off(self, atype: str):
@@ -201,7 +207,10 @@ class Pins:
             otype = "cleanlinked" if atype == "antichannelpin" else "antichannelpin"
             return self.collection.update(
                 {"_id": self.chat_id},
-                {atype: False, otype: False},
+                {
+                    atype: False,
+                    otype: False
+                },
             )
 
     def __ensure_in_db(self):
@@ -381,11 +390,11 @@ async def antichanpin_cleanlinked(c, m: Message):
             await c.delete_messages(m.chat.id, msg_id)
     except ChatAdminRequired:
         await m.reply_text(
-            "Disabled antichannelpin as I don't have enough admin rights!",
-        )
+            "Disabled antichannelpin as I don't have enough admin rights!", )
         pins_db.antichannelpin_off()
     except Exception:
         return
     return
+
 
 __mod_name__ = "Pinning"

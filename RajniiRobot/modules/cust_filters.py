@@ -151,8 +151,9 @@ def filters(update, context):
     if not msg.reply_to_message and len(extracted) >= 2:
         offset = len(extracted[1]) - len(
             msg.text)  # set correct offset relative to command + notename
-        text, buttons = button_markdown_parser(
-            extracted[1], entities=msg.parse_entities(), offset=offset)
+        text, buttons = button_markdown_parser(extracted[1],
+                                               entities=msg.parse_entities(),
+                                               offset=offset)
         text = text.strip()
         if not text:
             send_message(
@@ -169,9 +170,10 @@ def filters(update, context):
         else:
             text_to_parsing = ""
         offset = len(text_to_parsing
-                    )  # set correct offset relative to command + notename
-        text, buttons = button_markdown_parser(
-            text_to_parsing, entities=msg.parse_entities(), offset=offset)
+                     )  # set correct offset relative to command + notename
+        text, buttons = button_markdown_parser(text_to_parsing,
+                                               entities=msg.parse_entities(),
+                                               offset=offset)
         text = text.strip()
 
     elif not text and not file_type:
@@ -189,12 +191,13 @@ def filters(update, context):
         else:
             text_to_parsing = ""
         offset = len(text_to_parsing
-                    )  # set correct offset relative to command + notename
-        text, buttons = button_markdown_parser(
-            text_to_parsing, entities=msg.parse_entities(), offset=offset)
+                     )  # set correct offset relative to command + notename
+        text, buttons = button_markdown_parser(text_to_parsing,
+                                               entities=msg.parse_entities(),
+                                               offset=offset)
         text = text.strip()
-        if (msg.reply_to_message.text or
-                msg.reply_to_message.caption) and not text:
+        if (msg.reply_to_message.text
+                or msg.reply_to_message.caption) and not text:
             send_message(
                 update.effective_message,
                 "There is no note message - You can't JUST have buttons, you need a message to go with it!",
@@ -330,8 +333,8 @@ def reply_filter(update, context):
                     if valid_format:
                         filtext = valid_format.format(
                             first=escape(message.from_user.first_name),
-                            last=escape(message.from_user.last_name or
-                                        message.from_user.first_name),
+                            last=escape(message.from_user.last_name
+                                        or message.from_user.first_name),
                             fullname=" ".join(
                                 [
                                     escape(message.from_user.first_name),
@@ -499,8 +502,8 @@ def rmall_filters(update, context):
             "Only the chat owner can clear all notes at once.")
     else:
         buttons = InlineKeyboardMarkup([[
-            InlineKeyboardButton(
-                text="Stop all filters", callback_data="filters_rmall")
+            InlineKeyboardButton(text="Stop all filters",
+                                 callback_data="filters_rmall")
         ], [
             InlineKeyboardButton(text="Cancel", callback_data="filters_cancel")
         ]])
@@ -625,12 +628,14 @@ __mod_name__ = "Filters"
 
 FILTER_HANDLER = CommandHandler("filter", filters)
 STOP_HANDLER = CommandHandler("stop", stop_filter)
-RMALLFILTER_HANDLER = CommandHandler(
-    "removeallfilters", rmall_filters, filters=Filters.group)
-RMALLFILTER_CALLBACK = CallbackQueryHandler(
-    rmall_callback, pattern=r"filters_.*")
-LIST_HANDLER = DisableAbleCommandHandler(
-    "filters", list_handlers, admin_ok=True)
+RMALLFILTER_HANDLER = CommandHandler("removeallfilters",
+                                     rmall_filters,
+                                     filters=Filters.group)
+RMALLFILTER_CALLBACK = CallbackQueryHandler(rmall_callback,
+                                            pattern=r"filters_.*")
+LIST_HANDLER = DisableAbleCommandHandler("filters",
+                                         list_handlers,
+                                         admin_ok=True)
 CUST_FILTER_HANDLER = MessageHandler(
     CustomFilters.has_text & ~Filters.update.edited_message, reply_filter)
 

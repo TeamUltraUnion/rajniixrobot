@@ -1,4 +1,3 @@
-
 import os
 import html
 import nekos
@@ -23,7 +22,7 @@ from RajniiRobot.modules.helper_funcs.filters import CustomFilters
 def add_nsfw(update: Update, context: CallbackContext):
     chat = update.effective_chat
     msg = update.effective_message
-    user = update.effective_user #Remodified by @EverythingSuckz
+    user = update.effective_user  #Remodified by @EverythingSuckz
     is_nsfw = sql.set_nsfw(chat.id)
     if not is_nsfw:
         sql.set_nsfw(chat.id)
@@ -71,7 +70,6 @@ def list_nsfw_chats(update: Update, context: CallbackContext):
         except RetryAfter as e:
             sleep(e.retry_after)
     update.effective_message.reply_text(text, parse_mode="HTML")
-
 
 
 def is_user_in_chat(chat: Chat, user_id: int) -> bool:
@@ -475,6 +473,7 @@ def dva(update, context):
         msg.reply_text("No URL was received from the API!")
         return
     msg.reply_photo(url)
+
 
 __mod_name__ = "NSFW"
 

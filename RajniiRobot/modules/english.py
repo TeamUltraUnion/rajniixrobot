@@ -1,5 +1,3 @@
-
-
 import json
 import requests
 import os
@@ -15,7 +13,6 @@ from telegram import Message
 
 from RajniiRobot import telethn
 from RajniiRobot.events import register
-
 
 API_KEY = "6ae0c3a0-afdc-4532-a810-82ded0054236"
 URL = "http://services.gingersoftware.com/Ginger/correct/json/GingerTheText"
@@ -51,7 +48,7 @@ dictionary = PyDictionary()
 
 @register(pattern="^/define")
 async def _(event):
-    text = event.text[len("/define ") :]
+    text = event.text[len("/define "):]
     word = f"{text}"
     let = dictionary.meaning(word)
     set = str(let)
@@ -63,7 +60,7 @@ async def _(event):
 
 @register(pattern="^/synonyms")
 async def _(event):
-    text = event.text[len("/synonyms ") :]
+    text = event.text[len("/synonyms "):]
     word = f"{text}"
     let = dictionary.synonym(word)
     set = str(let)
@@ -75,7 +72,7 @@ async def _(event):
 
 @register(pattern="^/antonyms")
 async def _(event):
-    text = event.text[len("/antonyms ") :]
+    text = event.text[len("/antonyms "):]
     word = f"{text}"
     let = dictionary.antonym(word)
     set = str(let)

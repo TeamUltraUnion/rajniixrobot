@@ -2,7 +2,7 @@ import random, html
 
 from RajniiRobot import dispatcher
 from RajniiRobot.modules.disable import (DisableAbleCommandHandler,
-                                          DisableAbleMessageHandler)
+                                         DisableAbleMessageHandler)
 from RajniiRobot.modules.sql import afk_sql as sql
 from RajniiRobot.modules.users import get_user_id
 from telegram import MessageEntity, Update
@@ -62,7 +62,8 @@ def no_longer_afk(update: Update, context: CallbackContext):
                 'Welcome back! {}', 'Where is {}?\nIn the chat!'
             ]
             chosen_option = random.choice(options)
-            update.effective_message.reply_text(chosen_option.format(firstname))
+            update.effective_message.reply_text(
+                chosen_option.format(firstname))
         except:
             return
 
@@ -102,8 +103,8 @@ def reply_afk(update: Update, context: CallbackContext):
                 try:
                     chat = bot.get_chat(user_id)
                 except BadRequest:
-                    print("Error: Could not fetch userid {} for AFK module"
-                          .format(user_id))
+                    print("Error: Could not fetch userid {} for AFK module".
+                          format(user_id))
                     return
                 fst_name = chat.first_name
 
@@ -141,8 +142,9 @@ When marked as AFK, any mentions will be replied to with a message to say you're
 """
 
 AFK_HANDLER = DisableAbleCommandHandler("afk", afk)
-AFK_REGEX_HANDLER = DisableAbleMessageHandler(
-    Filters.regex(r"^(?i)brb(.*)$"), afk, friendly="afk")
+AFK_REGEX_HANDLER = DisableAbleMessageHandler(Filters.regex(r"^(?i)brb(.*)$"),
+                                              afk,
+                                              friendly="afk")
 NO_AFK_HANDLER = MessageHandler(Filters.all & Filters.group, no_longer_afk)
 AFK_REPLY_HANDLER = MessageHandler(Filters.all & Filters.group, reply_afk)
 

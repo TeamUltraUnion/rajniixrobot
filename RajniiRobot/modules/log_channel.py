@@ -58,7 +58,8 @@ if is_module_loaded(FILENAME):
 
             if result:
                 datetime_fmt = "%H:%M - %d-%m-%Y"
-                result += "\n<b>Event Stamp</b>: <code>{}</code>".format(datetime.utcnow().strftime(datetime_fmt))
+                result += "\n<b>Event Stamp</b>: <code>{}</code>".format(
+                    datetime.utcnow().strftime(datetime_fmt))
 
                 if message.chat.type == chat.SUPERGROUP and message.chat.username:
                     result += f'\n<b>Link:</b> <a href="https://t.me/{chat.username}/{message.message_id}">click here</a>'
@@ -74,11 +75,10 @@ if is_module_loaded(FILENAME):
                  result: str):
         bot = context.bot
         try:
-            bot.send_message(
-                log_chat_id,
-                result,
-                parse_mode=ParseMode.HTML,
-                disable_web_page_preview=True)
+            bot.send_message(log_chat_id,
+                             result,
+                             parse_mode=ParseMode.HTML,
+                             disable_web_page_preview=True)
         except BadRequest as excp:
             if excp.message == "Chat not found":
                 bot.send_message(

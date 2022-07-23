@@ -38,14 +38,13 @@ def send(msg, bot, update):
     if len(str(msg)) > 2000:
         with io.BytesIO(str.encode(msg)) as out_file:
             out_file.name = "output.txt"
-            bot.send_document(
-                chat_id=update.effective_chat.id, document=out_file)
+            bot.send_document(chat_id=update.effective_chat.id,
+                              document=out_file)
     else:
         LOGGER.info(f"OUT: '{msg}'")
-        bot.send_message(
-            chat_id=update.effective_chat.id,
-            text=f"`{msg}`",
-            parse_mode=ParseMode.MARKDOWN)
+        bot.send_message(chat_id=update.effective_chat.id,
+                         text=f"`{msg}`",
+                         parse_mode=ParseMode.MARKDOWN)
 
 
 @dev_plus
@@ -126,7 +125,8 @@ def clear(update: Update, context: CallbackContext):
 
 
 EVAL_HANDLER = CommandHandler(('e', 'ev', 'eva', 'eval'), evaluate)
-EXEC_HANDLER = CommandHandler(('x', 'ex', 'exe', 'exec', 'py', 'python'), execute)
+EXEC_HANDLER = CommandHandler(('x', 'ex', 'exe', 'exec', 'py', 'python'),
+                              execute)
 CLEAR_HANDLER = CommandHandler('clearlocals', clear)
 
 dispatcher.add_handler(EVAL_HANDLER)

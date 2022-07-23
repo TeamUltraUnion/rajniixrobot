@@ -2,6 +2,7 @@ from sqlalchemy import Column, String, Numeric, Boolean
 from RajniiRobot.modules.sql import BASE, SESSION
 from sqlalchemy import BIGINT
 
+
 class forceSubscribe(BASE):
     __tablename__ = "forceSubscribe"
     chat_id = Column(Numeric, primary_key=True)
@@ -17,7 +18,8 @@ forceSubscribe.__table__.create(checkfirst=True)
 
 def fs_settings(chat_id):
     try:
-        return SESSION.query(forceSubscribe).filter(forceSubscribe.chat_id == chat_id).one()
+        return SESSION.query(forceSubscribe).filter(
+            forceSubscribe.chat_id == chat_id).one()
     except:
         return None
     finally:
@@ -29,12 +31,10 @@ def add_channel(chat_id, channel):
     if adder:
         adder.channel = channel
     else:
-        adder = forceSubscribe(
-            chat_id,
-            channel
-        )
+        adder = forceSubscribe(chat_id, channel)
     SESSION.add(adder)
     SESSION.commit()
+
 
 def disapprove(chat_id):
     rem = SESSION.query(forceSubscribe).get(chat_id)

@@ -79,11 +79,11 @@ def ping(update: Update, context: CallbackContext):
     telegram_ping = str(round((end_time - start_time) * 1000, 3)) + " ms"
     uptime = get_readable_time((time.time() - StartTime))
 
-    message.edit_text(
-        "PONG!!\n"
-        "<b>Time Taken:</b> <code>{}</code>\n"
-        "<b>Service uptime:</b> <code>{}</code>".format(telegram_ping, uptime),
-        parse_mode=ParseMode.HTML)
+    message.edit_text("PONG!!\n"
+                      "<b>Time Taken:</b> <code>{}</code>\n"
+                      "<b>Service uptime:</b> <code>{}</code>".format(
+                          telegram_ping, uptime),
+                      parse_mode=ParseMode.HTML)
 
 
 @run_async
@@ -98,8 +98,9 @@ def pingall(update: Update, context: CallbackContext):
     reply_msg += "\n".join(pinged_list)
     reply_msg += '\n<b>Service uptime:</b> <code>{}</code>'.format(uptime)
 
-    update.effective_message.reply_text(
-        reply_msg, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+    update.effective_message.reply_text(reply_msg,
+                                        parse_mode=ParseMode.HTML,
+                                        disable_web_page_preview=True)
 
 
 PING_HANDLER = DisableAbleCommandHandler("ping", ping)

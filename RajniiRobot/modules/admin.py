@@ -7,17 +7,20 @@ from telegram.utils.helpers import mention_html
 
 from RajniiRobot import DRAGONS, dispatcher
 from RajniiRobot.modules.disable import DisableAbleCommandHandler
-from RajniiRobot.modules.helper_funcs.chat_status import (bot_admin, can_pin,
-                                                           can_promote,
-                                                           can_change_info,
-                                                           connection_status, get_bot_member,
-                                                           user_admin,
-                                                           ADMIN_CACHE,
-                                                        #    can_manage_voice_chats,
-                                                           )
+from RajniiRobot.modules.helper_funcs.chat_status import (
+    bot_admin,
+    can_pin,
+    can_promote,
+    can_change_info,
+    connection_status,
+    get_bot_member,
+    user_admin,
+    ADMIN_CACHE,
+    #    can_manage_voice_chats,
+)
 
 from RajniiRobot.modules.helper_funcs.extraction import (extract_user,
-                                                          extract_user_and_text)
+                                                         extract_user_and_text)
 from RajniiRobot.modules.log_channel import loggable
 from RajniiRobot.modules.helper_funcs.alternate import send_message
 
@@ -39,9 +42,16 @@ def pinned(update: Update, context: CallbackContext) -> str:
             link_chat_id = (str(msg.chat.id)).replace("-100", "")
             message_link = (f"https://t.me/c/{link_chat_id}/{pinned_id}")
 
-        msg.reply_text(f'The pinned message of {html.escape(chat.title)} is <a href="{message_link}">here</a>.', reply_to_message_id=msg_id, parse_mode=ParseMode.HTML, disable_web_page_preview=True,)
+        msg.reply_text(
+            f'The pinned message of {html.escape(chat.title)} is <a href="{message_link}">here</a>.',
+            reply_to_message_id=msg_id,
+            parse_mode=ParseMode.HTML,
+            disable_web_page_preview=True,
+        )
     else:
-        msg.reply_text(f'There is no pinned message in {html.escape(chat.title)}!')
+        msg.reply_text(
+            f'There is no pinned message in {html.escape(chat.title)}!')
+
 
 @run_async
 @bot_admin
@@ -57,12 +67,12 @@ def set_sticker(update: Update, context: CallbackContext):
     if msg.reply_to_message:
         if not msg.reply_to_message.sticker:
             return msg.reply_text(
-                "You need to reply to some sticker to set chat sticker set!"
-            )
+                "You need to reply to some sticker to set chat sticker set!")
         stkr = msg.reply_to_message.sticker.set_name
         try:
             context.bot.set_chat_sticker_set(chat.id, stkr)
-            msg.reply_text(f"Successfully set new group stickers in {chat.title}!")
+            msg.reply_text(
+                f"Successfully set new group stickers in {chat.title}!")
         except BadRequest as excp:
             if excp.message == "Participants_too_few":
                 return msg.reply_text(
@@ -70,7 +80,9 @@ def set_sticker(update: Update, context: CallbackContext):
                 )
             msg.reply_text(f"Error! {excp.message}.")
     else:
-        msg.reply_text("You need to reply to some sticker to set chat sticker set!")
+        msg.reply_text(
+            "You need to reply to some sticker to set chat sticker set!")
+
 
 @run_async
 @bot_admin
@@ -127,6 +139,7 @@ def rmchatpic(update: Update, context: CallbackContext):
         msg.reply_text(f"Error! {excp.message}.")
         return
 
+
 @run_async
 @bot_admin
 @user_admin
@@ -145,11 +158,14 @@ def set_desc(update: Update, context: CallbackContext):
         return msg.reply_text("Setting empty description won't do anything!")
     try:
         if len(desc) > 255:
-            return msg.reply_text("Description must needs to be under 255 characters!")
+            return msg.reply_text(
+                "Description must needs to be under 255 characters!")
         context.bot.set_chat_description(chat.id, desc)
-        msg.reply_text(f"Successfully updated chat description in {chat.title}!")
+        msg.reply_text(
+            f"Successfully updated chat description in {chat.title}!")
     except BadRequest as excp:
-        msg.reply_text(f"Error! {excp.message}.")        
+        msg.reply_text(f"Error! {excp.message}.")
+
 
 @bot_admin
 @user_admin
@@ -180,7 +196,6 @@ def setchat_title(update: Update, context: CallbackContext):
         return
 
 
-
 @run_async
 @connection_status
 @bot_admin
@@ -197,8 +212,8 @@ def lessrights(update: Update, context: CallbackContext) -> str:
 
     promoter = chat.get_member(user.id)
 
-    if not (promoter.can_promote_members or
-            promoter.status == "creator") and not user.id in DRAGONS:
+    if not (promoter.can_promote_members
+            or promoter.status == "creator") and not user.id in DRAGONS:
         message.reply_text("You don't have the necessary rights to do that!")
         return
 
@@ -264,9 +279,6 @@ def lessrights(update: Update, context: CallbackContext) -> str:
     return log_message
 
 
-
-
-
 @run_async
 @connection_status
 @bot_admin
@@ -283,8 +295,8 @@ def fullrights(update: Update, context: CallbackContext) -> str:
 
     promoter = chat.get_member(user.id)
 
-    if not (promoter.can_promote_members or
-            promoter.status == "creator") and not user.id in DRAGONS:
+    if not (promoter.can_promote_members
+            or promoter.status == "creator") and not user.id in DRAGONS:
         message.reply_text("You don't have the necessary rights to do that!")
         return
 
@@ -350,8 +362,6 @@ def fullrights(update: Update, context: CallbackContext) -> str:
     return log_message
 
 
-
-
 @run_async
 @connection_status
 @bot_admin
@@ -368,8 +378,8 @@ def promote(update: Update, context: CallbackContext) -> str:
 
     promoter = chat.get_member(user.id)
 
-    if not (promoter.can_promote_members or
-            promoter.status == "creator") and not user.id in DRAGONS:
+    if not (promoter.can_promote_members
+            or promoter.status == "creator") and not user.id in DRAGONS:
         message.reply_text("You don't have the necessary rights to do that!")
         return
 
@@ -505,8 +515,10 @@ def demote(update: Update, context: CallbackContext) -> str:
     except BadRequest:
         message.reply_text(
             "Could not demote. I might not be admin, or the admin status was appointed by another"
-            " user, so I can't act upon them!, and because of telegram restrictions I can't demote bots.")
+            " user, so I can't act upon them!, and because of telegram restrictions I can't demote bots."
+        )
         return
+
 
 @run_async
 @user_admin
@@ -537,12 +549,15 @@ def set_title(update: Update, context: CallbackContext):
         return
 
     if not user_id:
-        message.reply_text("You don't seem to be referring to a user or the ID specified is incorrect..")
+        message.reply_text(
+            "You don't seem to be referring to a user or the ID specified is incorrect.."
+        )
         return
 
     if user_member.status == 'creator':
         message.reply_text(
-            "This person CREATED the chat, how can i set custom title for him?")
+            "This person CREATED the chat, how can i set custom title for him?"
+        )
         return
 
     if not user_member.status == 'administrator':
@@ -602,10 +617,9 @@ def pin(update: Update, context: CallbackContext) -> str:
 
     if prev_message and is_group:
         try:
-            bot.pinChatMessage(
-                chat.id,
-                prev_message.message_id,
-                disable_notification=is_silent)
+            bot.pinChatMessage(chat.id,
+                               prev_message.message_id,
+                               disable_notification=is_silent)
         except BadRequest as excp:
             if excp.message == "Chat_not_modified":
                 pass
@@ -657,12 +671,14 @@ def invite(update: Update, context: CallbackContext):
     if chat.username:
         update.effective_message.reply_text(f"""
 <b>Link: https://t.me/{chat.username}
-<b>Username:</b> @{chat.username}""", parse_mode=ParseMode.HTML)
+<b>Username:</b> @{chat.username}""",
+                                            parse_mode=ParseMode.HTML)
     elif chat.type == chat.SUPERGROUP or chat.type == chat.CHANNEL:
         bot_member = chat.get_member(bot.id)
         if bot_member.can_invite_users:
             invitelink = bot.exportChatInviteLink(chat.id)
-            update.effective_message.reply_text(f"<b>Link:</b> {invitelink}", parse_mode=ParseMode.HTML)
+            update.effective_message.reply_text(f"<b>Link:</b> {invitelink}",
+                                                parse_mode=ParseMode.HTML)
         else:
             update.effective_message.reply_text(
                 "I don't have access to the invite link, please promote me with all rights!"
@@ -691,11 +707,12 @@ def adminlist(update, context):
     chat_name = update.effective_message.chat.title
 
     try:
-        msg = update.effective_message.reply_text(
-            '`Fetching group admins...`', parse_mode=ParseMode.HTML)
+        msg = update.effective_message.reply_text('`Fetching group admins...`',
+                                                  parse_mode=ParseMode.HTML)
     except BadRequest:
-        msg = update.effective_message.reply_text(
-            '`Fetching group admins...`', quote=False, parse_mode=ParseMode.HTML)
+        msg = update.effective_message.reply_text('`Fetching group admins...`',
+                                                  quote=False,
+                                                  parse_mode=ParseMode.HTML)
 
     administrators = bot.getChatAdministrators(chat_id)
     text = "*Admins in <b>{}</b>:*".format(
@@ -818,26 +835,33 @@ ADMINLIST_HANDLER = DisableAbleCommandHandler("admins", adminlist)
 
 PIN_HANDLER = CommandHandler("pin", pin, filters=Filters.group)
 UNPIN_HANDLER = CommandHandler("unpin", unpin, filters=Filters.group)
-PINNED_HANDLER = CommandHandler("pinned", pinned, filters=Filters.group) # run_async
+PINNED_HANDLER = CommandHandler("pinned", pinned,
+                                filters=Filters.group)  # run_async
 
 INVITE_HANDLER = DisableAbleCommandHandler("chatlink", invite)
 
 SET_DESC_HANDLER = CommandHandler("setdesc", set_desc, filters=Filters.group)
-SET_STICKER_HANDLER = CommandHandler("setsticker", set_sticker, filters=Filters.group)
-SETCHATPIC_HANDLER = CommandHandler("setgpic", setchatpic, filters=Filters.group)
+SET_STICKER_HANDLER = CommandHandler("setsticker",
+                                     set_sticker,
+                                     filters=Filters.group)
+SETCHATPIC_HANDLER = CommandHandler("setgpic",
+                                    setchatpic,
+                                    filters=Filters.group)
 RMCHATPIC_HANDLER = CommandHandler("delgpic", rmchatpic, filters=Filters.group)
-SETCHAT_TITLE_HANDLER = CommandHandler("setgtitle", setchat_title, filters=Filters.group)
+SETCHAT_TITLE_HANDLER = CommandHandler("setgtitle",
+                                       setchat_title,
+                                       filters=Filters.group)
 
-FULLRIGHTS_HANDLER = DisableAbleCommandHandler(["allrights","fullrights"], fullrights)
-LESSRIGHTS_HANDLER = DisableAbleCommandHandler(["halfrights","lessrights"], lessrights)
+FULLRIGHTS_HANDLER = DisableAbleCommandHandler(["allrights", "fullrights"],
+                                               fullrights)
+LESSRIGHTS_HANDLER = DisableAbleCommandHandler(["halfrights", "lessrights"],
+                                               lessrights)
 PROMOTE_HANDLER = DisableAbleCommandHandler("promote", promote)
 DEMOTE_HANDLER = DisableAbleCommandHandler("demote", demote)
 SET_TITLE_HANDLER = CommandHandler("title", set_title)
-ADMIN_REFRESH_HANDLER = CommandHandler(
-    "admincache", refresh_admin, filters=Filters.group)
-
-
-
+ADMIN_REFRESH_HANDLER = CommandHandler("admincache",
+                                       refresh_admin,
+                                       filters=Filters.group)
 
 dispatcher.add_handler(SET_DESC_HANDLER)
 dispatcher.add_handler(SET_STICKER_HANDLER)
@@ -857,7 +881,12 @@ dispatcher.add_handler(SET_TITLE_HANDLER)
 dispatcher.add_handler(ADMIN_REFRESH_HANDLER)
 
 __mod_name__ = "Admin"
-__command_list__ = ["adminlist", "admins", "chatlink", "promote", "demote", "halfrights","allrights", "admincache"]
+__command_list__ = [
+    "adminlist", "admins", "chatlink", "promote", "demote", "halfrights",
+    "allrights", "admincache"
+]
 __handlers__ = [
     ADMINLIST_HANDLER, PIN_HANDLER, UNPIN_HANDLER, INVITE_HANDLER,
-    PROMOTE_HANDLER, FULLRIGHTS_HANDLER, LESSRIGHTS_HANDLER, DEMOTE_HANDLER, SET_TITLE_HANDLER, ADMIN_REFRESH_HANDLER]
+    PROMOTE_HANDLER, FULLRIGHTS_HANDLER, LESSRIGHTS_HANDLER, DEMOTE_HANDLER,
+    SET_TITLE_HANDLER, ADMIN_REFRESH_HANDLER
+]

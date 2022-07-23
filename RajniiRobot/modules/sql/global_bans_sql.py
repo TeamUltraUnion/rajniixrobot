@@ -142,7 +142,8 @@ def __load_gbanned_userid_list():
     global GBANNED_LIST
     try:
         GBANNED_LIST = {
-            x.user_id for x in SESSION.query(GloballyBannedUsers).all()
+            x.user_id
+            for x in SESSION.query(GloballyBannedUsers).all()
         }
     finally:
         SESSION.close()
@@ -153,8 +154,7 @@ def __load_gban_stat_list():
     try:
         GBANSTAT_LIST = {
             x.chat_id
-            for x in SESSION.query(GbanSettings).all()
-            if not x.setting
+            for x in SESSION.query(GbanSettings).all() if not x.setting
         }
     finally:
         SESSION.close()

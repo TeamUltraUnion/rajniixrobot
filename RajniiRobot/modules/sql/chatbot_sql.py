@@ -4,6 +4,7 @@ from RajniiRobot.modules.sql import BASE, SESSION
 from sqlalchemy import Column, String
 from sqlalchemy import BIGINT
 
+
 class ChatbotChats(BASE):
     __tablename__ = "chatbot_chats"
     chat_id = Column(String(14), primary_key=True)

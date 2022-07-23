@@ -4,6 +4,7 @@ from RajniiRobot.modules.sql import BASE, SESSION
 from sqlalchemy import Column, String, UnicodeText, distinct, func
 from sqlalchemy import BIGINT
 
+
 class Disable(BASE):
     __tablename__ = "disabled_commands"
     chat_id = Column(String(14), primary_key=True)

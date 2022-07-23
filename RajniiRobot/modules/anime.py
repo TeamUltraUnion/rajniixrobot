@@ -36,13 +36,11 @@ def t(milliseconds: int) -> str:
     minutes, seconds = divmod(seconds, 60)
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
-    tmp = (
-        ((str(days) + " Days, ") if days else "")
-        + ((str(hours) + " Hours, ") if hours else "")
-        + ((str(minutes) + " Minutes, ") if minutes else "")
-        + ((str(seconds) + " Seconds, ") if seconds else "")
-        + ((str(milliseconds) + " ms, ") if milliseconds else "")
-    )
+    tmp = (((str(days) + " Days, ") if days else "") +
+           ((str(hours) + " Hours, ") if hours else "") +
+           ((str(minutes) + " Minutes, ") if minutes else "") +
+           ((str(seconds) + " Seconds, ") if seconds else "") +
+           ((str(milliseconds) + " ms, ") if milliseconds else ""))
     return tmp[:-2]
 
 
@@ -159,6 +157,7 @@ query ($id: Int,$search: String) {
 
 url = "https://graphql.anilist.co"
 
+
 def extract_arg(message: Message):
     split = message.text.split(" ", 1)
     if len(split) > 1:
@@ -168,18 +167,22 @@ def extract_arg(message: Message):
         return reply.text
     return None
 
+
 @run_async
 def airing(update: Update, context: CallbackContext):
     message = update.effective_message
     search_str = extract_arg(message)
     if not search_str:
         update.effective_message.reply_text(
-            "Tell Anime Name :) ( /airing <anime name>)",
-        )
+            "Tell Anime Name :) ( /airing <anime name>)", )
         return
     variables = {"search": search_str}
     response = requests.post(
-        url, json={"query": airing_query, "variables": variables},
+        url,
+        json={
+            "query": airing_query,
+            "variables": variables
+        },
     ).json()["data"]["Media"]
     msg = f"*Name*: *{response['title']['romaji']}*(`{response['title']['native']}`)\n*ID*: `{response['id']}`"
     if response["nextAiringEpisode"]:
@@ -200,7 +203,11 @@ def anime(update: Update, context: CallbackContext):
         return
     variables = {"search": search}
     json = requests.post(
-        url, json={"query": anime_query, "variables": variables},
+        url,
+        json={
+            "query": anime_query,
+            "variables": variables
+        },
     ).json()
     if "errors" in json.keys():
         update.effective_message.reply_text("Anime not found")
@@ -223,12 +230,8 @@ def anime(update: Update, context: CallbackContext):
             site = trailer.get("site", None)
             if site == "youtube":
                 trailer = "https://youtu.be/" + trailer_id
-        description = (
-            json.get("description", "N/A")
-            .replace("<i>", "")
-            .replace("</i>", "")
-            .replace("<br>", "")
-        )
+        description = (json.get("description", "N/A").replace(
+            "<i>", "").replace("</i>", "").replace("<br>", ""))
         msg += shorten(description, info)
         image = json.get("bannerImage", None)
         if trailer:
@@ -262,16 +265,22 @@ def anime(update: Update, context: CallbackContext):
                 reply_markup=InlineKeyboardMarkup(buttons),
             )
 
+
 @run_async
 def character(update: Update, context: CallbackContext):
     message = update.effective_message
     search = extract_arg(message)
     if not search:
-        update.effective_message.reply_text("Format : /character < character name >")
+        update.effective_message.reply_text(
+            "Format : /character < character name >")
         return
     variables = {"query": search}
     json = requests.post(
-        url, json={"query": character_query, "variables": variables},
+        url,
+        json={
+            "query": character_query,
+            "variables": variables
+        },
     ).json()
     if "errors" in json.keys():
         update.effective_message.reply_text("Character not found")
@@ -292,7 +301,8 @@ def character(update: Update, context: CallbackContext):
             )
         else:
             update.effective_message.reply_text(
-                msg.replace("<b>", "</b>"), parse_mode=ParseMode.MARKDOWN,
+                msg.replace("<b>", "</b>"),
+                parse_mode=ParseMode.MARKDOWN,
             )
 
 
@@ -305,7 +315,11 @@ def manga(update: Update, context: CallbackContext):
         return
     variables = {"search": search}
     json = requests.post(
-        url, json={"query": manga_query, "variables": variables},
+        url,
+        json={
+            "query": manga_query,
+            "variables": variables
+        },
     ).json()
     msg = ""
     if "errors" in json.keys():
@@ -313,9 +327,11 @@ def manga(update: Update, context: CallbackContext):
         return
     if json:
         json = json["data"]["Media"]
-        title, title_native = json["title"].get("romaji", False), json["title"].get(
-            "native", False,
-        )
+        title, title_native = json["title"].get("romaji",
+                                                False), json["title"].get(
+                                                    "native",
+                                                    False,
+                                                )
         start_date, status, score = (
             json["startDate"].get("year", False),
             json.get("status", False),
@@ -408,7 +424,8 @@ def user(update: Update, context: CallbackContext):
         pass
 
     about_string = " ".join(about)
-    about_string = about_string.replace("<br>", "").strip().replace("\r\n", "\n")
+    about_string = about_string.replace("<br>",
+                                        "").strip().replace("\r\n", "\n")
 
     caption = ""
 
@@ -420,8 +437,7 @@ def user(update: Update, context: CallbackContext):
     *Joined*: `{user_joined_date_formatted}`
     *Days wasted watching anime*: `{us['anime_stats']['days_watched']}`
     *Days wasted reading manga*: `{us['manga_stats']['days_read']}`
-    """,
-    )
+    """, )
 
     caption += f"*About*: {about_string}"
 
@@ -429,7 +445,8 @@ def user(update: Update, context: CallbackContext):
         [InlineKeyboardButton(info_btn, url=us["url"])],
         [
             InlineKeyboardButton(
-                close_btn, callback_data=f"anime_close, {message.from_user.id}",
+                close_btn,
+                callback_data=f"anime_close, {message.from_user.id}",
             ),
         ],
     ]
@@ -458,6 +475,7 @@ def upcoming(update: Update, context: CallbackContext):
         upcoming_message += f"{entry_num + 1}. {upcoming_list[entry_num]}\n"
 
     update.effective_message.reply_text(upcoming_message)
+
 
 @run_async
 def site_search(update: Update, context: CallbackContext, site: str):
@@ -514,7 +532,9 @@ def site_search(update: Update, context: CallbackContext, site: str):
         )
     else:
         message.reply_text(
-            result, parse_mode=ParseMode.HTML, disable_web_page_preview=True,
+            result,
+            parse_mode=ParseMode.HTML,
+            disable_web_page_preview=True,
         )
 
 
@@ -553,7 +573,6 @@ You saw a good anime video, photo, gif but dont know what is that anime's name?
 This is where whatanime comes in, just reply to that media with /whatanime and it will search the anime name for you from anilist.
 """
 
-
 ANIME_HANDLER = DisableAbleCommandHandler("anime", anime)
 AIRING_HANDLER = DisableAbleCommandHandler("airing", airing)
 CHARACTER_HANDLER = DisableAbleCommandHandler("character", character)
@@ -584,12 +603,7 @@ __command_list__ = [
     "kaizoku",
 ]
 __handlers__ = [
-    ANIME_HANDLER,
-    CHARACTER_HANDLER,
-    MANGA_HANDLER,
-    USER_HANDLER,
-    UPCOMING_HANDLER,
-    KAYO_SEARCH_HANDLER,
-    AIRING_HANDLER,
+    ANIME_HANDLER, CHARACTER_HANDLER, MANGA_HANDLER, USER_HANDLER,
+    UPCOMING_HANDLER, KAYO_SEARCH_HANDLER, AIRING_HANDLER,
     KAIZOKU_SEARCH_HANDLER
 ]

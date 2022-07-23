@@ -4,6 +4,7 @@ from RajniiRobot.modules.sql import BASE, SESSION
 from sqlalchemy import Boolean, Column, UnicodeText
 from sqlalchemy import BIGINT
 
+
 class CleanerBlueTextChatSettings(BASE):
     __tablename__ = "cleaner_bluetext_chat_setting"
     chat_id = Column(UnicodeText, primary_key=True)
@@ -58,19 +59,20 @@ def set_cleanbt(chat_id, is_enable):
         SESSION.add(newcurr)
         SESSION.commit()
 
+
 def chat_ignore_command(chat_id, ignore):
     ignore = ignore.lower()
     with CLEANER_CHAT_LOCK:
-        ignored = SESSION.query(CleanerBlueTextChat).get((str(chat_id), ignore))
+        ignored = SESSION.query(CleanerBlueTextChat).get(
+            (str(chat_id), ignore))
 
         if not ignored:
 
             if str(chat_id) not in CLEANER_CHATS:
-                CLEANER_CHATS.setdefault(
-                    str(chat_id), {
-                        "setting": False,
-                        "commands": set()
-                    })
+                CLEANER_CHATS.setdefault(str(chat_id), {
+                    "setting": False,
+                    "commands": set()
+                })
 
             CLEANER_CHATS[str(chat_id)]["commands"].add(ignore)
 
@@ -91,11 +93,10 @@ def chat_unignore_command(chat_id, unignore):
         if unignored:
 
             if str(chat_id) not in CLEANER_CHATS:
-                CLEANER_CHATS.setdefault(
-                    str(chat_id), {
-                        "setting": False,
-                        "commands": set()
-                    })
+                CLEANER_CHATS.setdefault(str(chat_id), {
+                    "setting": False,
+                    "commands": set()
+                })
             if unignore in CLEANER_CHATS.get(str(chat_id)).get("commands"):
                 CLEANER_CHATS[str(chat_id)]["commands"].remove(unignore)
 
@@ -174,7 +175,8 @@ def __load_cleaner_list():
 
     try:
         GLOBAL_IGNORE_COMMANDS = {
-            x.command for x in SESSION.query(CleanerBlueTextGlobal).all()
+            x.command
+            for x in SESSION.query(CleanerBlueTextGlobal).all()
         }
     finally:
         SESSION.close()

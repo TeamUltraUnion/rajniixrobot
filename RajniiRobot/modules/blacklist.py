@@ -92,8 +92,7 @@ def add_blacklist(update, context):
     if len(words) > 1:
         text = words[1]
         to_blacklist = list(
-            set(trigger.strip()
-                for trigger in text.split("\n")
+            set(trigger.strip() for trigger in text.split("\n")
                 if trigger.strip()))
         for trigger in to_blacklist:
             sql.add_to_blacklist(chat_id, trigger.lower())
@@ -109,8 +108,8 @@ def add_blacklist(update, context):
         else:
             send_message(
                 update.effective_message,
-                "Added blacklist trigger: <code>{}</code> in <b>{}</b>!".format(
-                    len(to_blacklist), html.escape(chat_name)),
+                "Added blacklist trigger: <code>{}</code> in <b>{}</b>!".
+                format(len(to_blacklist), html.escape(chat_name)),
                 parse_mode=ParseMode.HTML,
             )
 
@@ -144,8 +143,7 @@ def unblacklist(update, context):
     if len(words) > 1:
         text = words[1]
         to_unblacklist = list(
-            set(trigger.strip()
-                for trigger in text.split("\n")
+            set(trigger.strip() for trigger in text.split("\n")
                 if trigger.strip()))
         successful = 0
         for trigger in to_unblacklist:
@@ -157,9 +155,9 @@ def unblacklist(update, context):
             if successful:
                 send_message(
                     update.effective_message,
-                    "Removed <code>{}</code> from blacklist in <b>{}</b>!"
-                    .format(
-                        html.escape(to_unblacklist[0]), html.escape(chat_name)),
+                    "Removed <code>{}</code> from blacklist in <b>{}</b>!".
+                    format(html.escape(to_unblacklist[0]),
+                           html.escape(chat_name)),
                     parse_mode=ParseMode.HTML,
                 )
             else:
@@ -188,7 +186,8 @@ def unblacklist(update, context):
                 update.effective_message,
                 "Removed <code>{}</code> from blacklist. {} did not exist, "
                 "so were not removed.".format(successful,
-                                              len(to_unblacklist) - successful),
+                                              len(to_unblacklist) -
+                                              successful),
                 parse_mode=ParseMode.HTML,
             )
     else:
@@ -225,8 +224,8 @@ def blacklist_mode(update, context):
         chat_name = update.effective_message.chat.title
 
     if args:
-        if (args[0].lower() == "off" or args[0].lower() == "nothing" or
-                args[0].lower() == "no"):
+        if (args[0].lower() == "off" or args[0].lower() == "nothing"
+                or args[0].lower() == "no"):
             settypeblacklist = "do nothing"
             sql.set_blacklist_strength(chat_id, 0, "0")
         elif args[0].lower() == "del" or args[0].lower() == "delete":
@@ -249,15 +248,17 @@ def blacklist_mode(update, context):
                 teks = """It looks like you tried to set time value for blacklist but you didn't specified time; Try, `/blacklistmode tban <timevalue>`.
 
 Examples of time value: 4m = 4 minutes, 3h = 3 hours, 6d = 6 days, 5w = 5 weeks."""
-                send_message(
-                    update.effective_message, teks, parse_mode="markdown")
+                send_message(update.effective_message,
+                             teks,
+                             parse_mode="markdown")
                 return ""
             restime = extract_time(msg, args[1])
             if not restime:
                 teks = """Invalid time value!
 Example of time value: 4m = 4 minutes, 3h = 3 hours, 6d = 6 days, 5w = 5 weeks."""
-                send_message(
-                    update.effective_message, teks, parse_mode="markdown")
+                send_message(update.effective_message,
+                             teks,
+                             parse_mode="markdown")
                 return ""
             settypeblacklist = "temporarily ban for {}".format(args[1])
             sql.set_blacklist_strength(chat_id, 6, str(args[1]))
@@ -266,15 +267,17 @@ Example of time value: 4m = 4 minutes, 3h = 3 hours, 6d = 6 days, 5w = 5 weeks."
                 teks = """It looks like you tried to set time value for blacklist but you didn't specified  time; try, `/blacklistmode tmute <timevalue>`.
 
 Examples of time value: 4m = 4 minutes, 3h = 3 hours, 6d = 6 days, 5w = 5 weeks."""
-                send_message(
-                    update.effective_message, teks, parse_mode="markdown")
+                send_message(update.effective_message,
+                             teks,
+                             parse_mode="markdown")
                 return ""
             restime = extract_time(msg, args[1])
             if not restime:
                 teks = """Invalid time value!
 Examples of time value: 4m = 4 minutes, 3h = 3 hours, 6d = 6 days, 5w = 5 weeks."""
-                send_message(
-                    update.effective_message, teks, parse_mode="markdown")
+                send_message(update.effective_message,
+                             teks,
+                             parse_mode="markdown")
                 return ""
             settypeblacklist = "temporarily mute for {}".format(args[1])
             sql.set_blacklist_strength(chat_id, 7, str(args[1]))
@@ -320,8 +323,9 @@ Examples of time value: 4m = 4 minutes, 3h = 3 hours, 6d = 6 days, 5w = 5 weeks.
                 settypeblacklist, chat_name)
         else:
             text = "Current blacklistmode: *{}*.".format(settypeblacklist)
-        send_message(
-            update.effective_message, text, parse_mode=ParseMode.MARKDOWN)
+        send_message(update.effective_message,
+                     text,
+                     parse_mode=ParseMode.MARKDOWN)
     return ""
 
 
@@ -467,12 +471,15 @@ Admin only:
  ◇ `/blacklistmode <off/del/warn/ban/kick/mute/tban/tmute>`*:* Action to perform when someone sends blacklisted words.
 
 """
-BLACKLIST_HANDLER = DisableAbleCommandHandler(
-    "blacklist", blacklist, pass_args=True, admin_ok=True)
+BLACKLIST_HANDLER = DisableAbleCommandHandler("blacklist",
+                                              blacklist,
+                                              pass_args=True,
+                                              admin_ok=True)
 ADD_BLACKLIST_HANDLER = CommandHandler("addblacklist", add_blacklist)
 UNBLACKLIST_HANDLER = CommandHandler("unblacklist", unblacklist)
-BLACKLISTMODE_HANDLER = CommandHandler(
-    "blacklistmode", blacklist_mode, pass_args=True)
+BLACKLISTMODE_HANDLER = CommandHandler("blacklistmode",
+                                       blacklist_mode,
+                                       pass_args=True)
 BLACKLIST_DEL_HANDLER = MessageHandler(
     (Filters.text | Filters.command | Filters.sticker | Filters.photo)
     & Filters.group,

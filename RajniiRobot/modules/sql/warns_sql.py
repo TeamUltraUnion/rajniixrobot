@@ -1,8 +1,8 @@
 import threading
 
 from RajniiRobot.modules.sql import BASE, SESSION
-from sqlalchemy import (Boolean, Column, String, UnicodeText, distinct, Integer,
-                        func)
+from sqlalchemy import (Boolean, Column, String, UnicodeText, distinct,
+                        Integer, func)
 from sqlalchemy import BIGINT
 from sqlalchemy.dialects import postgresql
 
@@ -41,8 +41,8 @@ class WarnFilters(BASE):
 
     def __eq__(self, other):
         return bool(
-            isinstance(other, WarnFilters) and self.chat_id == other.chat_id and
-            self.keyword == other.keyword)
+            isinstance(other, WarnFilters) and self.chat_id == other.chat_id
+            and self.keyword == other.keyword)
 
 
 class WarnSettings(BASE):
@@ -246,7 +246,8 @@ def num_warn_chat_filters(chat_id):
 
 def num_warn_filter_chats():
     try:
-        return SESSION.query(func.count(distinct(WarnFilters.chat_id))).scalar()
+        return SESSION.query(func.count(distinct(
+            WarnFilters.chat_id))).scalar()
     finally:
         SESSION.close()
 
@@ -255,7 +256,7 @@ def __load_chat_warn_filters():
     global WARN_FILTERS
     try:
         chats = SESSION.query(WarnFilters.chat_id).distinct().all()
-        for (chat_id,) in chats:  # remove tuple by ( ,)
+        for (chat_id, ) in chats:  # remove tuple by ( ,)
             WARN_FILTERS[chat_id] = []
 
         all_filters = SESSION.query(WarnFilters).all()

@@ -71,8 +71,10 @@ def sed(update: Update, context: CallbackContext):
 
         try:
             try:
-                check = regex.match(
-                    repl, to_fix, flags=regex.IGNORECASE, timeout=5)
+                check = regex.match(repl,
+                                    to_fix,
+                                    flags=regex.IGNORECASE,
+                                    timeout=5)
             except TimeoutError:
                 return
             if check and check.group(0).lower() == to_fix.lower():
@@ -86,17 +88,23 @@ def sed(update: Update, context: CallbackContext):
                     "I'm afraid I can't run that regex.")
                 return
             if 'i' in flags and 'g' in flags:
-                text = regex.sub(
-                    repl, repl_with, to_fix, flags=regex.I, timeout=3).strip()
+                text = regex.sub(repl,
+                                 repl_with,
+                                 to_fix,
+                                 flags=regex.I,
+                                 timeout=3).strip()
             elif 'i' in flags:
-                text = regex.sub(
-                    repl, repl_with, to_fix, count=1, flags=regex.I,
-                    timeout=3).strip()
+                text = regex.sub(repl,
+                                 repl_with,
+                                 to_fix,
+                                 count=1,
+                                 flags=regex.I,
+                                 timeout=3).strip()
             elif 'g' in flags:
                 text = regex.sub(repl, repl_with, to_fix, timeout=3).strip()
             else:
-                text = regex.sub(
-                    repl, repl_with, to_fix, count=1, timeout=3).strip()
+                text = regex.sub(repl, repl_with, to_fix, count=1,
+                                 timeout=3).strip()
         except TimeoutError:
             update.effective_message.reply_text('Timeout')
             return
@@ -128,9 +136,9 @@ If you want to use these characters, make sure you escape them!
 
 __mod_name__ = "Sed/Regex"
 
-SED_HANDLER = DisableAbleMessageHandler(
-    Filters.regex(r's([{}]).*?\1.*'.format("".join(DELIMITERS))),
-    sed,
-    friendly="sed")
+SED_HANDLER = DisableAbleMessageHandler(Filters.regex(r's([{}]).*?\1.*'.format(
+    "".join(DELIMITERS))),
+                                        sed,
+                                        friendly="sed")
 
 dispatcher.add_handler(SED_HANDLER)

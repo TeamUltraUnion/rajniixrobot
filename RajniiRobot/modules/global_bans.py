@@ -23,7 +23,6 @@ from RajniiRobot.modules.helper_funcs.extraction import (extract_user,
                                                          extract_user_and_text)
 from RajniiRobot.modules.helper_funcs.misc import send_to_list
 
-
 GBAN_ENFORCE_GROUP = 6
 
 GBAN_ERRORS = {
@@ -151,11 +150,13 @@ def gban(update: Update, context: CallbackContext):
                 "This user is already Gbanned, for the following reason :\n"
                 "<code>{}</code>\n"
                 "I've Updated it with new Reason!".format(
-                    html.escape(old_reason)), parse_mode=ParseMode.HTML)
+                    html.escape(old_reason)),
+                parse_mode=ParseMode.HTML)
 
         else:
             message.reply_text(
-                "This user is already Gbanned, but had no Reason set; I've Updated it now!")
+                "This user is already Gbanned, but had no Reason set; I've Updated it now!"
+            )
 
         return
 
@@ -166,14 +167,20 @@ def gban(update: Update, context: CallbackContext):
     current_time = datetime.utcnow().strftime(datetime_fmt)
 
     if chat.type != 'private':
-        chat_origin = "<b>{} ({})</b>\n".format(
-            html.escape(chat.title), chat.id)
+        chat_origin = "<b>{} ({})</b>\n".format(html.escape(chat.title),
+                                                chat.id)
     else:
         chat_origin = "<b>{}</b>\n".format(chat.id)
 
-    gban_button = InlineKeyboardMarkup([
-        [InlineKeyboardButton(text="Appeal chat", url=f"https://telegram.me/{SUPPORT_CHAT}"),
-         InlineKeyboardButton(text="Fban in your Fed", url=f"https://telegram.me/share/url?url=/fban+{user_chat.id}+Formatted+Fbanned+by+@{SUPPORT_CHAT}")]])
+    gban_button = InlineKeyboardMarkup([[
+        InlineKeyboardButton(text="Appeal chat",
+                             url=f"https://telegram.me/{SUPPORT_CHAT}"),
+        InlineKeyboardButton(
+            text="Fban in your Fed",
+            url=
+            f"https://telegram.me/share/url?url=/fban+{user_chat.id}+Formatted+Fbanned+by+@{SUPPORT_CHAT}"
+        )
+    ]])
     log_message = (
         f"<b> #GBANNED </b> \n"
         f"<b>◇ Originated from   :</b> <code>{chat_origin}</code>\n"
@@ -190,12 +197,15 @@ def gban(update: Update, context: CallbackContext):
 
     if EVENT_LOGS:
         try:
-            log = bot.send_message(
-                EVENT_LOGS, log_message, parse_mode=ParseMode.HTML)
+            log = bot.send_message(EVENT_LOGS,
+                                   log_message,
+                                   parse_mode=ParseMode.HTML)
         except BadRequest as excp:
             log = bot.send_message(
-                EVENT_LOGS, log_message +
-                "\n\nFormatting has been disabled due to an unexpected error.", reply_markup=gban_button)
+                EVENT_LOGS,
+                log_message +
+                "\n\nFormatting has been disabled due to an unexpected error.",
+                reply_markup=gban_button)
 
     else:
         send_to_list(bot, DRAGONS + DEMONS, log_message, html=True)
@@ -222,10 +232,9 @@ def gban(update: Update, context: CallbackContext):
             else:
                 message.reply_text(f"Could not Gban due to: {excp.message}")
                 if EVENT_LOGS:
-                    bot.send_message(
-                        EVENT_LOGS,
-                        f"Could not Gban due to {excp.message}",
-                        parse_mode=ParseMode.HTML)
+                    bot.send_message(EVENT_LOGS,
+                                     f"Could not Gban due to {excp.message}",
+                                     parse_mode=ParseMode.HTML)
                 else:
                     send_to_list(bot, DRAGONS + DEMONS,
                                  f"Could not Gban due to: {excp.message}")
@@ -237,13 +246,14 @@ def gban(update: Update, context: CallbackContext):
     if EVENT_LOGS:
         log.edit_text(
             log_message +
-            f"\n<b>Gbanned User in :</b> <code>{gbanned_chats}</code> Chats", reply_markup=gban_button, parse_mode=ParseMode.HTML)
+            f"\n<b>Gbanned User in :</b> <code>{gbanned_chats}</code> Chats",
+            reply_markup=gban_button,
+            parse_mode=ParseMode.HTML)
     else:
-        send_to_list(
-            bot,
-            DRAGONS + DEMONS,
-            f"Gbanned User in <code>{gbanned_chats}</code> Chats",
-            html=True)
+        send_to_list(bot,
+                     DRAGONS + DEMONS,
+                     f"Gbanned User in <code>{gbanned_chats}</code> Chats",
+                     html=True)
 
     end_time = time.time()
     gban_time = round((end_time - start_time), 2)
@@ -261,7 +271,8 @@ def gban(update: Update, context: CallbackContext):
             user_id, "#ATTENTION"
             "You have been marked as Malicious and as such have been banned from any future groups we manage."
             f"\n<b>◇ Reason:</b> <code>{html.escape(user.reason)}</code>"
-            f"</b>◇ Appeal Chat:</b> @{SUPPORT_CHAT}", parse_mode=ParseMode.HTML)
+            f"</b>◇ Appeal Chat:</b> @{SUPPORT_CHAT}",
+            parse_mode=ParseMode.HTML)
     except:
         pass  # bot probably blocked by user
 
@@ -292,8 +303,7 @@ def ungban(update: Update, context: CallbackContext):
         message.reply_text("This User is not Gbanned!")
         return
 
-    message.reply_text(
-        f"On it!.")
+    message.reply_text(f"On it!.")
 
     start_time = time.time()
     datetime_fmt = "%d-%m-%Y--T%H:%M"
@@ -312,14 +322,21 @@ def ungban(update: Update, context: CallbackContext):
         f"<b>◇ UnGbanned User ID  :</b> <code>{user_chat.id}</code>\n"
         f"<b>◇ UnGbanned on       :</b> <code>{current_time}</code>\n")
 
-    ungban_button = InlineKeyboardMarkup([
-        [InlineKeyboardButton(text="Appeal chat", url=f"https://telegram.me/{SUPPORT_CHAT}"),
-         InlineKeyboardButton(text="Unban in your Fed", url=f"https://telegram.me/share/url?url=/unfban+{user_chat.id}+Formatted+Unfbanned+by+@{SUPPORT_CHAT}")]])
+    ungban_button = InlineKeyboardMarkup([[
+        InlineKeyboardButton(text="Appeal chat",
+                             url=f"https://telegram.me/{SUPPORT_CHAT}"),
+        InlineKeyboardButton(
+            text="Unban in your Fed",
+            url=
+            f"https://telegram.me/share/url?url=/unfban+{user_chat.id}+Formatted+Unfbanned+by+@{SUPPORT_CHAT}"
+        )
+    ]])
 
     if EVENT_LOGS:
         try:
-            log = bot.send_message(
-                EVENT_LOGS, log_message, parse_mode=ParseMode.HTML)
+            log = bot.send_message(EVENT_LOGS,
+                                   log_message,
+                                   parse_mode=ParseMode.HTML)
         except BadRequest as excp:
             log = bot.send_message(
                 EVENT_LOGS, log_message +
@@ -363,8 +380,10 @@ def ungban(update: Update, context: CallbackContext):
     sql.ungban_user(user_id)
 
     if EVENT_LOGS:
-        log.edit_text(
-            log_message + f"\n<b>UnGbanned User in :</b> {ungbanned_chats} Chats", reply_markup=ungban_button, parse_mode=ParseMode.HTML)
+        log.edit_text(log_message +
+                      f"\n<b>UnGbanned User in :</b> {ungbanned_chats} Chats",
+                      reply_markup=ungban_button,
+                      parse_mode=ParseMode.HTML)
     else:
         send_to_list(bot, DRAGONS + DEMONS, "UnGban complete!")
 
@@ -403,6 +422,7 @@ def gbanlist(update: Update, context: CallbackContext):
             filename="GbannedUsersList.csv",
             caption="List of Currently Gbanned Users.")
 
+
 def check_and_ban(update, user_id, should_message=True):
     if user_id in WOLVES:
         sw_ban = None
@@ -416,41 +436,47 @@ def check_and_ban(update, user_id, should_message=True):
         update.effective_chat.kick_member(user_id)
         if should_message:
             fban_button = InlineKeyboardMarkup([
-                    InlineKeyboardButton(
-                        text="Fban in your fed",
-                        url=f"https://t.me/share/url?url=/fban+{sw_ban.id}+Formatted+Fbanned+by+@{SUPPORT_CHAT}"),
-                    InlineKeyboardButton(
-                        text="Appeal chat",
-                        url=f"https://telegram.me/{SPAMWATCH_SUPPORT_CHAT}")])
+                InlineKeyboardButton(
+                    text="Fban in your fed",
+                    url=
+                    f"https://t.me/share/url?url=/fban+{sw_ban.id}+Formatted+Fbanned+by+@{SUPPORT_CHAT}"
+                ),
+                InlineKeyboardButton(
+                    text="Appeal chat",
+                    url=f"https://telegram.me/{SPAMWATCH_SUPPORT_CHAT}")
+            ])
             update.effective_message.reply_text(
                 f"<b>Alert</b>: this user is spamwatch banned.\n"
                 f"<code>*bans them from here*</code>.\n"
                 f"<b>User ID</b>: <code>{sw_ban.id}</code>\n"
                 f"<b>GBan Reason</b>: <code>{html.escape(sw_ban.reason)}</code>",
-                reply_markup=fban_button, parse_mode=ParseMode.HTML,
+                reply_markup=fban_button,
+                parse_mode=ParseMode.HTML,
             )
         return
 
     if sql.is_user_gbanned(user_id):
         update.effective_chat.kick_member(user_id)
         if should_message:
-            text = (
-                f"<b>Alert</b>: this user is globally banned.\n"
-                f"<code>*bans them from here*</code>.\n"
-                f"<b>Appeal chat</b>: @{SUPPORT_CHAT}\n"
-                f"<b>User ID</b>: <code>{user_id}</code>"
-            )
+            text = (f"<b>Alert</b>: this user is globally banned.\n"
+                    f"<code>*bans them from here*</code>.\n"
+                    f"<b>Appeal chat</b>: @{SUPPORT_CHAT}\n"
+                    f"<b>User ID</b>: <code>{user_id}</code>")
             fban_button = InlineKeyboardMarkup([
-                    InlineKeyboardButton(
-                        text="Fban in your fed",
-                        url=f"https://t.me/share/url?url=/fban+{user_id}+Formatted+Fbanned+by+@{SUPPORT_CHAT}"),
-                    InlineKeyboardButton(
-                        text="Appeal chat",
-                        url=f"https://telegram.me/{SUPPORT_CHAT}")])
+                InlineKeyboardButton(
+                    text="Fban in your fed",
+                    url=
+                    f"https://t.me/share/url?url=/fban+{user_id}+Formatted+Fbanned+by+@{SUPPORT_CHAT}"
+                ),
+                InlineKeyboardButton(text="Appeal chat",
+                                     url=f"https://telegram.me/{SUPPORT_CHAT}")
+            ])
             user = sql.get_gbanned_user(user_id)
             if user.reason:
                 text += f"\n<b>GBan Reason:</b> <code>{html.escape(user.reason)}</code>"
-            update.effective_message.reply_text(text, reply_markup=fban_button, parse_mode=ParseMode.HTML)
+            update.effective_message.reply_text(text,
+                                                reply_markup=fban_button,
+                                                parse_mode=ParseMode.HTML)
 
 
 @run_async
@@ -491,7 +517,8 @@ def antispam(update: Update, context: CallbackContext):
             sql.enable_gbans(update.effective_chat.id)
             update.effective_message.reply_text(
                 "Antispam is now enabled ✅\n"
-                "I am now protecting your group from potential remote threats!")
+                "I am now protecting your group from potential remote threats!"
+            )
         elif args[0].lower() in ["off", "no"]:
             sql.disable_gbans(update.effective_chat.id)
             update.effective_message.reply_text("Antispam is now disabled ❌")
@@ -535,8 +562,8 @@ def __migrate__(old_chat_id, new_chat_id):
 def __chat_settings__(chat_id, user_id):
     return f"This chat is enforcing *Gbans*: `{sql.does_chat_gban(chat_id)}`."
 
-# sylviorus-api Added by @HellXGodLike
 
+# sylviorus-api Added by @HellXGodLike
 
 __help__ = f"""
 *Admins only:*

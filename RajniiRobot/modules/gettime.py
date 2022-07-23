@@ -85,8 +85,9 @@ def gettime(update: Update, context: CallbackContext):
             disable_web_page_preview=True)
         return
 
-    send_message.edit_text(
-        result, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+    send_message.edit_text(result,
+                           parse_mode=ParseMode.HTML,
+                           disable_web_page_preview=True)
 
 
 __help__ = """

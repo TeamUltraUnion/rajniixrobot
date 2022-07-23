@@ -16,6 +16,7 @@ from RajniiRobot.modules.disable import DisableAbleCommandHandler
 
 combot_stickers_url = "https://combot.org/telegram/stickers?q="
 
+
 @run_async
 def stickerid(update: Update, context: CallbackContext):
     msg = update.effective_message
@@ -203,7 +204,8 @@ def kang(update: Update, context: CallbackContext):
                 print(e)
 
         else:
-            packname = "animated" + str(user.id) + "_by_" + context.bot.username
+            packname = "animated" + str(
+                user.id) + "_by_" + context.bot.username
             packname_found = 0
             max_stickers = 50
             while packname_found == 0:
@@ -392,15 +394,16 @@ def makepack_internal(
         print(e)
         if e.message == "Sticker set name is already occupied":
             msg.reply_text(
-                "Your pack can be found [here](t.me/addstickers/%s)" % packname,
+                "Your pack can be found [here](t.me/addstickers/%s)" %
+                packname,
                 parse_mode=ParseMode.MARKDOWN,
             )
         elif e.message in ("Peer_id_invalid", "bot was blocked by the user"):
             msg.reply_text(
                 "Contact me in PM first.",
                 reply_markup=InlineKeyboardMarkup([[
-                    InlineKeyboardButton(
-                        text="Start", url=f"t.me/{context.bot.username}")
+                    InlineKeyboardButton(text="Start",
+                                         url=f"t.me/{context.bot.username}")
                 ]]),
             )
         elif e.message == "Internal Server Error: created sticker set not found (500)":

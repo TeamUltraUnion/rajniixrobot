@@ -38,29 +38,38 @@ def split_message(msg: str) -> List[str]:
         return result
 
 
-def paginate_modules(page_n: int, module_dict: Dict, prefix, chat=None) -> List:
+def paginate_modules(page_n: int,
+                     module_dict: Dict,
+                     prefix,
+                     chat=None) -> List:
     if not chat:
-        modules = sorted(
-            [EqInlineKeyboardButton(x.__mod_name__,
-                                    callback_data="{}_module({})".format(prefix, x.__mod_name__.lower())) for x
-             in module_dict.values()])
+        modules = sorted([
+            EqInlineKeyboardButton(x.__mod_name__,
+                                   callback_data="{}_module({})".format(
+                                       prefix, x.__mod_name__.lower()))
+            for x in module_dict.values()
+        ])
     else:
-        modules = sorted(
-            [EqInlineKeyboardButton(x.__mod_name__,
-                                    callback_data="{}_module({},{})".format(prefix, chat, x.__mod_name__.lower())) for x
-             in module_dict.values()])
+        modules = sorted([
+            EqInlineKeyboardButton(x.__mod_name__,
+                                   callback_data="{}_module({},{})".format(
+                                       prefix, chat, x.__mod_name__.lower()))
+            for x in module_dict.values()
+        ])
 
     pairs = [
-    modules[i * 3:(i + 1) * 3] for i in range((len(modules) + 3 - 1) // 3)
+        modules[i * 3:(i + 1) * 3] for i in range((len(modules) + 3 - 1) // 3)
     ]
 
     round_num = len(modules) / 3
     calc = len(modules) - round(round_num)
     if calc in [1, 2]:
-        pairs.append((modules[-1],))
+        pairs.append((modules[-1], ))
     else:
-        pairs += [[EqInlineKeyboardButton("☆ About",  callback_data="rajni_"),
-                   EqInlineKeyboardButton("☆ Home", callback_data="rajni_back")]]
+        pairs += [[
+            EqInlineKeyboardButton("☆ About", callback_data="rajni_"),
+            EqInlineKeyboardButton("☆ Home", callback_data="rajni_back")
+        ]]
 
     return pairs
 
@@ -75,8 +84,9 @@ def send_to_list(bot: Bot,
     for user_id in set(send_to):
         try:
             if markdown:
-                bot.send_message(
-                    user_id, message, parse_mode=ParseMode.MARKDOWN)
+                bot.send_message(user_id,
+                                 message,
+                                 parse_mode=ParseMode.MARKDOWN)
             elif html:
                 bot.send_message(user_id, message, parse_mode=ParseMode.HTML)
             else:
@@ -119,12 +129,14 @@ def build_keyboard_parser(bot, chat_id, buttons):
 
     return keyb
 
+
 def delete(delmsg, timer):
     sleep(timer)
     try:
         delmsg.delete()
     except:
         return
+
 
 def is_module_loaded(name):
     return name not in NO_LOAD

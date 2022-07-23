@@ -8,7 +8,8 @@ from RajniiRobot.utils.pluginhelpers import admins_only, edit_or_reply, fetch_au
 from RajniiRobot import pgram as pbot, BOT_USERNAME
 
 
-@pbot.on_message(filters.command(["identify", "shazam", f"shazam@{BOT_USERNAME}"]))
+@pbot.on_message(
+    filters.command(["identify", "shazam", f"shazam@{BOT_USERNAME}"]))
 @admins_only
 async def shazamm(client, message):
     kek = await edit_or_reply(message, "`Shazaming In Progress!`")
@@ -26,8 +27,7 @@ async def shazamm(client, message):
         xo = r.json()
     except JSONDecodeError:
         await kek.edit(
-            "`Seems Like Our Server Has Some Issues, Please Try Again Later!`"
-        )
+            "`Seems Like Our Server Has Some Issues, Please Try Again Later!`")
         return
     if xo.get("success") is False:
         await kek.edit("`Song Not Found IN Database. Please Try Again.`")
@@ -47,6 +47,9 @@ async def shazamm(client, message):
 <u><b>Identified Using @DaisyXBot - Join our support @Black_Knights_Union_Support</b></u>
 <i>Powered by @Yuki_Netowrk</i>
 """
-    await client.send_photo(message.chat.id, image, messageo, parse_mode="HTML")
+    await client.send_photo(message.chat.id,
+                            image,
+                            messageo,
+                            parse_mode="HTML")
     os.remove(downloaded_file_name)
     await kek.delete()

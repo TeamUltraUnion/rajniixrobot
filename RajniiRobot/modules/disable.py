@@ -4,7 +4,7 @@ from typing import Union
 from future.utils import string_types
 from RajniiRobot import dispatcher
 from RajniiRobot.modules.helper_funcs.handlers import (CMD_STARTERS,
-                                                        SpamChecker)
+                                                       SpamChecker)
 from RajniiRobot.modules.helper_funcs.misc import is_module_loaded
 from telegram import ParseMode, Update
 from telegram.ext import (CallbackContext, CommandHandler, Filters,
@@ -52,8 +52,8 @@ if is_module_loaded(FILENAME):
                         command = fst_word[1:].split("@")
                         command.append(message.bot.username)
 
-                        if not (command[0].lower() in self.command and
-                                command[1].lower()
+                        if not (command[0].lower() in self.command
+                                and command[1].lower()
                                 == message.bot.username.lower()):
                             return None
                         chat = update.effective_chat
@@ -307,8 +307,8 @@ if is_module_loaded(FILENAME):
     @connection_status
     def commands(update: Update, context: CallbackContext):
         chat = update.effective_chat
-        update.effective_message.reply_text(
-            build_curr_disabled(chat.id), parse_mode=ParseMode.MARKDOWN)
+        update.effective_message.reply_text(build_curr_disabled(chat.id),
+                                            parse_mode=ParseMode.MARKDOWN)
 
     def __stats__():
         return f"◇ {sql.num_disabled()} disabled items, across {sql.num_chats()} chats."

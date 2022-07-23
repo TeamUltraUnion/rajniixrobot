@@ -69,22 +69,20 @@ def broadcast(update: Update, context: CallbackContext):
         if to_group:
             for chat in chats:
                 try:
-                    context.bot.sendMessage(
-                        int(chat.chat_id),
-                        to_send[1],
-                        parse_mode="MARKDOWN",
-                        disable_web_page_preview=False)
+                    context.bot.sendMessage(int(chat.chat_id),
+                                            to_send[1],
+                                            parse_mode="MARKDOWN",
+                                            disable_web_page_preview=False)
                     sleep(0.1)
                 except TelegramError:
                     failed += 1
         if to_user:
             for user in users:
                 try:
-                    context.bot.sendMessage(
-                        int(user.user_id),
-                        to_send[1],
-                        parse_mode="MARKDOWN",
-                        disable_web_page_preview=False)
+                    context.bot.sendMessage(int(user.user_id),
+                                            to_send[1],
+                                            parse_mode="MARKDOWN",
+                                            disable_web_page_preview=False)
                     sleep(0.1)
                 except TelegramError:
                     failed_user += 1
@@ -165,10 +163,11 @@ def __migrate__(old_chat_id, new_chat_id):
 
 __help__ = ""  # no help string
 
-BROADCAST_HANDLER = CommandHandler(
-    ["gcastall", "gcastusers", "gcastchats"], broadcast)
+BROADCAST_HANDLER = CommandHandler(["gcastall", "gcastusers", "gcastchats"],
+                                   broadcast)
 USER_HANDLER = MessageHandler(Filters.all & Filters.group, log_user)
-CHAT_CHECKER_HANDLER = MessageHandler(Filters.all & Filters.group, chat_checker)
+CHAT_CHECKER_HANDLER = MessageHandler(Filters.all & Filters.group,
+                                      chat_checker)
 CHATLIST_HANDLER = CommandHandler("chatslist", chats)
 
 dispatcher.add_handler(USER_HANDLER, USERS_GROUP)
