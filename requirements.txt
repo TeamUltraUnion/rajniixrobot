@@ -31,7 +31,7 @@ git+https://github.com/python-telegram-bot/ptbcontrib.git
 
 # Python 
 pydub==0.25.1
-psutil==5.9.0
+psutil==5.9.1
 pykeyboard
 python-telegram-bot==12.8
 opencv-python
