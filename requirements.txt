@@ -12,7 +12,7 @@ gtts
 googletrans
 google-trans-new==1.1.9
 geopy==2.2.0
-gpytranslate==0.2.2
+gpytranslate==1.4.0
 feedparser
 html2text
 
