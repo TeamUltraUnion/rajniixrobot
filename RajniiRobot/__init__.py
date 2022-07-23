@@ -150,7 +150,6 @@ if ENV:
 else:
     from RajniiRobot.config1 import Config
     TOKEN = Config.TOKEN
-
     try:
         OWNER_ID = int(Config.OWNER_ID)
     except ValueError:
