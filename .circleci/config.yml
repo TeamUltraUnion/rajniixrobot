@@ -1,7 +1,0 @@
-# CircleCI configuration file
-version: 2.1
-
-jobs:
-  build:
-    docker:
-        worker: Dockerfile
