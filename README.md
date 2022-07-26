@@ -279,7 +279,7 @@ from RajniiRobot import dispatcher
 ```
 
 You can then add commands using the usual
-```
+```python
 dispatcher.add_handler()
 ```
 
