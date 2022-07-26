@@ -181,7 +181,7 @@ It is recommended to import sample_config and extend the Config class, as this w
 defaults set in the sample_config, hence making it easier to upgrade.
 
 An example `config1.py` file could be:
-```
+```python
 from RajniiRobot.sample_config import Config
 
 class Development(Config):
@@ -202,7 +202,7 @@ So just go and read the config sample file.
 ### Python dependencies
 
 Install the necessary Python dependencies by moving to the project directory and running:
-```
+```python
 pip3 install -r requirements.txt
 ```
 
@@ -274,7 +274,7 @@ Creating a module has been simplified as much as possible - but do not hesitate 
 All that is needed is that your .py file is in the modules folder.
 
 To add commands, make sure to import the dispatcher via
-```
+```python
 from RajniiRobot import dispatcher
 ```
 
@@ -296,7 +296,7 @@ through the `/stats` command, which is only available to the bot owner.
 ## Starting the bot.
 
 Once you've set up your database and your configuration is complete, simply run the bat file(if on windows) or run (Linux):
-```
+```python
 python3 -m RajniiRobot
 ```
 
