@@ -1,4 +1,9 @@
-[![ʀᴀᴊɴɪ](https://telegra.ph/file/59036da914a6411640989.jpg)](https://telegram.me/rajniirobot)
+
+
+<p align="center">
+<a href=https://telegram.me/rajniirobot">
+<img align="center" src="https://telegra.ph/file/59036da914a6411640989.jpg">
+</a>
 
 # [ʀᴀᴊɴɪ](https://telegram.me/rajniirobot)
 
