@@ -4,17 +4,12 @@
 
 
 <p align="center">
-<a href="http://perso.crans.org/besson/LICENSE.html" alt="GitHub closed issues"> <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" /></a>
-	
-	
-[![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html)
-	
-[![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/TeamUltraUnion/rajniixrobot)
-	
-[![Join Support!](https://img.shields.io/badge/Support%20Chat-!-red)](https://telegram.dog/rajniixsupport)
-[![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
-[![GitHub contributors](https://img.shields.io/github/contributors/Naereen/StrapDown.js.svg)](https://GitHub.com/TeamUltraUnion/rajniixrobot/graphs/contributors)
+<a href="http://perso.crans.org/besson/LICENSE.html"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" /></a>
+<a href="https://deepsource.io/gh/TeamUltraUnion/rajniixrobot"><img src="https://static.deepsource.io/deepsource-badge-light-mini.svg" /></a>
+<a href="https://telegram.dog/rajniixsupport"><img src="https://img.shields.io/badge/Support%20Chat-!-red" /></a>
+<a href="https://github.com/ellerbrock/open-source-badges"><img src="https://badges.frapsoft.com/os/v2/open-source.png?v=103" /></a>
+<a href="https://github.com/Naereen/StrapDown.js/graphs/commit-activity"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" /></a>
+<a href="https://github.com/TeamUltraUnion/rajniixrobot/graphs/contributors"><img src="https://img.shields.io/github/contributors/Naereen/StrapDown.js.svg" /></a>
 </p>
 	
 <p align="center">
