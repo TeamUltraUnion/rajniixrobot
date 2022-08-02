@@ -21,16 +21,16 @@
 </p>
 
 <p align="center">
-<a href="https://github.com/TeamUltraUnion/rajniixrobot" alt="GitHub release (latest by date including pre-releases)"> <img src="https://img.shields.io/github/v/release/TeamUltraUnion/rajniixrobot?include_prereleases?style=flat&logo=github" /> </a>
-<a href="https://www.python.org/" alt="made-with-python"> <img src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg?style=flat&logo=python&color=blue" /> </a>
-<a href="https://github.com/TeamUltraUnion/rajniixrobot" alt="Docker!"> <img src="https://aleen42.github.io/badges/src/docker.svg" /> </a>
-<a href="https://github.com/TeamUltraUnion/rajniixrobot" alt="GitHub repo size"> <img src="https://img.shields.io/github/repo-size/TeamUltraUnion/rajniixrobot" /> </a>
-<a href="https://github.com/TeamUltraUnion/rajniixrobot/blob/rajniixrobot/LICENSE" alt="GPLv3 license"> <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" /> </a>
+<a href="https://github.com/TeamUltraUnion/rajniixrobot"> <img src="https://img.shields.io/github/v/release/TeamUltraUnion/rajniixrobot?include_prereleases?style=flat&logo=github" /> </a>
+<a href="https://www.python.org/"><img src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg?style=flat&logo=python&color=blue" /> </a>
+<a href="https://github.com/TeamUltraUnion/rajniixrobot"><img src="https://aleen42.github.io/badges/src/docker.svg" /> </a>
+<a href="https://github.com/TeamUltraUnion/rajniixrobot"><img src="https://img.shields.io/github/repo-size/TeamUltraUnion/rajniixrobot" /> </a>
+<a href="https://github.com/TeamUltraUnion/rajniixrobot/blob/rajniixrobot/LICENSE"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" /> </a>
 </p>
 
 <p align="center">
 <a href="https://telegram.me/rajniixrobot" alt="Updates"> <img src="https://aleen42.github.io/badges/src/telegram.svg" /> </a>
-<a href="https://github.com/TeamUltraUnion" alt="TeamUltraUnion"> <img src="https://img.shields.io/badge/TUU-Project" /> </a>
+<a href="https://github.com/TeamUltraUnion" alt="TeamUltraUnion"> <img src="https://img.shields.io/badge/Built%20by-TUU-green" /> </a>
 <a href="https://makeapullrequest.com" alt="PRs Welcome"> <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" /> </a>
 </p>
 
