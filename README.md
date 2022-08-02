@@ -181,7 +181,8 @@ It is recommended to import sample_config and extend the Config class, as this w
 defaults set in the sample_config, hence making it easier to upgrade.
 
 An example `config1.py` file could be:
-```python
+
+```
 from RajniiRobot.sample_config import Config
 
 class Development(Config):
