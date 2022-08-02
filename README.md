@@ -9,13 +9,12 @@
 <a href="https://telegram.dog/rajniixsupport"><img src="https://img.shields.io/badge/Support%20Chat-!-red" /></a>
 <a href="https://github.com/ellerbrock/open-source-badges"><img src="https://badges.frapsoft.com/os/v2/open-source.png?v=103" /></a>
 <a href="https://github.com/Naereen/StrapDown.js/graphs/commit-activity"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" /></a>
-<a href="https://github.com/TeamUltraUnion/rajniixrobot/graphs/contributors"><img src="https://img.shields.io/github/contributors/Naereen/StrapDown.js.svg" /></a>
+<a href="https://github.com/TeamUltraUnion/rajniixrobot/graphs/contributors" alt="GitHub contributors"><img src="https://img.shields.io/github/contributors/TeamUltraUnion/rajniixrobot?style=flat&logo=github" /> </a>
 </p>
 	
 <p align="center">
 <a href="https://github.com/TeamUltraUnion/rajniixrobot" alt="GitHub closed issues"> <img src="https://img.shields.io/github/issues-closed-raw/TeamUltraUnion/rajniixrobot?style=flat&logo=github&color=success" /> </a>
 <a href="https://github.com/TeamUltraUnion/rajniixrobot" alt="GitHub commit activity"> <img src="https://img.shields.io/github/commit-activity/m/TeamUltraUnion/rajniixrobot" /> </a>
-<a href="https://github.com/TeamUltraUnion/rajniixrobot/graphs/contributors" alt="GitHub contributors"> <img src="https://img.shields.io/github/contributors/TeamUltraUnion/rajniixrobot?style=flat&logo=github" /> </a>
 <a href="https://github.com/TeamUltraUnion/rajniixrobot/network/members" alt="GitHub forks"> <img src="https://img.shields.io/github/forks/TeamUltraUnion/rajniixrobot?label=Forks&logo=github" /> </a>
 <a href="https://github.com/TeamUltraUnion/rajniixrobot" alt="GitHub closed pull requests"> <img src="https://img.shields.io/github/issues-pr-closed-raw/TeamUltraUnion/rajniixrobot?color=success" /> </a>
 <a href="https://github.com/TeamUltraUnion/rajniixrobot" alt="GitHub issues"> <img src="https://img.shields.io/github/issues-raw/TeamUltraUnion/rajniixrobot?style=flat&logo=github&color=yellow" /> </a>
