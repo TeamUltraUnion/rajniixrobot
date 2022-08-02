@@ -4,7 +4,7 @@
 
 
 <p align="center">
-<a href="http://perso.crans.org/besson/LICENSE.html" alt="GitHub closed issues"> <img src="https://img.shields.io/badge/License-GPLv3-blue.svg) /> GPLv3 license </a>
+<a href="http://perso.crans.org/besson/LICENSE.html" alt="GitHub closed issues"> <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" /> GPLv3 license </a>
 	
 	
 [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html)
