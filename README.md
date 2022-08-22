@@ -265,7 +265,7 @@ repeat for your username, password, hostname (localhost?), port (5432?), and DB 
 #
 ### Modules
 
-##
+#
 #### Setting load order.
 
 The module load order can be changed via the `LOAD` and `NO_LOAD` configuration settings.
@@ -277,6 +277,7 @@ If `NO_LOAD` is not present or is an empty list, all modules selected for loadin
 
 If a module is in both `LOAD` and `NO_LOAD`, the module will not be loaded - `NO_LOAD` takes priority.
 
+#
 #### Creating your own modules.
 
 Creating a module has been simplified as much as possible - but do not hesitate to suggest further simplification.
