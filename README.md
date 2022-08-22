@@ -180,7 +180,7 @@ This is because markdown parsing is done by iterating through a dict, which is o
 There are two possible ways of configuring your bot: a config.py file, or ENV variables.
 
 The preferred version is to use a `config.py` file, as it makes it easier to see all your settings grouped together.
-This file should be placed in your `SaitamaRobot` folder, alongside the `__main__.py` file. 
+This file should be placed in your `RajniiRobot` folder, alongside the `__main__.py` file. 
 This is where your bot token will be loaded from, as well as your database URI (if you're using a database), and most of
 your other settings.
 
@@ -265,7 +265,6 @@ repeat for your username, password, hostname (localhost?), port (5432?), and DB 
 #
 ### Modules
 
-#
 #### Setting load order.
 
 The module load order can be changed via the `LOAD` and `NO_LOAD` configuration settings.
@@ -277,7 +276,6 @@ If `NO_LOAD` is not present or is an empty list, all modules selected for loadin
 
 If a module is in both `LOAD` and `NO_LOAD`, the module will not be loaded - `NO_LOAD` takes priority.
 
-#
 #### Creating your own modules.
 
 Creating a module has been simplified as much as possible - but do not hesitate to suggest further simplification.
