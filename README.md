@@ -265,7 +265,7 @@ repeat for your username, password, hostname (localhost?), port (5432?), and DB 
 #
 ### Modules
 
-#
+##
 #### Setting load order.
 
 The module load order can be changed via the `LOAD` and `NO_LOAD` configuration settings.
