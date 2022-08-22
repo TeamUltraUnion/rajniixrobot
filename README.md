@@ -75,7 +75,9 @@ The bot is based of on the original work done by [PaulSonOfLars](https://github.
 
 <details>
 	<summary>Deploy using Heroku Website</summary>
-		
+
+#
+### To deploy directly on Heroku.
 Go to `https://dashboard.heroku.com/apps/(app-name)/resources` (Replace (app-name) with your app name.)
 Now send the bot `/start`, If it doesn't respond go to `https://dashboard.heroku.com/apps/(app-name)/settings` and remove webhook and port.
 
@@ -167,11 +169,13 @@ git push heroku master
 <details>
 	<summary>Steps to deploy on local machine or virtual private server (vps).</summary>
 
-  ### Setting up the bot (Read this before trying to use!):
+#
+### Setting up the bot (Read this before trying to use!):
 Please make sure to use python 3.6, as I cannot guarantee everything will work as expected on older Python versions!
 This is because markdown parsing is done by iterating through a dict, which is ordered by default in 3.6.
 
-  ### Configuration
+#
+### Configuration
 
 There are two possible ways of configuring your bot: a config.py file, or ENV variables.
 
@@ -203,17 +207,16 @@ class Development(Config):
 If you can't have a config.py file (EG on Heroku), it is also possible to use environment variables.
 So just go and read the config sample file. 
 
+#
 ### Python dependencies
-
 Install the necessary Python dependencies by moving to the project directory and running:
 ```python
 pip3 install -r requirements.txt
 ```
-
 This will install all the necessary python packages.
 
+#
 ### Database
-
 If you wish to use a database-dependent module (eg: locks, notes, userinfo, users, filters, welcomes),
 you'll need to have a database installed on your system. I use Postgres, so I recommend using it for optimal compatibility.
 
@@ -260,7 +263,9 @@ Replace sqldbtype with whichever DB you're using (eg Postgres, MySQL, SQLite, et
 repeat for your username, password, hostname (localhost?), port (5432?), and DB name.
 
 ### Modules
-### Setting load order.
+
+#
+#### Setting load order.
 
 The module load order can be changed via the `LOAD` and `NO_LOAD` configuration settings.
 These should both represent lists.
@@ -271,7 +276,7 @@ If `NO_LOAD` is not present or is an empty list, all modules selected for loadin
 
 If a module is in both `LOAD` and `NO_LOAD`, the module will not be loaded - `NO_LOAD` takes priority.
 
-### Creating your own modules.
+#### Creating your own modules.
 
 Creating a module has been simplified as much as possible - but do not hesitate to suggest further simplification.
 
