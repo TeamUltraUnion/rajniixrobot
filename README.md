@@ -262,6 +262,7 @@ sqldbtype://username:pw@hostname:port/db_name
 Replace sqldbtype with whichever DB you're using (eg Postgres, MySQL, SQLite, etc)
 repeat for your username, password, hostname (localhost?), port (5432?), and DB name.
 
+#
 ### Modules
 
 #
@@ -302,7 +303,7 @@ it is necessary to migrate it in the DB.
 The `__stats__()` function is for retrieving module statistics, eg number of users, number of chats. This is accessed 
 through the `/stats` command, which is only available to the bot owner.
 
-## Starting the bot.
+#### Starting the bot.
 
 Once you've set up your database and your configuration is complete, simply run the bat file(if on windows) or run (Linux):
 ```python
