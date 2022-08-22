@@ -566,6 +566,9 @@ def __chat_settings__(chat_id, user_id):
 # sylviorus-api Added by @HellXGodLike
 
 __help__ = f"""
+◇ `/greport <id/Username> Reason`*:* Sends a gban request for a user in any group, just by providing userid/username and details.
+*Note:* _gban request with no correct reason will not be approved._
+
 *Admins only:*
  ◇ `/antispam <on/off/>`*:* Will toggle Global ban setting in your group.
 
@@ -575,9 +578,9 @@ you and your groups by removing spam flooders as quickly as possible.
 This also integrates @Spamwatch API to remove Spammers as much as possible from your chatroom!
 
 *What is SpamWatch?*
-SpamWatch maintains a large constantly updated ban-list of spambots, trolls, bitcoin spammers and unsavoury characters[.](https://telegra.ph/file/f584b643c6f4be0b1de53.jpg)
+[SpamWatch](https://telegra.ph/file/f584b643c6f4be0b1de53.jpg) maintains a large constantly updated ban-list of spambots, trolls, bitcoin spammers and unsavoury characters
 Constantly help banning spammers off from your group automatically So, you wont have to worry about spammers storming your group.
-*Note:* Users can appeal spamwatch bans at @SpamwatchSupport.
+*Note:* Users can appeal spamwatch bans at @{SPAMWATCH_SUPPORT_CHAT}.
 """
 
 GBAN_HANDLER = CommandHandler("gban", gban)
