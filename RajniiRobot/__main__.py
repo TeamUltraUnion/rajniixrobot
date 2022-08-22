@@ -56,7 +56,6 @@ def get_readable_time(seconds: int) -> str:
     ping_time = ""
     time_list = []
     time_suffix_list = ["s", "m", "h", "days"]
-
     while count < 4:
         count += 1
         remainder, result = divmod(seconds, 60) if count < 3 else divmod(
@@ -65,15 +64,12 @@ def get_readable_time(seconds: int) -> str:
             break
         time_list.append(int(result))
         seconds = int(remainder)
-
     for x in range(len(time_list)):
         time_list[x] = str(time_list[x]) + time_suffix_list[x]
     if len(time_list) == 4:
         ping_time += time_list.pop() + ", "
-
     time_list.reverse()
     ping_time += ":".join(time_list)
-
     return ping_time
 
 
@@ -106,7 +102,7 @@ Have a look at the following for an idea of some of the things I can help you wi
  • `/start` : Starts me, can be used to check I'm alive or no...
  • `/help` : PM's you this message.
  • `/help <module name>` : PM's you info about that module.
- • `/ereport <Feedback or Error report message>` : Report's a Request Appeal or Error Feedback to @{}.
+ • `/bug <Feedback or Error report message>` : Report's a Request Appeal or Error Feedback to @{}.
 
 *Need help? head to @{}*
 Click on the buttons below to get documentation about specific modules!
@@ -223,7 +219,7 @@ def help_button(update, context):
             query.message.edit_text(
                 text=text,
                 parse_mode=ParseMode.MARKDOWN,
-                disable_web_page_preview=True,
+                disable_web_page_preview=False,
                 reply_markup=InlineKeyboardMarkup([[
                     InlineKeyboardButton(text="☆ ʜᴏᴍᴇ",
                                          callback_data="rajni_back"),
