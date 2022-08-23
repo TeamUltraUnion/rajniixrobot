@@ -78,10 +78,8 @@ The bot is based of on the original work done by [PaulSonOfLars](https://github.
 
 #
 ### To deploy directly on Heroku.
-Go to `https://dashboard.heroku.com/apps/(app-name)/resources` (Replace (app-name) with your app name.)
-Now send the bot `/start`, If it doesn't respond go to `https://dashboard.heroku.com/apps/(app-name)/settings` and remove webhook and port.
 
->  Step 1 - Read [`config1.py`](https://github.com/TeamUltraUnion/rajniixrobot/blob/master/RajniiRobot/sample_config.py) in [`RajniiRobot`](https://github.com/TeamUltraUnion/rajniixrobot/tree/rajniixrobot/RajniiRobot) folder.
+>  Step 1 - Read [`sample_config.py`](https://github.com/TeamUltraUnion/rajniixrobot/blob/master/RajniiRobot/sample_config.py) in [`RajniiRobot`](https://github.com/TeamUltraUnion/rajniixrobot/tree/rajniixrobot/RajniiRobot) folder.
 		
 >  Step 2 - Get all required values by given urls and hit `Deploy to Heroku` button, Heroku website will open.
 		
@@ -92,7 +90,9 @@ Now send the bot `/start`, If it doesn't respond go to `https://dashboard.heroku
 >  Step 5 - Go to `resources` tab and turn off web dyno. turn on worker dyno, wait for sometime, bot will notify in support chat.
 		
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamUltraUnion/rajniixrobot.git)
-		
+
+Go to `https://dashboard.heroku.com/apps/(app-name)/resources` (Replace (app-name) with your app name.)
+Now send the bot `/start`, If it doesn't respond go to `https://dashboard.heroku.com/apps/(app-name)/settings` and remove webhook and port.
 </details>
 
 	
