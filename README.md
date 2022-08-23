@@ -81,7 +81,7 @@ The bot is based of on the original work done by [PaulSonOfLars](https://github.
 Go to `https://dashboard.heroku.com/apps/(app-name)/resources` (Replace (app-name) with your app name.)
 Now send the bot `/start`, If it doesn't respond go to `https://dashboard.heroku.com/apps/(app-name)/settings` and remove webhook and port.
 
->  Step 1 - Read [`config1.py`](https://github.com/TeamUltraUnion/rajniixrobot/blob/rajniixrobot/RajniiRobot/config1.py) in [`RajniiRobot`](https://github.com/TeamUltraUnion/rajniixrobot/tree/rajniixrobot/RajniiRobot) folder.
+>  Step 1 - Read [`config1.py`](https://github.com/TeamUltraUnion/rajniixrobot/blob/master/RajniiRobot/sample_config.py) in [`RajniiRobot`](https://github.com/TeamUltraUnion/rajniixrobot/tree/rajniixrobot/RajniiRobot) folder.
 		
 >  Step 2 - Get all required values by given urls and hit `Deploy to Heroku` button, Heroku website will open.
 		
