@@ -1,4 +1,4 @@
-<a align="center" href="https://telegram.me/rajniirobot">
+<a width="100%" href="https://telegram.me/rajniirobot">
   <img align="center" src="https://telegra.ph/file/59036da914a6411640989.jpg">
 </a>
 
